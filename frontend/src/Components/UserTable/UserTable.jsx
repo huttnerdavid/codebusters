@@ -1,11 +1,18 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
-import Loading from "../Loading";
 import "./UserTable.css";
 
 const UserTable = ({workers}) => {
 
   const navigate = useNavigate();
+
+  const splitRegType = (data) => {
+    if (data.match(/([A-Z].*?[A-Z].*?)/)) {
+      return data.replace(/([A-Z])/g, ' $1');
+    } else {
+      return data;
+    }
+  }
 
   return (
     <div className="UserTable">
@@ -14,8 +21,106 @@ const UserTable = ({workers}) => {
           <tr>
             <th>
               <div className="header">
+                <div className="id">
+                  Id
+                </div> 
+              </div>
+            </th>
+            <th>
+              <div className="header">
                 <div className="name">
-                  Id<br/>
+                  Name
+                </div> 
+              </div>
+            </th>
+            <th>
+              <div className="header">
+                <div className="password">
+                  Password
+                </div> 
+              </div>
+            </th>
+            <th>
+              <div className="header">
+                <div className="firstName">
+                  First name
+                </div> 
+              </div>
+            </th>
+            <th>
+              <div className="header">
+                <div className="lastName">
+                  Last name
+                </div> 
+              </div>
+            </th>
+            <th>
+              <div className="header">
+                <div className="gender">
+                  Gender
+                </div> 
+              </div>
+            </th>
+            <th>
+              <div className="header">
+                <div className="zipCode">
+                  Zipcode
+                </div> 
+              </div>
+            </th>
+            <th>
+              <div className="header">
+                <div className="city">
+                  City
+                </div> 
+              </div>
+            </th>
+              <th>
+                <div className="header">
+                  <div className="street">
+                    Street
+                  </div> 
+                </div>
+            </th>
+            <th>
+              <div className="header">
+                <div className="doorNumber">
+                  Door number
+                </div> 
+              </div>
+            </th>
+            <th>
+              <div className="header">
+                <div className="phoneNumber">
+                  Phone number
+                </div> 
+              </div>
+            </th>
+            <th>
+              <div className="header">
+                <div className="email">
+                  E-mail
+                </div> 
+              </div>
+            </th>
+            <th>
+              <div className="header">
+                <div className="registeredDate">
+                  Registered date
+                </div> 
+              </div>
+            </th>
+            <th>
+              <div className="header">
+                <div className="userType">
+                  User type
+                </div> 
+              </div>
+            </th>
+            <th>
+              <div className="header">
+                <div className="registrationType">
+                  Registration type
                 </div> 
               </div>
             </th>
@@ -37,7 +142,7 @@ const UserTable = ({workers}) => {
             <td>{workers.email.address}</td>
             <td>{workers.registrationDate}</td>
             <td>{workers.userType}</td>
-            <td>{workers.registrationType}</td>
+            <td>{splitRegType(workers.registrationType)}</td>
           </tr>
         </tbody>
       </table>
