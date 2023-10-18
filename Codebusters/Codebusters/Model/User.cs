@@ -1,4 +1,5 @@
 using System.Net.Mail;
+using System.Runtime.InteropServices.JavaScript;
 using Codebusters.Model.Enum;
 
 namespace Codebusters.Model;
@@ -10,15 +11,15 @@ public class User
     public string Password { get; private set; }
     public string FirstName { get; private set; }
     public string LastName { get; private set; }
-    public GenderType Gender { get; }
+    public string Gender { get; }
     public Address? Address { get; private set; }
     public string PhoneNumber { get; private set; }
     public MailAddress? Email { get; private set; }
-    public DateTime RegistrationDate { get; }
-    public UserType UserType { get; }
-    public RegistrationType RegistrationType { get; private set; }
+    public string RegistrationDate { get; }
+    public string UserType { get; }
+    public string RegistrationType { get; private set; }
 
-    public User(string userName, string password, string firstName, string lastName, GenderType gender, string address, string phoneNumber, string email, UserType userType, RegistrationType registrationType)
+    public User(string userName, string password, string firstName, string lastName, string gender, string address, string phoneNumber, string email, string userType, string registrationType)
     {
         Id = Guid.NewGuid();
         UserName = userName;
@@ -29,7 +30,7 @@ public class User
         Address = UserDataValidator.AddressValidator(address);
         PhoneNumber = UserDataValidator.TelephoneNumberChecker(phoneNumber);
         Email = UserDataValidator.EmailValidator(email, UserName);
-        RegistrationDate = DateTime.Today;
+        RegistrationDate = DateTime.Now.ToString("yyyy-MM-dd");
         UserType = userType;
         RegistrationType = registrationType;
     }
@@ -59,7 +60,7 @@ public class User
             case UserDataType.Email : Email = new MailAddress(data, UserName);
                 break;
             
-            case UserDataType.RegType : RegistrationType = (RegistrationType)UserDataValidator.ChangeRegisteredUser(data)!;
+            case UserDataType.RegType : RegistrationType = data;
                 break;
             
             default : throw new ArgumentOutOfRangeException(nameof(dataType), dataType, null);
