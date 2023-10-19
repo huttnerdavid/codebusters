@@ -1,6 +1,6 @@
 using System.Net.Mail;
-using System.Runtime.InteropServices.JavaScript;
 using Codebusters.Model.Enum;
+using Codebusters.Service.Configurator;
 
 namespace Codebusters.Model;
 
@@ -23,7 +23,7 @@ public class User
     {
         Id = Guid.NewGuid();
         UserName = userName;
-        Password = password;
+        Password = Encryptor.ToEncrypt(password);
         FirstName = firstName;
         LastName = lastName;
         Gender = gender;
@@ -42,7 +42,7 @@ public class User
             case UserDataType.Un : UserName = data;
                 break;
             
-            case UserDataType.Pw : Password = data;
+            case UserDataType.Pw : Password = Encryptor.ToEncrypt(data);
                 break;
             
             case UserDataType.Fn : FirstName = data;

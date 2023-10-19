@@ -1,8 +1,9 @@
 using System.Net.Mail;
 using System.Text.RegularExpressions;
+using Codebusters.Model;
 using Codebusters.Model.Enum;
 
-namespace Codebusters.Model;
+namespace Codebusters.Service.Configurator;
 
 public static class UserDataValidator
 {

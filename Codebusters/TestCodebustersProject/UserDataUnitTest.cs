@@ -1,6 +1,6 @@
-using System.Net.Mail;
 using Codebusters.Model;
 using Codebusters.Model.Enum;
+using Codebusters.Service.Configurator;
 
 namespace TestCodebustersProject;
 
@@ -34,12 +34,13 @@ public class Tests
 
         var email2 = "Vicky";
         var user2 = "Vicktorinox";
+
         var emailNullResult = UserDataValidator.EmailValidator(email2, user2);
         
         Assert.Multiple(() =>
         {
             Assert.That(user.UserName, Is.EqualTo(userName));
-            Assert.That(user.Password, Is.EqualTo(password));
+            Assert.IsTrue(BCrypt.Net.BCrypt.EnhancedVerify(password, user.Password));
             Assert.That(user.FirstName, Is.EqualTo(firstName));
             Assert.That(user.LastName, Is.EqualTo(lastName));
             Assert.That(user.Gender.ToString(), Is.EqualTo(genderType));
