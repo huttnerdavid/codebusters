@@ -9,7 +9,6 @@ public class UserRepository : IUserRepository
     const string password = "Constantine69";
     const string firstName = "Victor";
     const string lastName = "Postgradual";
-    /*const GenderType genderType = GenderType.Male;*/
     private static string genderType = GenderType.Male.ToString();
     const string address = "6969, Night City, Sesamme, 69";
     const string mobile = "06-90/696-6969";
@@ -18,15 +17,12 @@ public class UserRepository : IUserRepository
     static string registrationType = RegistrationType.CompanyEmployee.ToString();
 
     readonly User _user = new User(userName,
-        password,
-        firstName,
         lastName,
         genderType,
         address,
-        mobile,
-        email,
         userType,
-        registrationType
+        registrationType,
+        Guid.NewGuid().ToString()
     );
     
     
