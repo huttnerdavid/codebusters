@@ -48,7 +48,9 @@ void AddCors()
         options.AddPolicy(name: myAllowSpecificOrigins,
             policy  =>
             {
-                policy.WithOrigins("http://localhost:3000");
+                policy.WithOrigins("http://localhost:3000")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
             });
     });
 }

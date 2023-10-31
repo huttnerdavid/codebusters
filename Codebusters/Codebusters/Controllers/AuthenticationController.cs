@@ -20,13 +20,14 @@ public class AuthenticationController : ControllerBase
     [HttpPost("Register")]
     public async Task<ActionResult<RegistrationResponse>> Register(RegistrationRequest request)
     {
+        Console.WriteLine(request);
         try
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
+            
             var result = await _authenticationService.RegisterAsync(request.Email, request.Username, request.Password, request.PhoneNumber, "User");
 
             if (!result.Success)
@@ -43,6 +44,7 @@ public class AuthenticationController : ControllerBase
         }
         catch (Exception e)
         {
+            Console.WriteLine(request.FirstName);
             Console.WriteLine(e);
             throw;
         }
