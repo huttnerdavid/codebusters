@@ -14,6 +14,8 @@ const UserTable = ({workers}) => {
     }
   }
 
+  console.log(workers);
+
   return (
     <div className="UserTable">
       <table>
@@ -26,13 +28,13 @@ const UserTable = ({workers}) => {
                 </div> 
               </div>
             </th>
-            <th>
+            { <th>
               <div className="header">
                 <div className="name">
                   Name
                 </div> 
               </div>
-            </th>
+            </th> }
             <th>
               <div className="header">
                 <div className="password">
@@ -138,7 +140,7 @@ const UserTable = ({workers}) => {
             <td>{workers.address.city}</td>
             <td>{workers.address.street}</td>
             <td>{workers.address.doorNumber}</td>
-            <td>{workers.phoneNumber}</td>
+            <td>{workers.address.phoneNumber}</td>
             <td>{workers.email.address}</td>
             <td>{workers.registrationDate}</td>
             <td>{workers.userType}</td>

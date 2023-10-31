@@ -9,11 +9,14 @@ const Layout = () => {
       <nav>
         <ul>
           <li className="grow">
-            Adhatsuk a weboldal nevet
+            Construction manager app
           </li>
           <li>
             <Link to="/users">
               <button type="button">Users</button>
+            </Link>
+            <Link to="/registration">
+              <button type="button">Registration</button>
             </Link>
           </li>
         </ul>

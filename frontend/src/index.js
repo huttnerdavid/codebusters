@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import Layout from "./Pages/Layout";
 import ErrorPage from "./Pages/ErrorPage";
 import UserList from "./Pages/UserList";
+import UserRegistration from "./Components/UserForm";
 
 import "./index.css";
 
@@ -19,11 +20,15 @@ const App = () => {
       children: [
         {
           path: "/",
-          element: <div className="welcome-text">Welcome to the page! Click on the Table button if you want to see the table!</div>,
+          element: <div className="welcome-text">Welcome to the page! Click on the Users button if you want to see the user dummy data!</div>
         },
         {
           path: "/users",
-          element: <UserList  />,
+          element: <UserList />,
+        },
+        {
+          path: "/registration",
+          element: <UserRegistration />,
         },
       ],
     },
