@@ -21,7 +21,7 @@ ConfigureApp();
 
 var app = builder.Build();
 
-AddRoles();
+await AddRoles();
 
 app.UseCors(myAllowSpecificOrigins);
 
