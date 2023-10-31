@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Codebusters.Controllers;
 
+[ApiController]
 public class AuthenticationController : ControllerBase
 {
     private readonly IAuthService _authenticationService;
@@ -20,7 +21,6 @@ public class AuthenticationController : ControllerBase
     [HttpPost("Register")]
     public async Task<ActionResult<RegistrationResponse>> Register(RegistrationRequest request)
     {
-        Console.WriteLine(request);
         try
         {
             if (!ModelState.IsValid)
@@ -44,7 +44,6 @@ public class AuthenticationController : ControllerBase
         }
         catch (Exception e)
         {
-            Console.WriteLine(request.FirstName);
             Console.WriteLine(e);
             throw;
         }

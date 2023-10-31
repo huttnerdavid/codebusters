@@ -267,3 +267,7 @@ __pycache__/
 # Cake - Uncomment if you are using it
 # tools/
 
+/Migrations/20231031160158_InitialCreate.cs
+/Migrations/20231031160158_InitialCreate.Designer.cs
+/Migrations/UserData/20231031160211_InitialCreate.cs
+/Migrations/UserData/20231031160211_InitialCreate.Designer.cs
