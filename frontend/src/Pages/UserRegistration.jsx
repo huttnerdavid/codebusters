@@ -3,17 +3,15 @@ import Loading from "../Components/Loading";
 import UserForm from "../Components/UserForm";
 import { useNavigate } from "react-router-dom";
 
-const createEmployee = (user, setData) => {
-  
-  console.log(JSON.stringify(user));
+const createEmployee = (user) => {
+  const jsonPayload = JSON.stringify(user);
   return fetch("http://localhost:5293/Register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(user),
-  }).then((res) => res.json()
-  .then((d) => setData(d)));
+    body: jsonPayload,
+  }).then((res) => res.json());
 };
 
 const UserRegistration = () => {
