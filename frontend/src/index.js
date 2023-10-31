@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import Layout from "./Pages/Layout";
 import ErrorPage from "./Pages/ErrorPage";
 import UserList from "./Pages/UserList";
-import UserRegistration from "./Components/UserForm";
+import UserRegistration from "./Pages/UserRegistration";
 
 import "./index.css";
 

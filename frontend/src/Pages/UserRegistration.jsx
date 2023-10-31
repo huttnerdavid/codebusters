@@ -1,11 +1,35 @@
 import { useEffect, useState } from "react";
 import Loading from "../Components/Loading";
 import UserForm from "../Components/UserForm";
+import { useNavigate } from "react-router-dom";
+
+const createEmployee = (user, setData) => {
+  
+  console.log(JSON.stringify(user));
+  return fetch("http://localhost:5293/Register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  }).then((res) => res.json()
+  .then((d) => setData(d)));
+};
 
 const UserRegistration = () => {
-  
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [users, setUsers] = useState(null);
+  const navigate = useNavigate();
+
+  const handleCancel = () => {
+    navigate("/");
+  }
+
+  const handleSubmit = (user) => {
+    setLoading(true);
+    createEmployee(user, setData);
+    setLoading(false);
+  }
 
   return (
     <div>
@@ -13,7 +37,8 @@ const UserRegistration = () => {
         <Loading />
       ) : (
         <UserForm
-          users = { users }
+          onSave = { handleSubmit }
+          onCancel = { handleCancel }
         />
       )}
     </div>

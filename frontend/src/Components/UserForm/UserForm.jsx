@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
 import Loading from "../Loading";
 
-const EmployeeForm = ({ onSave, disabled, user, onCancel }) => {
+const EmployeeForm = ({ onSave, user, onCancel }) => {
 
   const [loading, setLoading] = useState(false);
-  const [userName, setUserName] = useState(user?.userName ?? "");
-  const [password, setPassword] = useState(user?.password ?? "");
-  const [email, setEmail] = useState(user?.email ?? "");
-  const [phoneNumber, setPhoneNumber] = useState(user?.phoneNumber ?? "");
-  const [firstName, setFirstName] = useState(user?.firstName ?? "");
-  const [lastName, setLastName] = useState(user?.lastName ?? "");
-  const [gender, setGender] = useState(user?.gender ?? "");
-  const [address, setAddress] = useState(user?.address ?? "");
-  const [userType, setUserType] = useState(user?.userType ?? "");
-  const [registrationType, setRegistrationType] = useState(user?.registrationType ?? "");
+  const [Username, setUserName] = useState(user?.Username ?? "");
+  const [Password, setPassword] = useState(user?.Password ?? "");
+  const [Email, setEmail] = useState(user?.Email ?? "");
+  const [PhoneNumber, setPhoneNumber] = useState(user?.PhoneNumber ?? "");
+  const [FirstName, setFirstName] = useState(user?.FirstName ?? "");
+  const [LastName, setLastName] = useState(user?.LastName ?? "");
+  const [Gender, setGender] = useState(user?.Gender ?? "");
+  const [Address, setAddress] = useState(user?.Address ?? "");
+  const [UserType, setUserType] = useState(user?.UserType ?? "");
+  const [RegistrationType, setRegistrationType] = useState(user?.RegistrationType ?? "");
 
   //submit function
   const onSubmit = (e) => {
@@ -22,30 +22,30 @@ const EmployeeForm = ({ onSave, disabled, user, onCancel }) => {
     if (user) {
       return onSave({
         ...user,
-        userName,
-        password,
-        email,
-        phoneNumber,
-        firstName,
-        lastName,
-        gender,
-        address,
-        userType,
-        registrationType
+        Username,
+        Password,
+        Email,
+        PhoneNumber,
+        FirstName,
+        LastName,
+        Gender,
+        Address,
+        UserType,
+        RegistrationType
       });
     }
 
     return onSave({
-        userName,
-        password,
-        email,
-        phoneNumber,
-        firstName,
-        lastName,
-        gender,
-        address,
-        userType,
-        registrationType
+      Username,
+      Password,
+      Email,
+      PhoneNumber,
+      FirstName,
+      LastName,
+      Gender,
+      Address,
+      UserType,
+      RegistrationType
     });
   };
 
@@ -59,7 +59,7 @@ const EmployeeForm = ({ onSave, disabled, user, onCancel }) => {
       <div className="control">
         <label htmlFor="userName">Username:</label>
         <input
-          value={userName}
+          value={Username}
           onChange={(e) => setUserName(e.target.value)}
           name="userName"
           id="userName"
@@ -69,7 +69,7 @@ const EmployeeForm = ({ onSave, disabled, user, onCancel }) => {
       <div className="control">
         <label htmlFor="password">Password:</label>
         <input
-          value={password}
+          value={Password}
           onChange={(e) => setPassword(e.target.value)}
           name="password"
           id="password"
@@ -79,7 +79,7 @@ const EmployeeForm = ({ onSave, disabled, user, onCancel }) => {
       <div className="control">
         <label htmlFor="email">Email:</label>
         <input
-          value={email}
+          value={Email}
           onChange={(e) => setEmail(e.target.value)}
           name="email"
           id="email"
@@ -89,7 +89,7 @@ const EmployeeForm = ({ onSave, disabled, user, onCancel }) => {
       <div className="control">
         <label htmlFor="phoneNumber">Phonenumber:</label>
         <input
-          value={phoneNumber}
+          value={PhoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
           name="phoneNumber"
           id="phoneNumber"
@@ -99,7 +99,7 @@ const EmployeeForm = ({ onSave, disabled, user, onCancel }) => {
       <div className="control">
         <label htmlFor="firstName">First name:</label>
         <input
-          value={firstName}
+          value={FirstName}
           onChange={(e) => setFirstName(e.target.value)}
           name="firstName"
           id="firstName"
@@ -109,7 +109,7 @@ const EmployeeForm = ({ onSave, disabled, user, onCancel }) => {
       <div className="control">
         <label htmlFor="lastName">Last name:</label>
         <input
-          value={lastName}
+          value={LastName}
           onChange={(e) => setLastName(e.target.value)}
           name="lastName"
           id="lastName"
@@ -119,7 +119,7 @@ const EmployeeForm = ({ onSave, disabled, user, onCancel }) => {
       <div className="control">
         <label htmlFor="gender">Gender:</label>
         <input
-          value={gender}
+          value={Gender}
           onChange={(e) => setGender(e.target.value)}
           name="gender"
           id="gender"
@@ -128,7 +128,7 @@ const EmployeeForm = ({ onSave, disabled, user, onCancel }) => {
       <div className="control">
         <label htmlFor="address">Address:</label>
         <input
-          value={address}
+          value={Address}
           onChange={(e) => setAddress(e.target.value)}
           name="address"
           id="address"
@@ -138,7 +138,7 @@ const EmployeeForm = ({ onSave, disabled, user, onCancel }) => {
       <div className="control">
         <label htmlFor="userType">User type:</label>
         <input
-          value={userType}
+          value={UserType}
           onChange={(e) => setUserType(e.target.value)}
           name="userType"
           id="userType"
@@ -148,7 +148,7 @@ const EmployeeForm = ({ onSave, disabled, user, onCancel }) => {
       <div className="control">
         <label htmlFor="regType">Registration type:</label>
         <input
-          value={registrationType}
+          value={RegistrationType}
           onChange={(e) => setRegistrationType(e.target.value)}
           name="regType"
           id="regType"
@@ -156,10 +156,10 @@ const EmployeeForm = ({ onSave, disabled, user, onCancel }) => {
       </div>
 
       <div className="buttons">
-        <button type="submit" disabled={disabled}>
+        <button type="submit">
           {user ? "Update User" : "Create User"}
         </button>
-        <button type="button" onClick={onCancel}>
+        <button type="button" onClick = { onCancel }>
           Cancel
         </button>
       </div>
