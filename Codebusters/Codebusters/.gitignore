@@ -271,3 +271,5 @@ __pycache__/
 /Migrations/20231031160158_InitialCreate.Designer.cs
 /Migrations/UserData/20231031160211_InitialCreate.cs
 /Migrations/UserData/20231031160211_InitialCreate.Designer.cs
+/Migrations/20231101101606_InitialCreate.cs
+/Migrations/
