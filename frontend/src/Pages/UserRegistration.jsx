@@ -24,6 +24,7 @@ const UserRegistration = () => {
   }
 
   const handleSubmit = (user) => {
+    console.log(user);
     setLoading(true);
     createEmployee(user, setData);
     setLoading(false);

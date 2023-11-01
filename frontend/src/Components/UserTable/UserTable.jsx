@@ -2,7 +2,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import "./UserTable.css";
 
-const UserTable = ({workers}) => {
+const UserTable = ({users}) => {
 
   const navigate = useNavigate();
 
@@ -13,9 +13,7 @@ const UserTable = ({workers}) => {
       return data;
     }
   }
-
-  console.log(workers);
-
+console.log(users);
   return (
     <div className="UserTable">
       <table>
@@ -23,22 +21,8 @@ const UserTable = ({workers}) => {
           <tr>
             <th>
               <div className="header">
-                <div className="id">
-                  Id
-                </div> 
-              </div>
-            </th>
-            { <th>
-              <div className="header">
                 <div className="name">
-                  Name
-                </div> 
-              </div>
-            </th> }
-            <th>
-              <div className="header">
-                <div className="password">
-                  Password
+                  Username
                 </div> 
               </div>
             </th>
@@ -129,23 +113,23 @@ const UserTable = ({workers}) => {
           </tr>
         </thead>
         <tbody>
-          <tr key={workers.id}>
-            <td>{workers.id}</td>
-            <td>{workers.userName}</td>
-            <td>{workers.password}</td>
-            <td>{workers.firstName}</td>
-            <td>{workers.lastName}</td>
-            <td>{workers.gender}</td>
-            <td>{workers.address.zipCode}</td>
-            <td>{workers.address.city}</td>
-            <td>{workers.address.street}</td>
-            <td>{workers.address.doorNumber}</td>
-            <td>{workers.address.phoneNumber}</td>
-            <td>{workers.email.address}</td>
-            <td>{workers.registrationDate}</td>
-            <td>{workers.userType}</td>
-            <td>{splitRegType(workers.registrationType)}</td>
-          </tr>
+           {users.map((user) => (
+            <tr key={user.item1.id}>
+              <td>{user.item2.userName}</td>
+              <td>{user.item1.firstName}</td>
+              <td>{user.item1.lastName}</td>
+              <td>{user.item1.gender}</td>
+              <td>{user.item1.zipCode}</td>
+              <td>{user.item1.city}</td>
+              <td>{user.item1.street}</td>
+              <td>{user.item1.doorNumber}</td>
+              <td>{user.item2.phoneNumber}</td>
+              <td>{user.item2.normalizedEmail.toLowerCase()}</td>
+              <td>{user.item1.registrationDate}</td>
+              <td>{user.item1.userType}</td>
+              <td>{user.item1.registrationType}</td>
+            </tr>
+          ))} 
         </tbody>
       </table>
     </div>
