@@ -5,7 +5,7 @@ namespace Codebusters.Service;
 
 public class UserRepository : IUserRepository
 {
-    const string userName = "JohnVick";
+    /*const string userName = "JohnVick";
     const string password = "Constantine69";
     const string firstName = "Victor";
     const string lastName = "Postgradual";
@@ -29,5 +29,9 @@ public class UserRepository : IUserRepository
     public User Get()
     {
         return _user;
+    }*/
+    public User Get()
+    {
+        throw new NotImplementedException();
     }
 }

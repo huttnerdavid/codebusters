@@ -10,7 +10,10 @@ public record RegistrationRequest(
     [Required]string FirstName,
     [Required]string LastName,
     [Required]string Gender,
-    [Required]string Address,
+    [Required]int ZipCode,
+    [Required]string City,
+    [Required]string Street,
+    [Required]int DoorNumber,
     [Required]string UserType,
     [Required]string RegistrationType
     );

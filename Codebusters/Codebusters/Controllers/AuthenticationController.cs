@@ -21,6 +21,8 @@ public class AuthenticationController : ControllerBase
     [HttpPost("Register")]
     public async Task<ActionResult<RegistrationResponse>> Register(RegistrationRequest request)
     {
+        Console.WriteLine(request);
+        Console.WriteLine(request.DoorNumber);
         try
         {
             if (!ModelState.IsValid)
@@ -36,7 +38,7 @@ public class AuthenticationController : ControllerBase
                 return BadRequest(ModelState);
             }
 
-            var newUser = new User(request.FirstName, request.LastName, request.Gender, request.Address, request.UserType, request.RegistrationType, result.Id);
+            var newUser = new User(request.FirstName, request.LastName, request.Gender, request.ZipCode, request.City, request.Street, request.DoorNumber, request.UserType, request.RegistrationType, result.Id);
             _dataContext.Users!.Add(newUser);
             await _dataContext.SaveChangesAsync();
 

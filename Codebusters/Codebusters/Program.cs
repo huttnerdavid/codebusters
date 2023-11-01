@@ -132,6 +132,7 @@ async Task CreateOutsiderRole(RoleManager<IdentityRole> roleManager)
 void AddAdmin()
 {
     var tAdmin = CreateAdminIfNotExists();
+    Console.WriteLine("HAHHFBVSAUHFVBSAUHFVBSAUHFASVFUHASVFSAUAS");
     tAdmin.Wait();
 }
 
@@ -143,7 +144,7 @@ async Task CreateAdminIfNotExists()
     if (adminInDb == null)
     {
         var admin = new IdentityUser { UserName = "Admin", Email = "admin@hotmail.com" };
-        var adminCreated = await userManager.CreateAsync(admin, "admin");
+        var adminCreated = await userManager.CreateAsync(admin, "AdminStrongPassword");
 
         if (adminCreated.Succeeded)
         {

@@ -9,19 +9,25 @@ public class User
     public Guid Id { get; set; }
     public string FirstName { get; private set; }
     public string LastName { get; private set; }
-    public string Gender { get; }
-    public Address? Address { get; private set; }
-    public string RegistrationDate { get; }
-    public string UserType { get; }
+    public string Gender { get; init; }
+    public int ZipCode { get; private set; }
+    public string City { get; private set; }
+    public string Street { get; private set; }
+    public int DoorNumber { get; private set; }
+    public string RegistrationDate { get; init; }
+    public string UserType { get; init; }
     public string RegistrationType { get; private set; }
-    public string IdentityUserId { get; private set; } 
+    public string IdentityUserId { get; init; } 
 
-    public User(string firstName, string lastName, string gender, string address, string userType, string registrationType, string identityUserId)
+    public User(string firstName, string lastName, string gender, int zipCode, string city, string street, int doorNumber, string userType, string registrationType, string identityUserId)
     {
         FirstName = firstName;
         LastName = lastName;
         Gender = gender;
-        Address = UserDataValidator.AddressValidator(address);
+        ZipCode = zipCode;
+        City = city;
+        Street = street;
+        DoorNumber = doorNumber;
         RegistrationDate = DateTime.Now.ToString("yyyy-MM-dd");
         UserType = userType;
         RegistrationType = registrationType;
