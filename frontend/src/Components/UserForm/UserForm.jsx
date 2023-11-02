@@ -18,7 +18,6 @@ const EmployeeForm = ({ onSave, user, onCancel }) => {
   const [userType, setUserType] = useState(user?.userType ?? "");
   const [registrationType, setRegistrationType] = useState(user?.registrationType ?? "");
 
-  //submit function
   const onSubmit = (e) => {
     e.preventDefault();
 

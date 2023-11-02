@@ -1,19 +1,8 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import "./UserTable.css";
 
 const UserTable = ({users}) => {
 
-  const navigate = useNavigate();
-
-  const splitRegType = (data) => {
-    if (data.match(/([A-Z].*?[A-Z].*?)/)) {
-      return data.replace(/([A-Z])/g, ' $1');
-    } else {
-      return data;
-    }
-  }
-console.log(users);
   return (
     <div className="UserTable">
       <table>
@@ -124,7 +113,7 @@ console.log(users);
               <td>{user.item1.street}</td>
               <td>{user.item1.doorNumber}</td>
               <td>{user.item2.phoneNumber}</td>
-              <td>{user.item2.normalizedEmail.toLowerCase()}</td>
+              <td>{user.item2.email}</td>
               <td>{user.item1.registrationDate}</td>
               <td>{user.item1.userType}</td>
               <td>{user.item1.registrationType}</td>
