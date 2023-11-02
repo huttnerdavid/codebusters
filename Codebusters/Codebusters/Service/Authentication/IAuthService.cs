@@ -1,7 +1,4 @@
-﻿using System.Net.Mail;
-using Codebusters.Model;
-
-namespace Codebusters.Service.Authentication;
+﻿namespace Codebusters.Service.Authentication;
 
 public interface IAuthService
 {

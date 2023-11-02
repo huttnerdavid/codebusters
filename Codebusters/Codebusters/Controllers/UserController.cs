@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using Codebusters.Data;
+﻿using Codebusters.Data;
 using Codebusters.Model;
-using Codebusters.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Codebusters.Controllers;
 
@@ -22,7 +19,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("/getUsers")]
-    public async Task<ActionResult<IEnumerable<Tuple<User, IdentityUser>>>> GetAll()
+    public ActionResult<IEnumerable<Tuple<User, IdentityUser>>> GetAll()
     {
         try
         {
@@ -46,13 +43,12 @@ public class UserController : ControllerBase
                     returningList.Add(tuple);
                 }
             }
-
-            Console.WriteLine(returningList);
+            
             return Ok(returningList);
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            _logger.LogError(e.ToString());
             return NotFound();
         }
     }

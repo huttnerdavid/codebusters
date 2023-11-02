@@ -11,18 +11,18 @@ public class AuthenticationController : ControllerBase
 {
     private readonly IAuthService _authenticationService;
     private readonly UserDataContext? _dataContext;
+    private readonly ILogger<AuthenticationController> _logger;
 
-    public AuthenticationController(IAuthService authenticationService, UserDataContext dataContext)
+    public AuthenticationController(IAuthService authenticationService, UserDataContext dataContext, ILogger<AuthenticationController> logger)
     {
         _authenticationService = authenticationService;
         _dataContext = dataContext;
+        _logger = logger;
     }
     
     [HttpPost("Register")]
     public async Task<ActionResult<RegistrationResponse>> Register(RegistrationRequest request)
     {
-        Console.WriteLine(request);
-        Console.WriteLine(request.DoorNumber);
         try
         {
             if (!ModelState.IsValid)
@@ -39,14 +39,14 @@ public class AuthenticationController : ControllerBase
             }
 
             var newUser = new User(request.FirstName, request.LastName, request.Gender, request.ZipCode, request.City, request.Street, request.DoorNumber, request.UserType, request.RegistrationType, result.Id);
-            _dataContext.Users!.Add(newUser);
+            _dataContext!.Users!.Add(newUser);
             await _dataContext.SaveChangesAsync();
 
             return CreatedAtAction(nameof(Register), new RegistrationResponse(result.Email, result.UserName));
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            _logger.LogError(e.ToString());
             throw;
         }
     }

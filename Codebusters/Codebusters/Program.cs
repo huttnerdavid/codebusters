@@ -61,7 +61,6 @@ void AddServices()
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
     
-    // Add the DbContext here
     AddDbContext();
 
     builder.Services.AddSingleton<IUserRepository, UserRepository>();
@@ -102,37 +101,22 @@ async Task AddRoles()
 {
     using var scope = app.Services.CreateScope();
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-    await CreateAdminRole(roleManager);
-    await CreateUserRole(roleManager);
-    await CreateInsiderRole(roleManager);
-    await CreateOutsiderRole(roleManager);
+    var roleList = new List<string> { "Admin", "User", "Insider", "Outsider" };
+    
+    foreach (var role in roleList)
+    {
+        await CreateRole(roleManager, role);
+    }
 }
 
-async Task CreateAdminRole(RoleManager<IdentityRole> roleManager)
+async Task CreateRole(RoleManager<IdentityRole> roleManager, string role)
 {
-    await roleManager.CreateAsync(new IdentityRole("Admin"));
-}
-
-async Task CreateUserRole(RoleManager<IdentityRole> roleManager)
-{
-    await roleManager.CreateAsync(new IdentityRole("User"));
-}
-
-async Task CreateInsiderRole(RoleManager<IdentityRole> roleManager)
-{
-    await roleManager.CreateAsync(new IdentityRole("Insider"));
-}
-
-async Task CreateOutsiderRole(RoleManager<IdentityRole> roleManager)
-{
-    await roleManager.CreateAsync(new IdentityRole("Outsider"));
+    await roleManager.CreateAsync(new IdentityRole(role));
 }
 
 void AddAdmin()
 {
     var tAdmin = CreateAdminIfNotExists();
-    Console.WriteLine("HAHHFBVSAUHFVBSAUHFVBSAUHFASVFUHASVFSAUAS");
     tAdmin.Wait();
 }
 

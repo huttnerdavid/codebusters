@@ -26,21 +26,4 @@ public static class UserDataValidator
         
         return r.IsMatch(phoneNumber) ? phoneNumber : "Phone number not given!";
     }
-    
-    public static Address? AddressValidator(string data)
-    {
-        var subs = data.Split(", ");
-        
-        return subs.Length == 4 ? new Address(Convert.ToInt32(subs[0]), subs[1], subs[2], Convert.ToInt32(subs[3])) : null;
-    }
-
-    public static RegistrationType? ChangeRegisteredUser(string data)
-    {
-        if (System.Enum.TryParse(data, out RegistrationType returningValue))
-        {
-            return returningValue;
-        }
-
-        return null;
-    }
 }

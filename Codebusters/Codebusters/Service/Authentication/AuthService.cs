@@ -1,4 +1,3 @@
-using Codebusters.Model;
 using Microsoft.AspNetCore.Identity;
 
 namespace Codebusters.Service.Authentication;
