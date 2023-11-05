@@ -18,6 +18,12 @@ const Layout = () => {
             <Link to="/registration">
               <button type="button">Registration</button>
             </Link>
+            <Link to="/companies">
+              <button type="button">Companies</button>
+            </Link>
+            <Link to="/companyregistration">
+              <button type="button">Company Registration</button>
+            </Link>
           </li>
         </ul>
       </nav>

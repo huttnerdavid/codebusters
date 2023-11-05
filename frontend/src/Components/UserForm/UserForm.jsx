@@ -16,6 +16,7 @@ const EmployeeForm = ({ onSave, user, onCancel }) => {
   const [street, setStreet] = useState(user?.street ?? "");
   const [doorNumber, setDoorNumber] = useState(user?.doorNumber ?? "");
   const [userType, setUserType] = useState(user?.userType ?? "");
+  const [companyNameByDatabase, setCompanyNameByDatabase] = useState(user?.userType ?? "");
   const [registrationType, setRegistrationType] = useState(user?.registrationType ?? "");
 
   //submit function
@@ -37,6 +38,7 @@ const EmployeeForm = ({ onSave, user, onCancel }) => {
         street,
         doorNumber,
         userType,
+        companyNameByDatabase,
         registrationType
       });
     }
@@ -54,6 +56,7 @@ const EmployeeForm = ({ onSave, user, onCancel }) => {
       street,
       doorNumber,
       userType,
+      companyNameByDatabase,
       registrationType
     });
   };
@@ -188,6 +191,23 @@ const EmployeeForm = ({ onSave, user, onCancel }) => {
           id="userType"
         >
           {userType ? null : <option value="">Select user type!</option>}
+          <option value="CEO">CEO</option>
+          <option value="Manager">Manager</option>
+          <option value="Supervisor">Supervisor</option>
+          <option value="Worker">Worker</option>
+          <option value="Client">Client</option>
+        </select>
+      </div>
+
+      <div className="control">
+        <label htmlFor="userType">Name of the company:</label>
+        <select
+          value={companyNameByDatabase}
+          onChange={(e) => setUserType(e.target.value)}
+          name="userType"
+          id="userType"
+        >
+          {companyNameByDatabase ? null : <option value="">Select company!</option>}
           <option value="CEO">CEO</option>
           <option value="Manager">Manager</option>
           <option value="Supervisor">Supervisor</option>

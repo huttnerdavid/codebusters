@@ -8,6 +8,9 @@ import ErrorPage from "./Pages/ErrorPage";
 import UserList from "./Pages/UserList";
 import UserRegistration from "./Pages/UserRegistration";
 
+import CompanyList from "./Pages/CompanyList";
+import CompanyRegistration from "./Pages/CompanyRegistration";
+
 import "./index.css";
 
 const App = () => {
@@ -29,6 +32,14 @@ const App = () => {
         {
           path: "/registration",
           element: <UserRegistration />,
+        },
+        {
+          path: "/companies",
+          element: <CompanyList />,
+        },
+        {
+          path: "/companyregistration",
+          element: <CompanyRegistration />,
         },
       ],
     },
