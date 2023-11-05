@@ -4,5 +4,5 @@ namespace Codebusters.Service;
 
 public interface IUserRepository
 {
-    public User Get();
+    public int Get();
 }

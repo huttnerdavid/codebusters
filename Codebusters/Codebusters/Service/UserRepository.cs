@@ -1,5 +1,4 @@
-﻿using Codebusters.Model;
-using Codebusters.Model.Enum;
+﻿using Codebusters.Data;
 
 namespace Codebusters.Service;
 
@@ -30,7 +29,12 @@ public class UserRepository : IUserRepository
     {
         return _user;
     }*/
-    public User Get()
+
+    /*public int GetAll(string companyName)
+    {
+        return (int)_userDataContext?.Users?.Count(u => u.CompanyNameByDatabase == companyName)!;
+    }*/
+    public int Get()
     {
         throw new NotImplementedException();
     }

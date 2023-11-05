@@ -64,6 +64,7 @@ void AddServices()
     AddDbContext();
 
     builder.Services.AddSingleton<IUserRepository, UserRepository>();
+    builder.Services.AddSingleton<ICompanyRepository, CompanyRepository>();
     builder.Services.AddScoped<IAuthService, AuthService>();
     builder.Services.AddScoped<ITokenService, TokenService>();
 }
@@ -73,6 +74,8 @@ void AddDbContext()
     builder.Services.AddDbContext<UsersContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
     builder.Services.AddDbContext<UserDataContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    builder.Services.AddDbContext<CompanyDataContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 }
 

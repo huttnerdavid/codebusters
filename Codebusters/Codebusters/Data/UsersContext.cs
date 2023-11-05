@@ -11,6 +11,10 @@ public class UsersContext : IdentityDbContext<IdentityUser, IdentityRole, string
     {
     }
     
+    public UsersContext ()
+    {
+    }
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

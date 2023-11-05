@@ -28,6 +28,8 @@ const UserRegistration = () => {
     setLoading(true);
     createEmployee(user, setData);
     setLoading(false);
+    navigate("/");
+    alert("Successfully registered!");
   }
 
   return (

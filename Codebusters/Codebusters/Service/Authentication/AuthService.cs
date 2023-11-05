@@ -26,7 +26,7 @@ public class AuthService : IAuthService
         await _userManager.AddToRoleAsync(user, role);
         return new AuthResult(user.Id, true, email, username, "");
     }
-    
+
     private static AuthResult FailedRegistration(string id, IdentityResult result, string email, string username)
     {
         var authenticationResult = new AuthResult(id, false, email, username, "");
