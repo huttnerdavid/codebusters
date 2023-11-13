@@ -39,8 +39,40 @@ public class AuthService : IAuthService
         return authenticationResult;
     }
 
-    public Task<AuthResult> LoginAsync(string username, string password)
+    public async Task<AuthResult> LoginAsync(string email, string password)
     {
-        throw new NotImplementedException();
+        var managedUser = await _userManager.FindByEmailAsync(email);
+
+        if (managedUser == null)
+        {
+            return InvalidEmail(email);
+        }
+
+        var isPasswordValid = await _userManager.CheckPasswordAsync(managedUser, password);
+        if (!isPasswordValid)
+        {
+            return InvalidPassword(email, managedUser.UserName);
+        }
+
+
+        // get the role and pass it to the TokenService
+        var roles = await _userManager.GetRolesAsync(managedUser);
+        var accessToken = _tokenService.CreateToken(managedUser, roles[0]);
+
+        return new AuthResult(managedUser.Id, true, managedUser.Email, managedUser.UserName, accessToken);
+    }
+    
+    private static AuthResult InvalidEmail(string email)
+    {
+        var result = new AuthResult("", false, email, "", "");
+        result.ErrorMessages.Add("Bad credentials", "Invalid email");
+        return result;
+    }
+    
+    private static AuthResult InvalidPassword(string email, string userName)
+    {
+        var result = new AuthResult("", false, email, userName, "");
+        result.ErrorMessages.Add("Bad credentials", "Invalid password");
+        return result;
     }
 }
