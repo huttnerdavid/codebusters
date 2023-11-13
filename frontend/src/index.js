@@ -12,6 +12,7 @@ import CompanyList from "./Pages/CompanyList";
 import CompanyRegistration from "./Pages/CompanyRegistration";
 
 import "./index.css";
+import ConstructRegistration from "./Pages/ConstructRegistration";
 
 const App = () => {
 
@@ -40,6 +41,10 @@ const App = () => {
         {
           path: "/companyregistration",
           element: <CompanyRegistration />,
+        },
+        {
+          path: "company/construct/:companyName",
+          element: <ConstructRegistration />,
         },
       ],
     },
