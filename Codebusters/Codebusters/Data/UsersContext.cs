@@ -9,6 +9,7 @@ public class UsersContext : IdentityDbContext<IdentityUser, IdentityRole, string
 {
     public DbSet<User>? UsersDb { get; set; }
     public DbSet<Company>? Companies { get; set; }
+    public DbSet<Construct>? Constructs { get; set; }
 
     public UsersContext (DbContextOptions<UsersContext> options)
         : base(options)
