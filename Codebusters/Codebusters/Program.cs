@@ -73,10 +73,6 @@ void AddDbContext()
 {
     builder.Services.AddDbContext<UsersContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-    builder.Services.AddDbContext<UserDataContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-    builder.Services.AddDbContext<CompanyDataContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 }
 
 void AddAuthentication()

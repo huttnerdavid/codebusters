@@ -17,8 +17,8 @@ public class Company
     public int WarehouseSize { get; private set; }
     public int CompanyUserCount { get; set; }
 
-    private readonly UserDataContext _userDataContext;
-    public Company(string companyName, int zipCode, string city, string street, int doorNumber, string pickedCompanyType, UserDataContext userDataContext)
+    private readonly UsersContext _usersContext;
+    public Company(string companyName, int zipCode, string city, string street, int doorNumber, string pickedCompanyType, UsersContext usersContext)
     {
         CompanyName = companyName;
         ZipCode = zipCode;
@@ -27,7 +27,7 @@ public class Company
         DoorNumber = doorNumber;
         RegistrationDate = DateTime.Now.ToString("yyyy-MM-dd");
         PickedCompanyType = pickedCompanyType;
-        _userDataContext = userDataContext;
+        _usersContext = usersContext;
         WarehouseSize = MeasureWarehouseSize(pickedCompanyType);
         CompanyUserCount = UserCounterForCompany(companyName);
     }
@@ -38,7 +38,7 @@ public class Company
 
     private int UserCounterForCompany(string companyName)
     {
-        return (int)_userDataContext?.Users?.Count(u => u.CompanyNameByDatabase == companyName)!;
+        return (int)_usersContext?.UsersDb?.Count(u => u.CompanyNameByDatabase == companyName)!;
     }
 
     private int MeasureWarehouseSize(string companyType)
@@ -55,6 +55,4 @@ public class Company
                 return 0;
         }
     }
-    
-    
 }

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const createEmployee = (user) => {
   const jsonPayload = JSON.stringify(user);
-  return fetch("http://localhost:8080/Register", {
+  return fetch("http://localhost:5293/Register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

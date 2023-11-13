@@ -9,7 +9,7 @@ const UserList = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:8080/getUsers");
+      const response = await fetch("http://localhost:5293/getUsers");
       const data = await response.json();
       if (response.ok) {
         setUsers(data);

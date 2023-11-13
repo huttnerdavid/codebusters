@@ -10,13 +10,13 @@ namespace Codebusters.Controllers;
 public class AuthenticationController : ControllerBase
 {
     private readonly IAuthService _authenticationService;
-    private readonly UserDataContext? _dataContext;
+    private readonly UsersContext? _usersContext;
     private readonly ILogger<AuthenticationController> _logger;
 
-    public AuthenticationController(IAuthService authenticationService, UserDataContext dataContext, ILogger<AuthenticationController> logger)
+    public AuthenticationController(IAuthService authenticationService, UsersContext usersContext, ILogger<AuthenticationController> logger)
     {
         _authenticationService = authenticationService;
-        _dataContext = dataContext;
+        _usersContext = usersContext;
         _logger = logger;
     }
     
@@ -39,8 +39,8 @@ public class AuthenticationController : ControllerBase
             }
 
             var newUser = new User(request.FirstName, request.LastName, request.Gender, request.ZipCode, request.City, request.Street, request.DoorNumber, request.UserType, request.CompanyNameByDatabase, request.RegistrationType, result.Id);
-            _dataContext!.Users!.Add(newUser);
-            await _dataContext.SaveChangesAsync();
+            _usersContext!.UsersDb!.Add(newUser);
+            await _usersContext.SaveChangesAsync();
 
             return CreatedAtAction(nameof(Register), new RegistrationResponse(result.Email, result.UserName));
         }

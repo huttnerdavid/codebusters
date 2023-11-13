@@ -16,7 +16,7 @@ const EmployeeForm = ({ onSave, user, onCancel }) => {
   const [street, setStreet] = useState(user?.street ?? "");
   const [doorNumber, setDoorNumber] = useState(user?.doorNumber ?? "");
   const [userType, setUserType] = useState(user?.userType ?? "");
-  const [companyNameByDatabase, setCompanyNameByDatabase] = useState(user?.userType ?? "");
+  const [companyNameByDatabase, setCompanyNameByDatabase] = useState(user?.companyNameByDatabase ?? "");
   const [registrationType, setRegistrationType] = useState(user?.registrationType ?? "");
 
   const onSubmit = (e) => {
@@ -199,19 +199,15 @@ const EmployeeForm = ({ onSave, user, onCancel }) => {
       </div>
 
       <div className="control">
-        <label htmlFor="userType">Name of the company:</label>
+        <label htmlFor="compType">Name of the company:</label>
         <select
           value={companyNameByDatabase}
-          onChange={(e) => setUserType(e.target.value)}
-          name="userType"
-          id="userType"
+          onChange={(e) => setCompanyNameByDatabase(e.target.value)}
+          name="compType"
+          id="compType"
         >
           {companyNameByDatabase ? null : <option value="">Select company!</option>}
-          <option value="CEO">CEO</option>
-          <option value="Manager">Manager</option>
-          <option value="Supervisor">Supervisor</option>
-          <option value="Worker">Worker</option>
-          <option value="Client">Client</option>
+          <option value="Company">Not added yet</option>
         </select>
       </div>
 

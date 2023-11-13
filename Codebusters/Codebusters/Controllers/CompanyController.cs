@@ -9,14 +9,12 @@ namespace Codebusters.Controllers;
 public class CompanyController : ControllerBase
 {
     private readonly ILogger<UserController> _logger;
-    private readonly CompanyDataContext _companyRepository;
-    private readonly UserDataContext _userDataContext;
+    private readonly UsersContext _usersContext;
 
-    public CompanyController(CompanyDataContext companyRepository, ILogger<UserController> logger, UserDataContext userDataContext)
+    public CompanyController(UsersContext usersContext, ILogger<UserController> logger)
     {
-        _companyRepository = companyRepository;
+        _usersContext = usersContext;
         _logger = logger;
-        _userDataContext = userDataContext;
     }
 
     [HttpGet("/getCompanies")]
@@ -24,7 +22,7 @@ public class CompanyController : ControllerBase
     {
         try
         {
-            var companies = _companyRepository.Companies;
+            var companies = _usersContext.Companies;
             if (companies == null || !companies.Any())
             {
                 _logger.LogInformation("There is no company in the database.");
@@ -50,9 +48,9 @@ public class CompanyController : ControllerBase
                 return BadRequest(ModelState);
             }
 
-            var newCompany = new Company(request.CompanyName, request.ZipCode, request.City, request.Street, request.DoorNumber, request.PickedCompanyType, _userDataContext);
-            _companyRepository!.Companies!.Add(newCompany);
-            await _companyRepository.SaveChangesAsync();
+            var newCompany = new Company(request.CompanyName, request.ZipCode, request.City, request.Street, request.DoorNumber, request.PickedCompanyType, _usersContext);
+            _usersContext!.Companies!.Add(newCompany);
+            await _usersContext.SaveChangesAsync();
 
             return CreatedAtAction(nameof(Register), new CompanyRegistrationResponse(request.CompanyName));
         }

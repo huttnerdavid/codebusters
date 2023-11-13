@@ -2,6 +2,7 @@ import React from 'react';
 import "./UserTable.css";
 
 const UserTable = ({users}) => {
+  console.log(users[0]);
 
   return (
     <div className="UserTable">
@@ -94,12 +95,19 @@ const UserTable = ({users}) => {
             </th>
             <th>
               <div className="header">
+                <div className="companyType">
+                  Company Name
+                </div> 
+              </div>
+            </th>
+          </tr>
+            <th>
+              <div className="header">
                 <div className="registrationType">
                   Registration type
                 </div> 
               </div>
             </th>
-          </tr>
         </thead>
         <tbody>
            {users.map((user) => (
@@ -116,6 +124,7 @@ const UserTable = ({users}) => {
               <td>{user.item2.email}</td>
               <td>{user.item1.registrationDate}</td>
               <td>{user.item1.userType}</td>
+              <td>{user.item1.companyNameByDatabase}</td>
               <td>{user.item1.registrationType}</td>
             </tr>
           ))} 
