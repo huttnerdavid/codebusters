@@ -10,10 +10,10 @@ public class UserController : ControllerBase
     private readonly ILogger<UserController> _logger;
     private readonly UsersContext _userContext;
 
-    public UserController(ILogger<UserController> logger, UsersContext userContext)
+    public UserController(UsersContext userContext, ILogger<UserController> logger)
     {
-        _logger = logger;
         _userContext = userContext;
+        _logger = logger;
     }
 
     [HttpGet("/getUsers")]

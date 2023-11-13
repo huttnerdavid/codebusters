@@ -19,7 +19,17 @@ public class User
     public string RegistrationType { get; private set; }
     public string IdentityUserId { get; init; }
 
-    public User(string firstName, string lastName, string gender, int zipCode, string city, string street, int doorNumber, string userType,  string companyNameByDatabase, string registrationType, string identityUserId)
+    public User(string firstName,
+                string lastName,
+                string gender,
+                int zipCode,
+                string city,
+                string street,
+                int doorNumber,
+                string userType, 
+                string companyNameByDatabase,
+                string registrationType,
+                string identityUserId)
     {
         FirstName = firstName;
         LastName = lastName;
@@ -39,36 +49,4 @@ public class User
     {
         
     }
-    
-    /*public void ChangeData(string data, UserDataType dataType)
-    {
-        switch (dataType)
-        {
-            case UserDataType.Un : IdentityUserProperty.UserName = data;
-                break;
-            
-            case UserDataType.Pw : IdentityUserProperty.PasswordHash = Encryptor.ToEncrypt(data);
-                break;
-            
-            case UserDataType.Fn : FirstName = data;
-                break;
-            
-            case UserDataType.Ln : LastName = data;
-                break;
-            
-            case UserDataType.Add : Address = UserDataValidator.AddressValidator(data);
-                break;
-            
-            case UserDataType.Pn : PhoneNumber = data;
-                break;
-            
-            case UserDataType.Email : IdentityUserProperty.Email = data;
-                break;
-            
-            case UserDataType.RegType : RegistrationType = data;
-                break;
-            
-            default : throw new ArgumentOutOfRangeException(nameof(dataType), dataType, null);
-        }
-    }*/
 }

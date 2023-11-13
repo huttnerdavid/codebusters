@@ -38,7 +38,18 @@ public class AuthenticationController : ControllerBase
                 return BadRequest(ModelState);
             }
 
-            var newUser = new User(request.FirstName, request.LastName, request.Gender, request.ZipCode, request.City, request.Street, request.DoorNumber, request.UserType, request.CompanyNameByDatabase, request.RegistrationType, result.Id);
+            var newUser = new User(request.FirstName,
+                                    request.LastName,
+                                      request.Gender,
+                                     request.ZipCode,
+                                        request.City,
+                                      request.Street,
+                                  request.DoorNumber,
+                                    request.UserType,
+                       request.CompanyNameByDatabase,
+                            request.RegistrationType,
+                                           result.Id);
+            
             _usersContext!.UsersDb!.Add(newUser);
             await _usersContext.SaveChangesAsync();
 

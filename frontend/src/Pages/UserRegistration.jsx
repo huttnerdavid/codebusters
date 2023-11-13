@@ -15,23 +15,47 @@ const createEmployee = (user) => {
 };
 
 const UserRegistration = () => {
-  const [data, setData] = useState([]);
+  const [companies, setCompanies] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
+  
   const handleCancel = () => {
     navigate("/");
   }
+    
+  useEffect(() => {
+    fetchData();
+    const setFilteredData = () => {
+      fetchData();
+    };
+    const timeout = setTimeout(setFilteredData, 1000);
+    return () => clearTimeout(timeout);
+  }, []);
+  
+  const fetchData = async () => {
+    try {
+      const response = await fetch("http://localhost:5293/getCompanies");
+      const data = await response.json();
+
+      if (response.ok) {
+        setCompanies(data);
+      } else {
+        throw new Error('Failed to fetch employee data');
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleSubmit = (user) => {
-    console.log(user);
+    
     setLoading(true);
-    createEmployee(user, setData);
+    createEmployee(user);
     setLoading(false);
     navigate("/");
     alert("Successfully registered!");
   }
-
+  
   return (
     <div>
       {loading ? (
@@ -40,6 +64,7 @@ const UserRegistration = () => {
         <UserForm
           onSave = { handleSubmit }
           onCancel = { handleCancel }
+          companies = { companies }
         />
       )}
     </div>

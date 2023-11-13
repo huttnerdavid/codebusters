@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
-import Loading from "../Loading";
+import { useState } from "react";
 
 const CompanyForm = ({ onSave, company, onCancel }) => {
 
-  const [loading, setLoading] = useState(false);
   const [companyName, setCompanyName] = useState(company?.companyName ?? "");
   const [zipCode, setZipCode] = useState(company?.zipCode ?? "");
   const [city, setCity] = useState(company?.city ?? "");
@@ -11,7 +9,6 @@ const CompanyForm = ({ onSave, company, onCancel }) => {
   const [doorNumber, setDoorNumber] = useState(company?.doorNumber ?? "");
   const [pickedCompanyType, setpickedCompanyType] = useState(company?.pickedCompanyType ?? "");
 
-  //submit function
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -36,10 +33,6 @@ const CompanyForm = ({ onSave, company, onCancel }) => {
       pickedCompanyType
     });
   };
-
-  if (loading) {
-    return <Loading />;
-  }
 
   return (
     <form className="CompanyForm" onSubmit={onSubmit}>

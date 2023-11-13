@@ -1,8 +1,7 @@
-import { Outlet, Link, useLocation } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import "./Layout.css";
 
 const Layout = () => {
-  const location = useLocation();
 
   return (
     <div className="Layout">
