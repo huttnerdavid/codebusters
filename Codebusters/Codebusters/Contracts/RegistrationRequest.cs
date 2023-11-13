@@ -16,6 +16,5 @@ public record RegistrationRequest(
     [Required]int DoorNumber,
     [Required]string UserType,
     [Required]string CompanyNameByDatabase,
-    [Required]string RegistrationType,
-    [Required]string IdentityUserId
+    [Required]string RegistrationType
     );

@@ -207,7 +207,7 @@ const EmployeeForm = ({ onSave, user, onCancel }) => {
           id="compType"
         >
           {companyNameByDatabase ? null : <option value="">Select company!</option>}
-          <option value="Company">Not added yet</option>
+          <option value="Not added yet">Not added yet</option>
         </select>
       </div>
 
