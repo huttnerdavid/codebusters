@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
-import Loading from "../Loading";
+import { useState } from "react";
 
-const EmployeeForm = ({ onSave, user, onCancel }) => {
+const EmployeeForm = ({ onSave, user, onCancel, companies }) => {
 
-  const [loading, setLoading] = useState(false);
   const [userName, setUserName] = useState(user?.userName ?? "");
   const [password, setPassword] = useState(user?.password ?? "");
   const [email, setEmail] = useState(user?.email ?? "");
@@ -59,10 +57,6 @@ const EmployeeForm = ({ onSave, user, onCancel }) => {
       registrationType
     });
   };
-
-  if (loading) {
-    return <Loading />;
-  }
 
   return (
     <form className="EmployeeForm" onSubmit={onSubmit}>
@@ -208,6 +202,12 @@ const EmployeeForm = ({ onSave, user, onCancel }) => {
         >
           {companyNameByDatabase ? null : <option value="">Select company!</option>}
           <option value="Not added yet">Not added yet</option>
+          {companies &&
+            companies.map((company) => (
+              <option key={company.company} value={company.companyName}>
+                {company.companyName}
+              </option>
+            ))}
         </select>
       </div>
 

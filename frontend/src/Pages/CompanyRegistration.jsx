@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Loading from "../Components/Loading";
 import CompanyForm from "../Components/CompanyForm";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,6 @@ const createCompany = (company) => {
 };
 
 const CompanyRegistration = () => {
-  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -24,9 +23,8 @@ const CompanyRegistration = () => {
   }
 
   const handleSubmit = (company) => {
-    console.log(company);
     setLoading(true);
-    createCompany(company, setData);
+    createCompany(company);
     setLoading(false);
     navigate("/");
     alert("Successfully registered!");

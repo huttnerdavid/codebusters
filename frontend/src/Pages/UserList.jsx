@@ -29,7 +29,6 @@ const UserList = () => {
       };
       const timeout = setTimeout(setFilteredData, 1000);
       return () => clearTimeout(timeout);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

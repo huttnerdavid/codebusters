@@ -49,6 +49,7 @@ public class CompanyController : ControllerBase
             }
 
             var newCompany = new Company(request.CompanyName, request.ZipCode, request.City, request.Street, request.DoorNumber, request.PickedCompanyType, _usersContext);
+            
             _usersContext!.Companies!.Add(newCompany);
             await _usersContext.SaveChangesAsync();
 
@@ -60,6 +61,7 @@ public class CompanyController : ControllerBase
             throw;
         }
     }
+}
     
     [HttpGet("/getConstructs")]
     public ActionResult<IEnumerable<Company>> GetAllConstructs()
