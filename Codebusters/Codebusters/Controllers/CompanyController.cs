@@ -62,3 +62,49 @@ public class CompanyController : ControllerBase
         }
     }
 }
+    
+    [HttpGet("/getConstructs")]
+    public ActionResult<IEnumerable<Company>> GetAllConstructs()
+    {
+        try
+        {
+            var constructs = _usersContext.Constructs;
+            if (constructs != null && !constructs.Any())
+            {
+                _logger.LogInformation("There is no construct(s) in the database.");
+                return Ok(constructs);
+            }
+            
+            return Ok(constructs);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e.ToString());
+            return NotFound();
+        }
+    }
+    
+    [HttpPost("/constructRegister")]
+    public async Task<ActionResult<ConstructRegistrationResponse>> RegisterConstruct(ConstructRegistrationRequest request)
+    {
+        Console.WriteLine(request);
+        try
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var newConstruct = new Construct(request.ConstructName, request.CompanyName, request.Status, request.WorkerCount);
+            _usersContext.Constructs!.Add(newConstruct);
+            await _usersContext.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(Register), new ConstructRegistrationResponse(request.ConstructName));
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e.ToString());
+            throw;
+        }
+    }
+}

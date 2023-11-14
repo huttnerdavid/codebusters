@@ -3,6 +3,12 @@ import "./CompanyTable.css";
 
 const Company = ({companies}) => {
 
+  const navigate = useNavigate();
+
+  const handleAddConstruct = (name) => {
+    navigate(`/company/construct/${name}`);
+  }
+
   return (
     <div className="CompanyTable">
       <table>
@@ -50,17 +56,25 @@ const Company = ({companies}) => {
                 </div> 
               </div>
             </th>
+            <th>
+              <div className="button">
+                <div className="addJob">
+                  Jobadder
+                </div> 
+              </div>
+            </th>
           </tr>
         </thead>
         <tbody>
            {companies.map((company) => (
-            <tr key={company.company}>
+            <tr key={company.companyName}>
               <td>{company.companyName}</td>
               <td>{company.zipCode}</td>
               <td>{company.city}</td>
               <td>{company.street}</td>
               <td>{company.doorNumber}</td>
               <td>{company.pickedCompanyType}</td>
+              <td><button onClick = { () => handleAddConstruct(company.companyName) }>Add construct</button></td>
             </tr>
           ))} 
         </tbody>
