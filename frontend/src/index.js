@@ -15,6 +15,7 @@ import "./index.css";
 import ConstructRegistration from "./Pages/ConstructRegistration";
 
 const App = () => {
+  const port = 8080;
 
   const router = createBrowserRouter([
     {
@@ -28,23 +29,23 @@ const App = () => {
         },
         {
           path: "/users",
-          element: <UserList />,
+          element: <UserList port = { port } />,
         },
         {
           path: "/registration",
-          element: <UserRegistration />,
+          element: <UserRegistration port = { port }/>,
         },
         {
           path: "/companies",
-          element: <CompanyList />,
+          element: <CompanyList port = { port }/>,
         },
         {
           path: "/companyregistration",
-          element: <CompanyRegistration />,
+          element: <CompanyRegistration port = { port }/>,
         },
         {
           path: "company/construct/:companyName",
-          element: <ConstructRegistration />,
+          element: <ConstructRegistration port = { port }/>,
         },
       ],
     },
