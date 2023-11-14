@@ -103,9 +103,9 @@ const CompanyForm = ({ onSave, company, onCancel }) => {
           id="regType"
         >
           {pickedCompanyType ? null : <option value="">Select registration type!</option>}
-          <option value="Large">Large</option>
-          <option value="Medium">Medium</option>
-          <option value="Small">Small</option>
+          <option key={"large"} value="Large">Large</option>
+          <option key={"medium"} value="Medium">Medium</option>
+          <option key={"small"} value="Small">Small</option>
         </select>
       </div>
 
