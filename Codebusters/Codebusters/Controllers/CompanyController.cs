@@ -61,7 +61,6 @@ public class CompanyController : ControllerBase
             throw;
         }
     }
-}
     
     [HttpGet("/getConstructs")]
     public ActionResult<IEnumerable<Company>> GetAllConstructs()
