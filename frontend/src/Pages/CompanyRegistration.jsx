@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Loading from "../Components/Loading";
 import CompanyForm from "../Components/CompanyForm";
 import { useNavigate } from "react-router-dom";
 
-const createCompany = (company) => {
+const createCompany = (company, port) => {
   const jsonPayload = JSON.stringify(company);
-  return fetch("http://localhost:5293/CompanyRegister", {
+  return fetch(`http://localhost:${port}/CompanyRegister`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -14,8 +14,7 @@ const createCompany = (company) => {
   }).then((res) => res.json());
 };
 
-const CompanyRegistration = () => {
-  const [data, setData] = useState([]);
+const CompanyRegistration = ({port}) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -24,9 +23,8 @@ const CompanyRegistration = () => {
   }
 
   const handleSubmit = (company) => {
-    console.log(company);
     setLoading(true);
-    createCompany(company, setData);
+    createCompany(company, port);
     setLoading(false);
     navigate("/");
     alert("Successfully registered!");

@@ -18,6 +18,7 @@ public class Company
     public int CompanyUserCount { get; set; }
 
     private readonly UsersContext _usersContext;
+    
     public Company(string companyName, int zipCode, string city, string street, int doorNumber, string pickedCompanyType, UsersContext usersContext)
     {
         CompanyName = companyName;
