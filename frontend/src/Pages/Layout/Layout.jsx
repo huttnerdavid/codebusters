@@ -1,7 +1,14 @@
 import { Outlet, Link } from "react-router-dom";
 import "./Layout.css";
+import { logout } from "../../Cookies/cookies";
 
-const Layout = () => {
+const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
+
+  const logoutEvent = () => {
+    setIsLoggedIn(false);
+    logout();
+    window.location.reload();
+  }
 
   return (
     <div className="Layout">
@@ -23,6 +30,14 @@ const Layout = () => {
             <Link to="/companyregistration">
               <button type="button">Company Registration</button>
             </Link>
+            {isLoggedIn ? 
+            <button type="button" onClick={logoutEvent}>Logout</button>
+            :
+            <Link to="/login">
+              <button type="button">Login</button>
+            </Link>
+            }
+            
           </li>
         </ul>
       </nav>

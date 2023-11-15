@@ -1,0 +1,16 @@
+.login-container {
+    padding: 20px;
+    margin: auto;
+    display: grid;
+    width: fit-content;
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+    border: 2px solid grey;
+    border-radius: 5px;
+}
+
+.login-s-btn {
+    margin: auto;
+    margin-top: 10px;
+}

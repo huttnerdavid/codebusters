@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
@@ -11,16 +11,51 @@ import UserRegistration from "./Pages/UserRegistration";
 import CompanyList from "./Pages/CompanyList";
 import CompanyRegistration from "./Pages/CompanyRegistration";
 
+import LoginPage from "./Pages/LoginPage";
+import { getToken } from "./Cookies/cookies";
+
 import "./index.css";
 import ConstructRegistration from "./Pages/ConstructRegistration";
 
 const App = () => {
   const port = 8080;
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    let token = getToken()
+
+    if (token != null && isLoggedIn){
+      return;
+    } else if (token){
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  },[]);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      let token = getToken()
+
+      if (token != null && isLoggedIn){
+        return;
+      } else if (token == null && isLoggedIn){
+        setIsLoggedIn(false);
+        window.location.reload();
+        //TODO notifying user about logging out
+      } else if (token){
+        setIsLoggedIn(true);
+      }
+    }, 60000);
+    
+    return () => clearInterval(id);
+  },[isLoggedIn]);
+
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout/>,
+      element: <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>,
       errorElement: <ErrorPage />,
       children: [
         {
@@ -47,6 +82,10 @@ const App = () => {
           path: "company/construct/:companyName",
           element: <ConstructRegistration port = { port }/>,
         },
+        {
+          path: "/login",
+          element: <LoginPage setIsLoggedIn={setIsLoggedIn}/>
+        }
       ],
     },
   ]);
