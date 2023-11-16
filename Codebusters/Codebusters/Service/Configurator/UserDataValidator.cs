@@ -1,7 +1,5 @@
 using System.Net.Mail;
 using System.Text.RegularExpressions;
-using Codebusters.Model;
-using Codebusters.Model.Enum;
 
 namespace Codebusters.Service.Configurator;
 

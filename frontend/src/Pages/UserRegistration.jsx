@@ -45,7 +45,7 @@ const UserRegistration = ({port}) => {
     };
     const timeout = setTimeout(setFilteredData, 1000);
     return () => clearTimeout(timeout);
-  }, []);
+  }, [port]);
   
 
   const handleSubmit = (user) => {

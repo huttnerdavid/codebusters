@@ -15,7 +15,7 @@ const UserList = ({port}) => {
       setUsers(usersData);
       setLoading(false);
     }
-  }, [usersData]);
+  }, [users, usersData]);
 
   return (
     <div>

@@ -32,7 +32,7 @@ const App = () => {
     } else {
       setIsLoggedIn(false);
     }
-  },[]);
+  },[isLoggedIn]);
 
   useEffect(() => {
     const id = setInterval(() => {

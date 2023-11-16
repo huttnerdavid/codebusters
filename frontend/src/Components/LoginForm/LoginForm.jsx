@@ -15,18 +15,18 @@ export default function LoginForm({setIsLoggedIn}){
 
         let login = { email, password };
 
-        fetch("/login", {
+        fetch("/Login", {
             method: "POST",
             headers: {
-              "Content-Type": "application/json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(login)
         })
         .then(res => {
-            if(res.ok){
+            if (res.ok) {
                 return res.json();
             } else {
-                setInvalidLogin(true);
+                throw new Error("Invalid login credentials");
             }
         })
         .then(res => {
@@ -34,6 +34,10 @@ export default function LoginForm({setIsLoggedIn}){
             setIsLoggedIn(true);
             navigate("/");
         })
+        .catch(error => {
+            setInvalidLogin(true);
+            console.error("Login error:", error);
+        });
     }
 
     return (

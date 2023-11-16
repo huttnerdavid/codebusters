@@ -33,7 +33,7 @@ export default function useFetch(endpoint, method = "GET", body = undefined, hea
         .then(data => {
             setData(data);
         })
-    }, []);
+    }, [body, data, endpoint, headers, method, navigate, token]);
     
     return data;
 }
