@@ -18,7 +18,7 @@ import "./index.css";
 import ConstructRegistration from "./Pages/ConstructRegistration";
 
 const App = () => {
-  const port = 8080;
+  const port = 5293;
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -47,7 +47,7 @@ const App = () => {
       } else if (token){
         setIsLoggedIn(true);
       }
-    }, 60000);
+    }, 5000);
     
     return () => clearInterval(id);
   },[isLoggedIn]);

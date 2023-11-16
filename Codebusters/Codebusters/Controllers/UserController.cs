@@ -1,5 +1,6 @@
 ﻿using Codebusters.Data;
 using Codebusters.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ public class UserController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet("/getUsers")]
+    [HttpGet("/getUsers"), Authorize(Roles = "Admin, User")]
     public ActionResult<IEnumerable<Tuple<User, IdentityUser>>> GetAll()
     {
         try

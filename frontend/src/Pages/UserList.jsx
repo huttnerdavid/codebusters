@@ -1,35 +1,21 @@
 import { useEffect, useState } from "react";
 import Loading from "../Components/Loading";
 import UserTable from "../Components/UserTable";
+import useFetch from "../Hooks/useFetch";
 
-const fetchData = async (port, setUsers) => {
-  try {
-    const response = await fetch(`http://localhost:${port}/getUsers`);
-    const data = await response.json();
-    if (response.ok) {
-      setUsers(data);
-    } else {
-      throw new Error('Failed to fetch employee data');
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
 
 const UserList = ({port}) => {
   
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState(null);
+  const usersData = useFetch("/getUsers");
 
   useEffect(() => {
-    fetchData(port, setUsers);
-      const setFilteredData = () => {
-        fetchData();
-        setLoading(false);
-      };
-      const timeout = setTimeout(setFilteredData, 1000);
-      return () => clearTimeout(timeout);
-  }, []);
+    if (usersData != null && users == null){
+      setUsers(usersData);
+      setLoading(false);
+    }
+  }, [usersData]);
 
   return (
     <div>

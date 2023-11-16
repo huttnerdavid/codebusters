@@ -13,9 +13,9 @@ export default function LoginForm({setIsLoggedIn}){
     let onSubmit = (e) => {
         e.preventDefault();
 
-        let login = { email, password }
+        let login = { email, password };
 
-        fetch("http://localhost:5293/login", {
+        fetch("/login", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -24,18 +24,14 @@ export default function LoginForm({setIsLoggedIn}){
         })
         .then(res => {
             if(res.ok){
-                return res.json()
+                return res.json();
             } else {
-                setInvalidLogin(true)
+                setInvalidLogin(true);
             }
         })
         .then(res => {
             setToken(res.token);
             setIsLoggedIn(true);
-            // jwt token package
-            // http only token
-            // protected fetch auth ellenőrzésére
-            // top level fetch a bejelentkezett státusz ellenőrzésére
             navigate("/");
         })
     }

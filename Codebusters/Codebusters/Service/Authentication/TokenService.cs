@@ -10,7 +10,13 @@ namespace Codebusters.Service.Authentication;
 public class TokenService : ITokenService
 {
     private const int ExpirationMinutes = 30;
-    
+    private readonly IConfiguration _configuration;
+
+    public TokenService(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
+
     public string CreateToken(IdentityUser user, string? role)
     {
         var expiration = DateTime.UtcNow.AddMinutes(ExpirationMinutes);
@@ -21,8 +27,8 @@ public class TokenService : ITokenService
     
     private JwtSecurityToken CreateJwtToken(List<Claim> claims, SigningCredentials credentials, DateTime expiration) => 
         new(
-            "apiWithAuthBackend",
-            "apiWithAuthBackend",
+            _configuration["IssueAudience"],
+            _configuration["IssueAudience"],
             claims,
             expires: expiration,
             signingCredentials: credentials
@@ -57,6 +63,6 @@ public class TokenService : ITokenService
     
     private SigningCredentials CreateSigningCredentials()
     {
-        return new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("!SomethingSecret!")), SecurityAlgorithms.HmacSha256);
+        return new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["IssueSign"])), SecurityAlgorithms.HmacSha256);
     }
 }
