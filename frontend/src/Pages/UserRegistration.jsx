@@ -49,7 +49,6 @@ const UserRegistration = ({port}) => {
   
 
   const handleSubmit = (user) => {
-    
     setLoading(true);
     createEmployee(user, port);
     setLoading(false);
