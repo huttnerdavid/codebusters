@@ -25,7 +25,6 @@ export default function useFetch(endpoint, method = "GET", body = undefined, hea
             if (response.status === 401 || response.status === 403){
                 navigate("/login");
             }
-
             if (response.status >= 200 && response.status <= 299){
                 return response.json();
             }
@@ -33,7 +32,8 @@ export default function useFetch(endpoint, method = "GET", body = undefined, hea
         .then(data => {
             setData(data);
         })
-    }, [body, data, endpoint, headers, method, navigate, token]);
+        // eslint-disable-next-line
+    }, []);
     
     return data;
 }

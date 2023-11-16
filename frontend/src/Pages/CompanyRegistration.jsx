@@ -3,31 +3,36 @@ import Loading from "../Components/Loading";
 import CompanyForm from "../Components/CompanyForm";
 import { useNavigate } from "react-router-dom";
 
-const createCompany = (company, port) => {
-  const jsonPayload = JSON.stringify(company);
-  return fetch(`http://localhost:${port}/CompanyRegister`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: jsonPayload,
-  }).then((res) => res.json());
-};
-
-const CompanyRegistration = ({port}) => {
+const CompanyRegistration = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleCancel = () => {
-    navigate("/");
-  }
+  const createCompany = (company) => {
+    const jsonPayload = JSON.stringify(company);
+    return fetch(`/CompanyRegister`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: jsonPayload,
+    }).then((res) => {
+      if(res.status === 201){
+        alert("Successfully registered!");
+        navigate("/companies");
+      } else {
+        alert("Something went wrong!");
+      }
+    });
+  };
 
   const handleSubmit = (company) => {
     setLoading(true);
-    createCompany(company, port);
+    createCompany(company);
     setLoading(false);
+  }
+
+  const handleCancel = () => {
     navigate("/");
-    alert("Successfully registered!");
   }
 
   return (

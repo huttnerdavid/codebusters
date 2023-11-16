@@ -67,7 +67,7 @@ const Company = ({companies}) => {
           </tr>
         </thead>
         <tbody>
-           {companies.map((company) => (
+           {companies && companies.map((company) => (
             <tr key={company.companyName}>
               <td>{company.companyName}</td>
               <td>{company.zipCode}</td>

@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import Loading from "../Components/Loading";
 import CompanyTable from "../Components/CompanyTable";
 
-const fetchData = async (port, setCompanies) => {
+const fetchData = async (setCompanies) => {
   try {
-    const response = await fetch(`http://localhost:${port}/getCompanies`);
+    const response = await fetch(`/getCompanies`);
     const data = await response.json();
     if (response.ok) {
       setCompanies(data);
@@ -16,20 +16,20 @@ const fetchData = async (port, setCompanies) => {
   }
 };
 
-const CompanyList = ({port}) => {
+const CompanyList = () => {
   
   const [loading, setLoading] = useState(true);
   const [companies, setCompanies] = useState(null);
 
   useEffect(() => {
-    fetchData(port, setCompanies);
+    fetchData(setCompanies);
       const setFilteredData = () => {
         fetchData();
         setLoading(false);
       };
       const timeout = setTimeout(setFilteredData, 1000);
       return () => clearTimeout(timeout);
-  }, [port]);
+  }, []);
 
   return (
     <div>

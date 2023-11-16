@@ -18,8 +18,6 @@ import "./index.css";
 import ConstructRegistration from "./Pages/ConstructRegistration";
 
 const App = () => {
-  const port = 5293;
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -32,7 +30,8 @@ const App = () => {
     } else {
       setIsLoggedIn(false);
     }
-  },[isLoggedIn]);
+    // eslint-disable-next-line
+  },[]);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -43,11 +42,11 @@ const App = () => {
       } else if (token == null && isLoggedIn){
         setIsLoggedIn(false);
         window.location.reload();
-        //TODO notifying user about logging out
+        alert("You were logged out by the server!")
       } else if (token){
         setIsLoggedIn(true);
       }
-    }, 5000);
+    }, 60000);
     
     return () => clearInterval(id);
   },[isLoggedIn]);
@@ -64,23 +63,23 @@ const App = () => {
         },
         {
           path: "/users",
-          element: <UserList port = { port } />,
+          element: <UserList/>,
         },
         {
           path: "/registration",
-          element: <UserRegistration port = { port }/>,
+          element: <UserRegistration/>,
         },
         {
           path: "/companies",
-          element: <CompanyList port = { port }/>,
+          element: <CompanyList/>,
         },
         {
           path: "/companyregistration",
-          element: <CompanyRegistration port = { port }/>,
+          element: <CompanyRegistration/>,
         },
         {
           path: "company/construct/:companyName",
-          element: <ConstructRegistration port = { port }/>,
+          element: <ConstructRegistration/>,
         },
         {
           path: "/login",
