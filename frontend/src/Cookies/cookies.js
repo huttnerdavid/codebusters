@@ -13,7 +13,7 @@ export function getToken() {
 export function setToken(token) {
   const date = new Date();
   date.setMinutes(date.getMinutes() + 30)
-  cookies.set(COOKIE_NAME, token, {path: COOKIE_PATH, domain: COOKIE_DOMAIN, sameSite: "lax", expires: date})
+  //cookies.set(COOKIE_NAME, token, {path: COOKIE_PATH, domain: COOKIE_DOMAIN, sameSite: "lax", expires: date})
 }
 
 export function logout() {

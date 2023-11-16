@@ -109,7 +109,7 @@ const UserTable = ({users}) => {
           </tr>
         </thead>
         <tbody>
-           {users.map((user) => (
+           {users && users?.map((user) => (
             <tr key={user.item1.id}>
               <td>{user.item2.userName}</td>
               <td>{user.item1.firstName}</td>
