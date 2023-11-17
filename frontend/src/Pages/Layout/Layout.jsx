@@ -7,7 +7,6 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
   const logoutEvent = () => {
     setIsLoggedIn(false);
     logout();
-    window.location.reload();
   }
 
   return (

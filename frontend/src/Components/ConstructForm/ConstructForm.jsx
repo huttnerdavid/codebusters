@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const ConstructForm = ({ construct, onSave, onCancel, company, companies }) => {
   const [constructName, setConstructName] = useState(construct?.constructName ?? "");
-  const [companyName, setCompanyName] = useState(construct?.companyName ?? "");
+  const [companyName, setCompanyName] = useState(construct?.companyName ?? `${company}`);
   const [status, setStatus] = useState(construct?.status ?? "");
   const [workerCount, setWorkerCount] = useState(construct?.workerCount ?? "");
 
@@ -71,7 +71,8 @@ const ConstructForm = ({ construct, onSave, onCancel, company, companies }) => {
           name="status"
           id="status"
           >
-            {status? null : <option value="NotStarted">Not started yet</option>}
+            {status? null : <option value="">Pick your status!</option>}
+            <option value="NotStarted">Not started yet</option>
             <option value="OnGoing">Ongoing</option>
         </select>
       </div>

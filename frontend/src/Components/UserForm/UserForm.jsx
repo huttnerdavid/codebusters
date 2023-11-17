@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const EmployeeForm = ({ onSave, user, onCancel, companies }) => {
+const UserForm = ({ onSave, user, onCancel, companies }) => {
 
   const [userName, setUserName] = useState(user?.userName ?? "");
   const [password, setPassword] = useState(user?.password ?? "");
@@ -59,7 +59,7 @@ const EmployeeForm = ({ onSave, user, onCancel, companies }) => {
   };
 
   return (
-    <form className="EmployeeForm" onSubmit={onSubmit}>
+    <form className="UserForm" onSubmit={onSubmit}>
       
       <div className="control">
         <label htmlFor="userName">Username:</label>
@@ -130,8 +130,8 @@ const EmployeeForm = ({ onSave, user, onCancel, companies }) => {
           id="gender"
         >
           {gender ? null : <option value="">Select gender!</option>}
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
+          <option key={`Male`} value="Male">Male</option>
+          <option key={`Female`} value="Female">Female</option>
         </select>
       </div>
 
@@ -184,11 +184,11 @@ const EmployeeForm = ({ onSave, user, onCancel, companies }) => {
           id="userType"
         >
           {userType ? null : <option value="">Select user type!</option>}
-          <option value="CEO">CEO</option>
-          <option value="Manager">Manager</option>
-          <option value="Supervisor">Supervisor</option>
-          <option value="Worker">Worker</option>
-          <option value="Client">Client</option>
+          <option key={`CEO`} value="CEO">CEO</option>
+          <option key={`Manager`} value="Manager">Manager</option>
+          <option key={`Supervisor`} value="Supervisor">Supervisor</option>
+          <option key={`Worker`} value="Worker">Worker</option>
+          <option key={`Client`} value="Client">Client</option>
         </select>
       </div>
 
@@ -204,7 +204,7 @@ const EmployeeForm = ({ onSave, user, onCancel, companies }) => {
           <option value="Not added yet">Not added yet</option>
           {companies &&
             companies.map((company) => (
-              <option key={company.company} value={company.companyName}>
+              <option key={company.companyName} value={company.companyName}>
                 {company.companyName}
               </option>
             ))}
@@ -220,10 +220,10 @@ const EmployeeForm = ({ onSave, user, onCancel, companies }) => {
           id="regType"
         >
           {registrationType ? null : <option value="">Select registration type!</option>}
-          <option value="Company">Company</option>
-          <option value="PrivatePerson">Private person</option>
-          <option value="CompanyEmployee">Company employee</option>
-          <option value="External">External</option>
+          <option key={`Company`} value="Company">Company</option>
+          <option key={`PrivatePerson`} value="PrivatePerson">Private person</option>
+          <option key={`CompanyEmployee`} value="CompanyEmployee">Company employee</option>
+          <option key={`External`} value="External">External</option>
         </select>
       </div>
 
@@ -239,4 +239,4 @@ const EmployeeForm = ({ onSave, user, onCancel, companies }) => {
   );
 };
 
-export default EmployeeForm;
+export default UserForm;

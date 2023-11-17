@@ -14,7 +14,6 @@ export default function LoginForm({setIsLoggedIn}){
         e.preventDefault();
 
         let login = { email, password };
-
         fetch(`Login`, {
             method: "POST",
             headers: {
