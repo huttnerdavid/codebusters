@@ -15,7 +15,7 @@ export default function LoginForm({setIsLoggedIn}){
 
         let login = { email, password };
 
-        fetch("/Login", {
+        fetch(`Login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

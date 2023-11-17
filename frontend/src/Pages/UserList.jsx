@@ -7,7 +7,7 @@ const UserList = () => {
   
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState(null);
-  const usersData = useFetch("/getUsers");
+  const usersData = useFetch(`getUsers`);
 
   useEffect(() => {
     if (usersData != null && users == null){
