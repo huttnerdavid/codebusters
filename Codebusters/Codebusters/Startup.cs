@@ -166,7 +166,7 @@ public class Startup
 
     async Task CreateAdminIfNotExists(UserManager<IdentityUser> userManager)
     {
-        var adminInDb = await userManager.FindByEmailAsync("admin@gmail.com");
+        var adminInDb = await userManager.FindByEmailAsync("admin@hotmail.com");
         if (adminInDb == null)
         {
             var admin = new IdentityUser { UserName = "Admin", Email = "admin@hotmail.com" };
