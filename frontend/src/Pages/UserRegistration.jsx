@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const fetchData = async (setCompanies) => {
   try {
-    const response = await fetch(`/getCompanies`);
+    const response = await fetch(`getCompanies`);
     const data = await response.json();
 
     if (response.ok) {
@@ -50,10 +50,15 @@ const UserRegistration = () => {
     return () => clearTimeout(timeout);
   }, []);
 
-  const handleSubmit = (user) => {
+  const handleSubmit = async (user) => {
     setLoading(true);
-    createEmployee(user);
-    setLoading(false);
+    try {
+      await createEmployee(user);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   }
 
   const handleCancel = () => {
