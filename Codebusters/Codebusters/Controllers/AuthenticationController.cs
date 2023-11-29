@@ -65,9 +65,6 @@ public class AuthenticationController : ControllerBase
     [HttpPost("Login")]
     public async Task<ActionResult<AuthResponse>> Authenticate([FromBody] AuthRequest request)
     {
-        //set cookies setting SETCOOKIEHEADER
-        // süti objectum, kulcsérték pár
-        // nem body hanem headerben kell küldeni 
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
@@ -79,7 +76,6 @@ public class AuthenticationController : ControllerBase
             return BadRequest(ModelState);
         }
         
-        //auth token key config
         Response.Cookies.Append("Authentication", result.Token);
         return Ok(new AuthResponse(result.Email, result.UserName, result.Token));
     }

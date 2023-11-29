@@ -26,6 +26,10 @@
         <Link>.dockerignore</Link>
       </Content>
     </ItemGroup>
+    
+    <ItemGroup>
+        <InternalsVisibleTo Include="CodebustersIntegrationTests"/>
+    </ItemGroup>
 
 
 
