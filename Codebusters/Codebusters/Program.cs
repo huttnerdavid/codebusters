@@ -8,3 +8,5 @@ IHostBuilder CreateHostBuilder(string[] args) =>
         {
             webBuilder.UseStartup<Startup>();
         });
+
+public partial class Program { } 
