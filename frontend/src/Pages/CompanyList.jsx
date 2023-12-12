@@ -8,7 +8,7 @@ const CompanyList = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`getCompanies`);
+      const response = await fetch(`/getCompanies`);
       const data = await response.json();
       if (response.ok) {
         setCompanies(data);

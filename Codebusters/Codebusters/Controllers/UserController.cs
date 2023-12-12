@@ -58,7 +58,6 @@ public class UserController : ControllerBase
         }
     }
     
-
     [HttpGet("/getOwnUsers"), Authorize(Roles = "Leader")]
     public ActionResult<IEnumerable<Tuple<User, IdentityUser>>> GetOwnUsers(string companyName)
     {
@@ -66,7 +65,43 @@ public class UserController : ControllerBase
         {
             var returningList = new List<Tuple<User, IdentityUser>>();
 
-            var users = _userContext?.UsersDb!.Where(cn => cn.CompanyNameByDatabase == companyName || cn.CompanyNameByDatabase == "Not added yet");
+            var users = _userContext?.UsersDb!.Where(cn => cn.CompanyNameByDatabase == companyName);
+            if (users == null || !users.Any())
+            {
+                _logger.LogInformation("There is no user in the database.");
+                return Ok(users);
+            }
+
+            var identityUsers = _userContext?.Users.ToList();
+
+            foreach (var user in users)
+            {
+                var identityUser = identityUsers!.FirstOrDefault(identityUser => user.IdentityUserId == identityUser.Id);
+                
+                if (identityUser != null)
+                {
+                    var tuple = new Tuple<User, IdentityUser>(user, identityUser);
+                    returningList.Add(tuple);
+                }
+            }
+            
+            return Ok(returningList);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e.ToString());
+            return NotFound();
+        }
+    }
+    
+    [HttpGet("/getCompanyLessUsers"), Authorize(Roles = "Leader")]
+    public ActionResult<IEnumerable<Tuple<User, IdentityUser>>> GetCompanyLessUsers()
+    {
+        try
+        {
+            var returningList = new List<Tuple<User, IdentityUser>>();
+
+            var users = _userContext?.UsersDb!.Where(cn => cn.CompanyNameByDatabase == "Not added yet");
             if (users == null || !users.Any())
             {
                 _logger.LogInformation("There is no user in the database.");
