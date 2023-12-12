@@ -1,42 +1,29 @@
 ﻿using System.Net;
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Xunit.Abstractions;
 
 namespace CodebustersIntegrationTests.IntegrationTests;
 
-public class IntegrationTests : IClassFixture<CustomWebApplicationFactory<Program>>
+[Collection("firstSequence")]
+public class AuthenticationControllerTests : IClassFixture<CustomWebApplicationFactory<Program>>
 {
-    private readonly ITestOutputHelper _testOutputHelper;
-    private readonly HttpClient _client;
+    private readonly CustomWebApplicationFactory<Program> _factory;
 
-    public IntegrationTests(
-        CustomWebApplicationFactory<Program> factory, ITestOutputHelper testOutputHelper)
+    public AuthenticationControllerTests(
+        CustomWebApplicationFactory<Program> factory)
     {
-        _testOutputHelper = testOutputHelper;
-        _client = factory.CreateClient(new WebApplicationFactoryClientOptions
-        {
-            AllowAutoRedirect = false
-        });
+        _factory = factory;
     }
-    
-    // UsersController
-    
-    [Theory]
-    [InlineData("/getUsers")]
-    public async Task Get_GetUsersEndpoint_NoAuth_ReturnsError(string url)
-    {
-        var response = await _client.GetAsync(url);
-        
-        Assert.True(response.StatusCode is HttpStatusCode.Forbidden or HttpStatusCode.Unauthorized);
-    }
-    
-    // AuthenticationController
     
     [Theory]
     [InlineData("/Login")]
     public async Task Post_Login_IsSuccessful(string url)
     {
+        var client = _factory.CreateClient(new WebApplicationFactoryClientOptions
+        {
+            AllowAutoRedirect = false
+        });
+
         var loginContent = new Dictionary<string, string>
         {
             {"Email", "admin@hotmail.com"},
@@ -44,7 +31,7 @@ public class IntegrationTests : IClassFixture<CustomWebApplicationFactory<Progra
         };
         var loginData = JsonContent.Create(loginContent);
         
-        var loginEvent = await _client.PostAsync(url, loginData);
+        var loginEvent = await client.PostAsync(url, loginData);
 
         loginEvent.EnsureSuccessStatusCode();
         Assert.True(loginEvent.IsSuccessStatusCode);
@@ -54,6 +41,11 @@ public class IntegrationTests : IClassFixture<CustomWebApplicationFactory<Progra
     [InlineData("/Login")]
     public async Task Post_Login_IsUnsuccessful_WrongPassword(string url)
     {
+        var client = _factory.CreateClient(new WebApplicationFactoryClientOptions
+        {
+            AllowAutoRedirect = false
+        });
+
         var loginContent = new Dictionary<string, string>
         {
             {"Email", "admin@hotmail.com"},
@@ -61,7 +53,7 @@ public class IntegrationTests : IClassFixture<CustomWebApplicationFactory<Progra
         };
         var loginData = JsonContent.Create(loginContent);
         
-        var loginEvent = await _client.PostAsync(url, loginData);
+        var loginEvent = await client.PostAsync(url, loginData);
 
         Assert.True(loginEvent.StatusCode == HttpStatusCode.BadRequest);
     }
@@ -70,6 +62,11 @@ public class IntegrationTests : IClassFixture<CustomWebApplicationFactory<Progra
     [InlineData("/Login")]
     public async Task Post_Login_IsUnsuccessful(string url)
     {
+        var client = _factory.CreateClient(new WebApplicationFactoryClientOptions
+        {
+            AllowAutoRedirect = false
+        });
+
         var loginContent = new Dictionary<string, string>
         {
             {"Email", "1234@hotmail.com"},
@@ -78,7 +75,7 @@ public class IntegrationTests : IClassFixture<CustomWebApplicationFactory<Progra
         
         var loginData = JsonContent.Create(loginContent);
         
-        var loginEvent = await _client.PostAsync(url, loginData);
+        var loginEvent = await client.PostAsync(url, loginData);
 
         Assert.True(!loginEvent.IsSuccessStatusCode);
     }
@@ -87,6 +84,11 @@ public class IntegrationTests : IClassFixture<CustomWebApplicationFactory<Progra
     [InlineData("/Register")]
     public async Task Post_Register_IsSuccessful(string url)
     {
+        var client = _factory.CreateClient(new WebApplicationFactoryClientOptions
+        {
+            AllowAutoRedirect = false
+        });
+
         var regContent = new Dictionary<string, string>
         {
             {"Email", "4321@hotmail.com"},
@@ -107,7 +109,7 @@ public class IntegrationTests : IClassFixture<CustomWebApplicationFactory<Progra
         
         var regData = JsonContent.Create(regContent);
         
-        var response = await _client.PostAsync(url, regData);
+        var response = await client.PostAsync(url, regData);
 
         Assert.True(response.StatusCode == HttpStatusCode.Created);
     }
@@ -116,6 +118,11 @@ public class IntegrationTests : IClassFixture<CustomWebApplicationFactory<Progra
     [InlineData("/Register")]
     public async Task Post_Register_IsUnsuccessful_ShortPassword(string url)
     {
+        var client = _factory.CreateClient(new WebApplicationFactoryClientOptions
+        {
+            AllowAutoRedirect = false
+        });
+
         var regContent = new Dictionary<string, string>
         {
             {"Email", "43221@hotmail.com"},
@@ -136,8 +143,7 @@ public class IntegrationTests : IClassFixture<CustomWebApplicationFactory<Progra
         
         var regData = JsonContent.Create(regContent);
         
-        var response = await _client.PostAsync(url, regData);
-        _testOutputHelper.WriteLine(response.StatusCode.ToString());
+        var response = await client.PostAsync(url, regData);
         Assert.True(response.StatusCode == HttpStatusCode.BadRequest);
     }
     
@@ -145,6 +151,11 @@ public class IntegrationTests : IClassFixture<CustomWebApplicationFactory<Progra
     [InlineData("/Register")]
     public async Task Post_Register_IsUnsuccessful_TakenEmail(string url)
     {
+        var client = _factory.CreateClient(new WebApplicationFactoryClientOptions
+        {
+            AllowAutoRedirect = false
+        });
+
         var regContent = new Dictionary<string, string>
         {
             {"Email", "admin@hotmail.com"},
@@ -165,8 +176,7 @@ public class IntegrationTests : IClassFixture<CustomWebApplicationFactory<Progra
         
         var regData = JsonContent.Create(regContent);
         
-        var response = await _client.PostAsync(url, regData);
-        _testOutputHelper.WriteLine(response.StatusCode.ToString());
+        var response = await client.PostAsync(url, regData);
         Assert.True(response.StatusCode == HttpStatusCode.BadRequest);
     }
 }
