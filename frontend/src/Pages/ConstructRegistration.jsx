@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ConstructForm from "../Components/ConstructForm";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../Components/Loading";
+import { getToken } from "../Cookies/cookies";
 
 const ConstructRegistration = () => {
     const navigate = useNavigate();
@@ -13,6 +14,7 @@ const ConstructRegistration = () => {
       return fetch(`/constructRegister`, {
         method: "POST",
         headers: {
+          "Authorization": "Bearer " + getToken(),
           "Content-Type": "application/json",
         },
         body: jsonPayload,
