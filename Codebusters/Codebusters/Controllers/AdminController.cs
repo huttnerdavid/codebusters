@@ -1,7 +1,6 @@
 using Codebusters.Data;
 using Codebusters.Model;
 using Codebusters.Model.Enum;
-using Codebusters.Service.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -23,22 +22,21 @@ public class AdminController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet("getPendingCeo")]
-    [Authorize(Roles = "Admin")]
+    [HttpGet("getPendingCeo"), Authorize(Roles = "Admin")]
     public ActionResult<IEnumerable<User>> GetPendingCeos()
     {
         try
         {
             var returningList = new List<Tuple<User, IdentityUser>>();
 
-            var users = _usersContext.UsersDb.Where(u => u.UserType == UserType.CEO.ToString());
-            if (!users.Any())
+            var users = _usersContext?.UsersDb!.Where(u => u.UserType == UserType.CEO.ToString());
+            if (users == null || !users.Any())
             {
                 _logger.LogInformation("There is no user in the database.");
                 return Ok(users);
             }
 
-            var identityUsers = _usersContext.Users.ToList();
+            var identityUsers = _usersContext!.Users.ToList();
 
             foreach (var user in users)
             {
@@ -59,8 +57,7 @@ public class AdminController : ControllerBase
         }
     }
 
-    [HttpPatch("approveLeadership")]
-    [Authorize(Roles = "Admin")]
+    [HttpPatch("approveLeadership"), Authorize(Roles = "Admin")]
     public async Task<ActionResult<User>> SetRole(string email)
     {
         try
@@ -81,8 +78,7 @@ public class AdminController : ControllerBase
         }
     }
 
-    [HttpDelete("deleteUser")]
-    [Authorize(Roles = "Admin")]
+    [HttpDelete("deleteUser"), Authorize(Roles = "Admin")]
     public async Task<ActionResult<string>> DeleteUser(string email)
     {
         try
@@ -104,5 +100,4 @@ public class AdminController : ControllerBase
             return BadRequest(e.Message);
         }
     }
-    
 }
