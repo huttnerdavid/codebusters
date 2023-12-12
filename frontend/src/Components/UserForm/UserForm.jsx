@@ -76,6 +76,7 @@ const UserForm = ({ onSave, user, onCancel, companies }) => {
         <input
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          type="password"
           name="password"
           id="password"
         />

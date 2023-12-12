@@ -5,6 +5,15 @@ import { logout } from "../../Cookies/cookies";
 
 const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const isAdmin = localStorage.getItem("role").toLowerCase() === "admin";
+
+  const adminBtn = (
+    <>
+      <Link to="/admin">
+        <button type="button">Admin</button>
+      </Link>
+    </>
+  );
 
   const handleLogout = () => {
     //Show the logout confirmation modal
@@ -36,6 +45,7 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
               </Link>
             ) : (
               <>
+                {isAdmin && adminBtn}
                 <Link to="/users">
                   <button type="button">Users</button>
                 </Link>

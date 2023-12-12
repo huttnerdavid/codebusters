@@ -4,7 +4,6 @@ import { setToken } from "../../Cookies/cookies";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginForm({setIsLoggedIn}){
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [invalidLogin, setInvalidLogin] = useState(false);
@@ -31,7 +30,9 @@ export default function LoginForm({setIsLoggedIn}){
         .then(res => {
             setToken(res.token);
             setIsLoggedIn(true);
+            localStorage.setItem("role", res.role);
             console.log(res);
+            console.log(res.role);
             navigate("/");
         })
         .catch(error => {

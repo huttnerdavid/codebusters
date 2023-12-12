@@ -19,6 +19,7 @@ import ConstructList from "./Pages/ConstructList";
 
 import LoginPage from "./Pages/LoginPage";
 import { getToken } from "./Cookies/cookies";
+import AdminPage from "./Pages/AdminPage";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -100,6 +101,10 @@ const App = () => {
         {
           path: "/login",
           element: <LoginPage setIsLoggedIn={setIsLoggedIn}/>
+        },
+        {
+          path: "/admin",
+          element: <AdminPage/>
         }
       ],
     },
@@ -107,9 +112,9 @@ const App = () => {
 
   return (
     <React.StrictMode>
-      <RouterProvider router={router}>
-        <Layout />
-      </RouterProvider>
+        <RouterProvider router={router}>
+          <Layout />
+        </RouterProvider>
     </React.StrictMode>
   );
 };
