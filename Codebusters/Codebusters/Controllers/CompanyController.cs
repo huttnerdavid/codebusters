@@ -1,6 +1,7 @@
 using Codebusters.Contracts;
 using Codebusters.Data;
 using Codebusters.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Codebusters.Controllers;
@@ -17,7 +18,7 @@ public class CompanyController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet("/getCompanies")]
+    [HttpGet("/getCompanies"), Authorize(Roles = "Admin")]
     public ActionResult<IEnumerable<Company>> GetAll()
     {
         try
@@ -38,7 +39,28 @@ public class CompanyController : ControllerBase
         }
     }
     
-    [HttpPost("CompanyRegister")]
+    [HttpGet("/getOwnCompanies"), Authorize(Roles = "Leader")]
+    public ActionResult<IEnumerable<Company>> GetOwn(string companyName)
+    {
+        try
+        {
+            var companies = _usersContext?.Companies!.Where(cn => cn.CompanyName == companyName);
+            if (companies == null || !companies.Any())
+            {
+                _logger.LogInformation("There is no company in the database.");
+                return Ok(companies);
+            }
+            
+            return Ok(companies);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e.ToString());
+            return NotFound();
+        }
+    }
+    
+    [HttpPost("CompanyRegister"), Authorize(Roles = "Admin, Leader")]
     public async Task<ActionResult<CompanyRegistrationResponse>> Register(CompanyRegistrationRequest request)
     {
         try
@@ -62,7 +84,7 @@ public class CompanyController : ControllerBase
         }
     }
     
-    [HttpGet("/getConstructs")]
+    [HttpGet("/getConstructs"), Authorize(Roles = "Admin")]
     public ActionResult<IEnumerable<Company>> GetAllConstructs()
     {
         try
@@ -83,7 +105,28 @@ public class CompanyController : ControllerBase
         }
     }
     
-    [HttpPost("/constructRegister")]
+    [HttpGet("/getOwnConstructs"), Authorize(Roles = "Admin, Leader")]
+    public ActionResult<IEnumerable<Company>> GetOwnConstructs(string companyName)
+    {
+        try
+        {
+            var constructs = _usersContext?.Constructs!.Where(cn => cn.CompanyName == companyName);
+            if (constructs != null && !constructs.Any())
+            {
+                _logger.LogInformation("There is no construct(s) in the database.");
+                return Ok(constructs);
+            }
+            
+            return Ok(constructs);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e.ToString());
+            return NotFound();
+        }
+    }
+    
+    [HttpPost("/constructRegister"), Authorize(Roles = "Admin, Leader")]
     public async Task<ActionResult<ConstructRegistrationResponse>> RegisterConstruct(ConstructRegistrationRequest request)
     {
         Console.WriteLine(request);
