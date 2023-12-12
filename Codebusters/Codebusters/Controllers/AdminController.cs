@@ -87,16 +87,19 @@ public class AdminController : ControllerBase
     {
         try
         {
-            var user = await _userManager.FindByEmailAsync(email);
+            var identityUser = await _userManager.FindByEmailAsync(email);
+            var dbUser = _usersContext.UsersDb.FirstOrDefault(e => e.IdentityUserId == identityUser.Id);
+            _usersContext.UsersDb.Remove(dbUser);
 
-            if (user == null)
+            if (identityUser == null)
             {
                 return NotFound("User not found");
             }
             
-            var result = await _userManager.DeleteAsync(user);
-
-            return result.Succeeded ? Ok(user.Id) : BadRequest(result.Errors);
+            var result = await _userManager.DeleteAsync(identityUser);
+            await _usersContext.SaveChangesAsync();
+            
+            return result.Succeeded ? Ok(identityUser.Id) : BadRequest(result.Errors);
         }
         catch (Exception e)
         {

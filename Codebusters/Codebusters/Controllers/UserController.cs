@@ -58,7 +58,7 @@ public class UserController : ControllerBase
     }
     
     [HttpDelete("deleteAccount")]
-    [Authorize(Roles = "User, Leader")]
+    [Authorize(Roles = "Admin, User, Leader")]
     public async Task<ActionResult<string>> DeleteAccount(string email)
     {
         if (_config["AEmail"].ToLower() == email.ToLower())
@@ -68,16 +68,18 @@ public class UserController : ControllerBase
         
         try
         {
-            var user = await _userManager.FindByEmailAsync(email);
-
-            if (user == null)
+            var identityUser = await _userManager.FindByEmailAsync(email);
+            var dbUser = _userContext.UsersDb.FirstOrDefault(e => e.IdentityUserId == identityUser.Id);
+            _userContext.UsersDb.Remove(dbUser);
+            if (identityUser == null)
             {
                 return BadRequest("Something went wrong");
             }
             
-            var result = await _userManager.DeleteAsync(user);
-
-            return result.Succeeded ? Ok(user.Id) : BadRequest(result.Errors);
+            var result = await _userManager.DeleteAsync(identityUser);
+            await _userContext.SaveChangesAsync();
+            
+            return result.Succeeded ? Ok(identityUser.Id) : BadRequest(result.Errors);
         }
         catch (Exception e)
         {
