@@ -1,6 +1,5 @@
 using System.Text;
 using Codebusters.Data;
-using Codebusters.Service;
 using Codebusters.Service.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -52,8 +51,6 @@ public class Startup
             });
         });
         
-        services.AddSingleton<IUserRepository, UserRepository>();
-        services.AddSingleton<ICompanyRepository, CompanyRepository>();
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<ITokenService, TokenService>();
         
