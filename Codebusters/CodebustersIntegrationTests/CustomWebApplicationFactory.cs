@@ -1,6 +1,7 @@
 using Codebusters.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,7 +11,7 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
 {
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
-        builder.ConfigureServices(services =>
+        builder.ConfigureTestServices(services =>
         {
             var dbContextDescriptor = services.SingleOrDefault(
                 d => d.ServiceType ==
@@ -20,7 +21,7 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
 
             services.AddDbContext<UsersContext>((container, options) =>
             {
-                options.UseInMemoryDatabase("codebustersTest");
+                options.UseInMemoryDatabase("testDatabase");
             });
         });
 
