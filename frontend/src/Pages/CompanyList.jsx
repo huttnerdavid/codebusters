@@ -1,34 +1,17 @@
 import { useEffect, useState } from "react";
 import Loading from "../Components/Loading";
 import CompanyTable from "../Components/CompanyTable";
+import useFetch from "../Hooks/useFetch";
 
 const CompanyList = () => {
   const [loading, setLoading] = useState(true);
-  const [companies, setCompanies] = useState(null);
+  const [companies, setCompanies] = useState(undefined);
+  const comp = useFetch("getCompanies");
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch(`/getCompanies`);
-      const data = await response.json();
-      if (response.ok) {
-        setCompanies(data);
-      } else {
-        throw new Error('Failed to fetch company data');
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-      const setFilteredData = () => {
-        fetchData();
-        setLoading(false);
-      };
-      const timeout = setTimeout(setFilteredData, 1000);
-      return () => clearTimeout(timeout);
-  }, []);
+  useEffect(() =>{
+    setCompanies(comp);
+    setLoading(false);
+  }, [comp]);
 
   return (
     <div>

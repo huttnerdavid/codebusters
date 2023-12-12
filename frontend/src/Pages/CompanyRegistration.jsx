@@ -2,6 +2,7 @@ import { useState } from "react";
 import Loading from "../Components/Loading";
 import CompanyForm from "../Components/CompanyForm";
 import { useNavigate } from "react-router-dom";
+import { getToken } from "../Cookies/cookies";
 
 const CompanyRegistration = () => {
   const [loading, setLoading] = useState(false);
@@ -12,6 +13,7 @@ const CompanyRegistration = () => {
     return fetch(`/CompanyRegister`, {
       method: "POST",
       headers: {
+        "Authorization": "Bearer " + getToken(),
         "Content-Type": "application/json",
       },
       body: jsonPayload,
