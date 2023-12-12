@@ -1,6 +1,7 @@
 using Codebusters.Contracts;
 using Codebusters.Data;
 using Codebusters.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Codebusters.Controllers;

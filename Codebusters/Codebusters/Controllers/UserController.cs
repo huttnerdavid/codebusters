@@ -6,14 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Codebusters.Controllers;
 
+[ApiController]
 public class UserController : ControllerBase
 {
     private readonly ILogger<UserController> _logger;
     private readonly UsersContext _userContext;
+    private readonly UserManager<IdentityUser> _userManager;
+    private readonly IConfiguration _config;
 
-    public UserController(UsersContext userContext, ILogger<UserController> logger)
+    public UserController(UsersContext userContext,  UserManager<IdentityUser> userManager, IConfiguration config, ILogger<UserController> logger)
     {
         _userContext = userContext;
+        _userManager = userManager;
+        _config = config;
         _logger = logger;
     }
 
@@ -49,6 +54,35 @@ public class UserController : ControllerBase
         {
             _logger.LogError(e.ToString());
             return NotFound();
+        }
+    }
+    
+    [HttpDelete("deleteAccount")]
+    [Authorize(Roles = "User, Leader")]
+    public async Task<ActionResult<string>> DeleteAccount(string email)
+    {
+        if (_config["AEmail"].ToLower() == email.ToLower())
+        {
+            return Unauthorized();
+        }
+        
+        try
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user == null)
+            {
+                return BadRequest("Something went wrong");
+            }
+            
+            var result = await _userManager.DeleteAsync(user);
+
+            return result.Succeeded ? Ok(user.Id) : BadRequest(result.Errors);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e.ToString());
+            return BadRequest(e.Message);
         }
     }
 }
