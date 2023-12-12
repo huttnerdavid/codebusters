@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "./LoginForm.css";
 import { setToken } from "../../Cookies/cookies";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function LoginForm({setIsLoggedIn}){
 
@@ -31,7 +31,6 @@ export default function LoginForm({setIsLoggedIn}){
         .then(res => {
             setToken(res.token);
             setIsLoggedIn(true);
-            console.log(res);
             navigate("/");
         })
         .catch(error => {
@@ -41,32 +40,77 @@ export default function LoginForm({setIsLoggedIn}){
     }
 
     return (
-        <div className="login-container">
-            <form onSubmit={onSubmit}>
-                <label htmlFor="email">Email</label>
-                <input
-                    type="email"
-                    name="email" 
-                    id="email" 
-                    onChange={(e) => setEmail(e.target.value)}
-                    required>
-                </input>
+    <section className="">
+      <div className="px-4 py-5 px-md-5 text-center text-lg-start" style={{ backgroundColor: 'hsl(0, 0%, 96%)' }}>
+        <div className="container">
+          <div className="row gx-lg-5 align-items-center">
+            <div className="col-lg-6 mb-5 mb-lg-0">
+              <h1 className="my-5 display-3 fw-bold ls-tight">
+                The best offer <br />
+                <span className="text-primary">for your business</span>
+              </h1>
+              <p style={{ color: 'hsl(217, 10%, 50.8%)' }}>
+              At Codebusters, we're revolutionizing project management with our cutting-edge
+              Constructor Manager app, putting the user in control. Streamline your construction projects
+              effortlessly, ensuring efficiency and collaboration every step of the way.
+              </p>
+            </div>
 
-                <label htmlFor="password">Password</label>
-                <input 
-                    type="password" 
-                    name="password" 
-                    id="password"
-                    minLength="6"
-                    onChange={(e) => setPassword(e.target.value)}
-                    required>
-                    
-                    </input>
+            <div className="col-lg-6 mb-5 mb-lg-0">
+              <div className="card">
+                <div className="card-body py-5 px-md-5">
+                  <form onSubmit={onSubmit}>
 
-                <button type="submit" className="login-s-btn">Login</button>
-            </form>
-
-            { invalidLogin && <p>Invalid e-mail address or password</p>}
+                    <div className="form-outline mb-4">
+                      <input 
+                        type="email"
+                        id="email"
+                        className="form-control"
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        placeholder="example@example.com"
+                        />
+                      <label className="form-label" htmlFor="email">Email address</label>
+                    </div>
+            
+                    <div className="form-outline mb-4">
+                      <input
+                        type="password"
+                        id="form3Example4"
+                        className="form-control"
+                        minLength="6"
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        />
+                      <label className="form-label" htmlFor="form3Example4">Password</label>
+                    </div>
+        
+                    <button type="submit" className="btn btn-primary btn-block mb-4">
+                      Sign in
+                    </button>
+              
+                    <div className="form-check d-flex justify-content-center mb-4">
+                      <input className="form-check-input me-2" type="checkbox" value="" id="form2Example33" defaultChecked />
+                      <label className="form-check-label" htmlFor="form2Example33">
+                        Subscribe to our newsletter
+                      </label>
+                    </div>
+      
+                    <div className="text-center">
+                      <p>or register here:</p>
+                      <Link to="/registration">
+                        <button type="button" className="btn btn-primary btn-floating mb-4">
+                          Register
+                        </button>
+                      </Link>    
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    );
+      </div>
+    </section>
+  );
 }

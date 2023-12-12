@@ -1,107 +1,106 @@
 import React from 'react';
-import "./UserTable.css";
 
 const UserTable = ({users}) => {
 
   return (
-    <div className="UserTable">
-      <table>
+    <div>
+      <table className='table table-dark table-striped-columns'>
         <thead>
           <tr>
             <th>
-              <div className="header">
-                <div className="name">
+              <div>
+                <div>
                   Username
                 </div> 
               </div>
             </th>
             <th>
-              <div className="header">
-                <div className="firstName">
+              <div>
+                <div>
                   First name
                 </div> 
               </div>
             </th>
             <th>
-              <div className="header">
-                <div className="lastName">
+              <div>
+                <div>
                   Last name
                 </div> 
               </div>
             </th>
             <th>
-              <div className="header">
-                <div className="gender">
+              <div>
+                <div>
                   Gender
                 </div> 
               </div>
             </th>
             <th>
-              <div className="header">
-                <div className="zipCode">
+              <div>
+                <div>
                   Zipcode
                 </div> 
               </div>
             </th>
             <th>
-              <div className="header">
-                <div className="city">
+              <div>
+                <div>
                   City
                 </div> 
               </div>
             </th>
               <th>
-                <div className="header">
-                  <div className="street">
+                <div>
+                  <div>
                     Street
                   </div> 
                 </div>
             </th>
             <th>
-              <div className="header">
-                <div className="doorNumber">
+              <div>
+                <div>
                   Door number
                 </div> 
               </div>
             </th>
             <th>
-              <div className="header">
-                <div className="phoneNumber">
+              <div>
+                <div>
                   Phone number
                 </div> 
               </div>
             </th>
             <th>
-              <div className="header">
-                <div className="email">
+              <div>
+                <div>
                   E-mail
                 </div> 
               </div>
             </th>
             <th>
-              <div className="header">
-                <div className="registeredDate">
+              <div>
+                <div>
                   Registered date
                 </div> 
               </div>
             </th>
             <th>
-              <div className="header">
-                <div className="userType">
+              <div>
+                <div>
                   User type
                 </div> 
               </div>
             </th>
             <th>
-              <div className="header">
-                <div className="companyType">
+              <div>
+                <div>
                   Company Name
                 </div> 
               </div>
             </th>
             <th>
-              <div className="header">
-                <div className="registrationType">
+              <div>
+                <div>
                   Registration type
                 </div> 
               </div>
