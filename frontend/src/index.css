@@ -9,7 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(127, 179, 228);
 }
 
 button {
@@ -18,14 +18,14 @@ button {
   font-weight: bold;
   color: black;
   text-transform: uppercase;
-  outline: rgb(99, 151, 254);
+  outline: rgb(73, 126, 233);
   border-radius: 4px;
   cursor: pointer;
-  background-color: white;
+  background-color: rgb(233, 243, 255);
 }
 
 button:hover {
-  border-color: rgb(99, 151, 254);
+  border-color: rgb(0, 58, 175);
 }
 
 a {
@@ -131,4 +131,25 @@ button {
   width: fit-content;
   max-width: 50px;
   grid-area: 1 / 2 / 2 / 3;
+}
+
+/* Modal container styling */
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fekete félátlátszó háttér */
+}
+
+/* Modal content styling */
+.modal-content {
+  background-color: #fff; /* Fehér háttér */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Árnyék */
 }

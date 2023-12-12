@@ -20,7 +20,7 @@ public static class UserDataValidator
 
     public static string TelephoneNumberChecker(string phoneNumber)
     {
-        var r = new Regex(@"^\d{2}[-.●]?\d{2}[/.●]?\d{3}[-.●]?\d{4}$");
+        var r = new Regex(@"^\d{2}[-.●]?\d/.●{2}[]?\d{3}[-.●]?\d{4}$");
         
         return r.IsMatch(phoneNumber) ? phoneNumber : "Phone number not given!";
     }

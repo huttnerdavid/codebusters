@@ -17,7 +17,7 @@ public class UserController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet("/getUsers"), Authorize(Roles = "Admin, User")]
+    [HttpGet("/getUsers"), Authorize(Roles = "Admin")]
     public ActionResult<IEnumerable<Tuple<User, IdentityUser>>> GetAll()
     {
         try
