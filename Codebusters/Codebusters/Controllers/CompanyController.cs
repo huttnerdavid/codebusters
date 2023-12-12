@@ -105,7 +105,7 @@ public class CompanyController : ControllerBase
         }
     }
     
-    [HttpGet("/getOwnConstructs"), Authorize(Roles = "Admin")]
+    [HttpGet("/getOwnConstructs"), Authorize(Roles = "Admin, Leader")]
     public ActionResult<IEnumerable<Company>> GetOwnConstructs(string companyName)
     {
         try

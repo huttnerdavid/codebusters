@@ -58,7 +58,7 @@ public class AdminController : ControllerBase
     }
 
     [HttpPatch("approveLeadership"), Authorize(Roles = "Admin")]
-    public async Task<ActionResult<User>> SetRole(string email)
+    public async Task<ActionResult<User>> ApproveLeadership(string email)
     {
         try
         {
@@ -67,7 +67,8 @@ public class AdminController : ControllerBase
             {
                 return NotFound("User not found");
             }
-            
+
+            await _userManager.RemoveFromRoleAsync(user, "User");
             var result = await _userManager.AddToRoleAsync(user, "Leader");
             return result.Succeeded ? Ok() : BadRequest(result.Errors);
         }
@@ -84,8 +85,8 @@ public class AdminController : ControllerBase
         try
         {
             var identityUser = await _userManager.FindByEmailAsync(email);
-            var dbUser = _usersContext.UsersDb.FirstOrDefault(e => e.IdentityUserId == identityUser.Id);
-            _usersContext.UsersDb.Remove(dbUser);
+            var dbUser = _usersContext?.UsersDb!.FirstOrDefault(e => e.IdentityUserId == identityUser!.Id);
+            _usersContext?.UsersDb!.Remove(dbUser!);
 
             if (identityUser == null)
             {
@@ -93,7 +94,7 @@ public class AdminController : ControllerBase
             }
             
             var result = await _userManager.DeleteAsync(identityUser);
-            await _usersContext.SaveChangesAsync();
+            await _usersContext!.SaveChangesAsync();
             
             return result.Succeeded ? Ok(identityUser.Id) : BadRequest(result.Errors);
         }

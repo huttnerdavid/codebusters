@@ -77,7 +77,8 @@ public class UserController : ControllerBase
 
             foreach (var user in users)
             {
-                var identityUser = identityUsers.FirstOrDefault(identityUser => user.IdentityUserId == identityUser.Id);
+                var identityUser = identityUsers!.FirstOrDefault(identityUser => user.IdentityUserId == identityUser.Id);
+                
                 if (identityUser != null)
                 {
                     var tuple = new Tuple<User, IdentityUser>(user, identityUser);
@@ -137,15 +138,16 @@ public class UserController : ControllerBase
         try
         {
             var identityUser = await _userManager.FindByEmailAsync(email);
-            var dbUser = _userContext.UsersDb.FirstOrDefault(e => e.IdentityUserId == identityUser.Id);
-            _userContext.UsersDb.Remove(dbUser);
+            var dbUser = _userContext?.UsersDb!.FirstOrDefault(e => e.IdentityUserId == identityUser!.Id);
+            
+            _userContext?.UsersDb!.Remove(dbUser!);
             if (identityUser == null)
             {
                 return BadRequest("Something went wrong");
             }
             
             var result = await _userManager.DeleteAsync(identityUser);
-            await _userContext.SaveChangesAsync();
+            await _userContext!.SaveChangesAsync();
             
             return result.Succeeded ? Ok(identityUser.Id) : BadRequest(result.Errors);
         }
