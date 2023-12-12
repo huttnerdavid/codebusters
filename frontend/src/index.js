@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
+import { getToken } from "./Cookies/cookies";
 import reportWebVitals from "./reportWebVitals";
 
 import Layout from "./Pages/Layout";
@@ -16,8 +17,8 @@ import ConstructRegistration from "./Pages/ConstructRegistration";
 import ConstructList from "./Pages/ConstructList";
 
 import LoginPage from "./Pages/LoginPage";
-import { getToken } from "./Cookies/cookies";
 import AdminPage from "./Pages/AdminPage";
+import PendingCeos from "./Pages/Admin/PendingCeos";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -103,6 +104,10 @@ const App = () => {
         {
           path: "/admin",
           element: <AdminPage/>
+        },
+        {
+          path: "/admin/pendingCeos",
+          element: <PendingCeos/>
         }
       ],
     },

@@ -6,7 +6,7 @@ import useFetch from "../Hooks/useFetch";
 const ConstructList = () => {
   const [loading, setLoading] = useState(true);
   const [constructs, setConstructs] = useState(null);
-  const constr = useFetch("getConstructs");
+  const constr = useFetch("/getConstructs");
   
   useEffect(() => {
       setConstructs(constr);

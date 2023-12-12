@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { logout } from "../../Cookies/cookies";
 import { StyledLink } from "../../Styles/Navbar.Styled";
@@ -9,6 +9,7 @@ import Modal from 'react-bootstrap/Modal';
 
 const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const isAdmin = localStorage.getItem("role") === "Admin";
 
   const handleLogout = () => {
     setShowLogoutModal(true);
@@ -20,11 +21,17 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
     setShowLogoutModal(false);
   };
 
+  const adminBtn = (
+    <StyledLink to="/admin">
+      <button type="button" className="nav-link active">Admin</button>
+    </StyledLink>
+  );
+
   return (
     <div className="Layout">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand">Construction manager app</a>
+          <a href="/" className="navbar-brand">Construction manager app</a>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li>
@@ -39,6 +46,7 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
                   </StyledLink>
                 ) : (
                   <div>
+                    {isAdmin && adminBtn}
                     <StyledLink to="/users">
                       <button type="button" className="nav-link active">Users</button>
                     </StyledLink>
