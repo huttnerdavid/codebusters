@@ -13,7 +13,7 @@ const CompanyList = () => {
       if (response.ok) {
         setCompanies(data);
       } else {
-        throw new Error('Failed to fetch employee data');
+        throw new Error('Failed to fetch company data');
       }
     } catch (err) {
       console.log(err);

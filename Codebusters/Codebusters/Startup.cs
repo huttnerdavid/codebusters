@@ -149,7 +149,7 @@ public class Startup
         var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
         var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
     
-        var roleList = new List<string> { "Admin", "User", "Insider", "Outsider" };
+        var roleList = new List<string> { "Admin", "User", "Leader" };
     
         foreach (var role in roleList)
         {
@@ -166,11 +166,14 @@ public class Startup
 
     async Task CreateAdminIfNotExists(UserManager<IdentityUser> userManager)
     {
-        var adminInDb = await userManager.FindByEmailAsync("admin@hotmail.com");
+        var pass = _configuration["APass"];
+        var mail = _configuration["AEmail"];
+        var adminInDb = await userManager.FindByEmailAsync(mail!);
+        
         if (adminInDb == null)
         {
-            var admin = new IdentityUser { UserName = "Admin", Email = "admin@hotmail.com" };
-            var adminCreated = await userManager.CreateAsync(admin, "AdminStrongPassword");
+            var admin = new IdentityUser { UserName = "Admin", Email = mail };
+            var adminCreated = await userManager.CreateAsync(admin, pass!);
 
             if (adminCreated.Succeeded)
             {

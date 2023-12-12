@@ -1,5 +1,5 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\vikto\AppData\Local\JetBrains\Rider2023.2\resharper-host\temp\Rider\vAny\CoverageData\_Codebusters.-1360092672\Snapshot\snapshot.utdcvr</s:String>
+	
 	
 	
 	
@@ -12,5 +12,6 @@
       &lt;TestId&gt;xUnit::A13B5771-A53A-4C90-8937-ED824A08B45A::net7.0::CodebustersIntegrationTests.IntegrationTests.AuthenticationControllerTests&lt;/TestId&gt;&#xD;
     &lt;/TestAncestor&gt;&#xD;
     &lt;Project Location="C:\Users\Parker\Projects\advanced\tw3-2\codebusters\Codebusters\CodebustersIntegrationTests" Presentation="&amp;lt;CodebustersIntegrationTests&amp;gt;" /&gt;&#xD;
+    &lt;Project Location="D:\Programozás\ASPdotNet\codebusters\Codebusters\CodebustersIntegrationTests" Presentation="&amp;lt;CodebustersIntegrationTests&amp;gt;" /&gt;&#xD;
   &lt;/Or&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

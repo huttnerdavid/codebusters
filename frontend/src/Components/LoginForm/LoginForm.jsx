@@ -31,6 +31,7 @@ export default function LoginForm({setIsLoggedIn}){
         .then(res => {
             setToken(res.token);
             setIsLoggedIn(true);
+            console.log(res);
             navigate("/");
         })
         .catch(error => {
