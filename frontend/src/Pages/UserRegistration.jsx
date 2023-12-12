@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Loading from "../Components/Loading";
 import UserForm from "../Components/UserForm";
 import { useNavigate } from "react-router-dom";
+import { getToken } from "../Cookies/cookies";
 
 const fetchData = async (setCompanies) => {
   try {
@@ -28,6 +29,7 @@ const UserRegistration = () => {
     return fetch(`/Register`, {
       method: "POST",
       headers: {
+        "Authorization": "Bearer " + getToken(),
         "Content-Type": "application/json",
       },
       body: jsonPayload,

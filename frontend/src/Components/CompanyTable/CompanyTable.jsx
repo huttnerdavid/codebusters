@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import React from 'react';
-import "./CompanyTable.css";
 
 const Company = ({companies}) => {
 
