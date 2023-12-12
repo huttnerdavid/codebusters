@@ -69,15 +69,18 @@ public class AuthenticationController : ControllerBase
             return BadRequest(ModelState);
 
         var result = await _authenticationService.LoginAsync(request.Email, request.Password);
-
+        
         if (!result.Success)
         {
             AddErrors(result);
             return BadRequest(ModelState);
         }
         
+        var roleId = _usersContext!.UserRoles.First(r => r.UserId == result.Id).RoleId;
+        var role = _usersContext.Roles.First(r => r.Id == roleId).Name;
+        
         Response.Cookies.Append("Authentication", result.Token);
-        return Ok(new AuthResponse(result.Email, result.UserName, result.Token));
+        return Ok(new AuthResponse(result.Email, result.UserName, result.Token, role!));
     }
     
     private void AddErrors(AuthResult result)
