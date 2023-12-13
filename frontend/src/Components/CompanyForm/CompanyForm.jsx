@@ -37,7 +37,6 @@ const CompanyForm = ({ onSave, company, onCancel }) => {
 
   return (
     <RegistrationContainer className="CompanyForm" onSubmit={onSubmit}>
-      
       <div className="mb-3">
         <label className="form-label" htmlFor="companyName">Company name:</label>
         <input
@@ -45,10 +44,8 @@ const CompanyForm = ({ onSave, company, onCancel }) => {
           onChange={(e) => setCompanyName(e.target.value)}
           name="companyName"
           id="companyName"
-          className="form-control"
-        />
+          className="form-control"/>
       </div>
-
       <div className="mb-3">
         <label className="form-label" htmlFor="zipCode">Zipcode:</label>
         <input
@@ -56,10 +53,8 @@ const CompanyForm = ({ onSave, company, onCancel }) => {
           onChange={(e) => setZipCode(e.target.value)}
           name="zipCode"
           id="zipCode"
-          className="form-control"
-        />
+          className="form-control"/>
       </div>
-
       <div className="mb-3">
         <label className="form-label" htmlFor="city">City:</label>
         <input
@@ -67,10 +62,8 @@ const CompanyForm = ({ onSave, company, onCancel }) => {
           onChange={(e) => setCity(e.target.value)}
           name="city"
           id="city"
-          className="form-control"
-        />
+          className="form-control"/>
       </div>
-
       <div className="mb-3">
         <label className="form-label" htmlFor="street">Street:</label>
         <input
@@ -78,10 +71,8 @@ const CompanyForm = ({ onSave, company, onCancel }) => {
           onChange={(e) => setStreet(e.target.value)}
           name="street"
           id="street"
-          className="form-control"
-        />
+          className="form-control"/>
       </div>
-
       <div className="mb-3">
         <label className="form-label" htmlFor="houseNumber">House number:</label>
         <input
@@ -89,10 +80,8 @@ const CompanyForm = ({ onSave, company, onCancel }) => {
           onChange={(e) => setDoorNumber(e.target.value)}
           name="houseNumber"
           id="houseNumber"
-          className="form-control"
-        />
+          className="form-control"/>
       </div>
-
       <div className="mb-3">
         <label className="form-label" htmlFor="regType">Registration type:</label>
         <select
@@ -100,15 +89,13 @@ const CompanyForm = ({ onSave, company, onCancel }) => {
           onChange={(e) => setpickedCompanyType(e.target.value)}
           name="regType"
           id="regType"
-          className="form-select"
-        >
+          className="form-select">
           {pickedCompanyType ? null : <option value="">Select registration type!</option>}
           <option key={"large"} value="Large">Large</option>
           <option key={"medium"} value="Medium">Medium</option>
           <option key={"small"} value="Small">Small</option>
         </select>
       </div>
-
       <div className="buttons">
         <button type="submit" className="btn btn-primary">
           {company ? "Update Company" : "Create Company"}

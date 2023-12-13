@@ -70,13 +70,12 @@ const UserRegistration = () => {
   return (
     <div>
       {loading ? (
-        <Loading />
+        <Loading/>
       ) : (
         <UserForm
           onSave = { handleSubmit }
           onCancel = { handleCancel }
-          companies = { companies }
-        />
+          companies = { companies }/>
       )}
     </div>
   );

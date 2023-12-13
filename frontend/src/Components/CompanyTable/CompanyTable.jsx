@@ -1,64 +1,70 @@
-import { useNavigate } from "react-router-dom";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import PaginationForm from '../PaginationForm';
+import { useNavigate } from 'react-router-dom';
 
-const Company = ({companies}) => {
-
+const Company = ({companies, page}) => {
+  const [recordPerPage, setRecordPerPage] = useState(10);
+  const [paginationSlice, setPaginationSlice] = useState({first: Number(page) * recordPerPage - recordPerPage, second: Number(page) * recordPerPage -1});
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setPaginationSlice({first: Number(page) * recordPerPage - recordPerPage, second: Number(page) * recordPerPage -1});
+  }, [page]);
 
   const handleAddConstruct = (name) => {
     navigate(`/company/construct/${name}`);
   }
 
   return (
-    <div className="CompanyTable">
-      <table>
+    <div className="table-responsive">
+      <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <th>
-              <div className="header">
-                <div className="name">
+            <th className='table-primary'>
+              <div>
+                <div>
                   Company name
                 </div> 
               </div>
             </th>
-            <th>
-              <div className="header">
-                <div className="zipCode">
+            <th className='table-primary'>
+              <div>
+                <div>
                   Zipcode
                 </div> 
               </div>
             </th>
-            <th>
-              <div className="header">
-                <div className="city">
+            <th className='table-primary'>
+              <div>
+                <div>
                   City
                 </div> 
               </div>
             </th>
-              <th>
-                <div className="header">
-                  <div className="street">
+              <th className='table-primary'>
+                <div>
+                  <div>
                     Street
                   </div> 
                 </div>
             </th>
-            <th>
-              <div className="header">
-                <div className="doorNumber">
+            <th className='table-primary'>
+              <div>
+                <div>
                   Door number
                 </div> 
               </div>
             </th>
-            <th>
-              <div className="header">
-                <div className="registrationType">
+            <th className='table-primary'>
+              <div>
+                <div>
                   Picked Company type
                 </div> 
               </div>
             </th>
-            <th>
-              <div className="button">
-                <div className="addJob">
+            <th className='table-primary'>
+              <div>
+                <div>
                   Jobadder
                 </div> 
               </div>
@@ -74,11 +80,19 @@ const Company = ({companies}) => {
               <td>{company.street}</td>
               <td>{company.doorNumber}</td>
               <td>{company.pickedCompanyType}</td>
-              <td><button onClick = { () => handleAddConstruct(company.companyName) }>Add construct</button></td>
+              <td><button className="btn btn-primary btn-floating mb-4" onClick = { () => handleAddConstruct(company.companyName) }>Add construct</button></td>
             </tr>
           ))} 
         </tbody>
       </table>
+      <PaginationForm 
+        element = { companies }
+        page = { page }
+        url = { "companies" }
+        recordPerPage = { recordPerPage }
+        setRecordPerPage = { setRecordPerPage }
+        paginationSlice = { paginationSlice }
+        setPaginationSlice = { setPaginationSlice }/>
     </div>
   );
 };

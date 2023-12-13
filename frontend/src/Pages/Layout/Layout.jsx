@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { logout } from "../../Cookies/cookies";
-import { StyledLink } from "../../Styles/Navbar.Styled";
+import { LoginLogoutLi, StyledUl, StyledLink } from "../../Styles/Navbar.Styled";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
@@ -21,6 +21,7 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
     logout();
     navigate("/");
     setShowLogoutModal(false);
+    navigate("/");
   };
 
   const adminBtn = (
@@ -41,6 +42,7 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
                   <button type="button" className="nav-link active">Home</button>
                 </StyledLink>
               </li>
+
               <li>
                 {!isLoggedIn ? (
                   <StyledLink to="/registration">
@@ -49,22 +51,32 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
                 ) : (
                   <div>
                     {isAdmin && adminBtn}
-                    <StyledLink to="/users">
+                    <StyledLink to="/users/1">
                       <button type="button" className="nav-link active">Users</button>
                     </StyledLink>
-                    <StyledLink to="/constructs">
+                  </li>
+                  <li>
+                    <StyledLink to="/constructs/1">
                       <button type="button" className="nav-link active">Constructs</button>
                     </StyledLink>
-                    <StyledLink to="/companies">
+                  </li>
+                  <li>
+                    <StyledLink to="/companies/1">
                       <button type="button" className="nav-link active">Companies</button>
                     </StyledLink>
+                  </li>
+                  <li>
                     <StyledLink to="/companyregistration">
                       <button type="button" className="nav-link active">Company Registration</button>
                     </StyledLink>
-                  </div>
-                )}
-              </li>
-              <li>
+                  </li>
+                </StyledUl>
+              )}
+            </ul>
+          </div>
+          <div>
+            <ul className="navbar-nav">
+              <LoginLogoutLi className="navbar-nav">
                 {isLoggedIn ? (
                   <button type="button" className="nav-link active" onClick={handleLogout}>
                     Logout
@@ -74,7 +86,7 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
                     <button type="button" className="nav-link active">Login</button>
                   </StyledLink>
                 )}
-              </li>
+              </LoginLogoutLi>
             </ul>
           </div>
         </div>
@@ -84,8 +96,7 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
         show={showLogoutModal}
         onHide={() => setShowLogoutModal(false)}
         backdrop="static"
-        keyboard={false}
-      >
+        keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>Logout Confirmation</Modal.Title>
         </Modal.Header>

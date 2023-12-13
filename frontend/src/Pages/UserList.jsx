@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import Loading from "../Components/Loading";
 import UserTable from "../Components/UserTable";
 import useFetch from "../Hooks/useFetch";
+import { useParams } from 'react-router-dom';
 
 const UserList = () => {
   
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState(null);
+  const { page } = useParams();
   const usersData = useFetch(`/getOwnUsers`);
 
   useEffect(() => {
@@ -23,11 +25,11 @@ const UserList = () => {
   return (
     <div>
       {loading ? (
-        <Loading />
+        <Loading/>
       ) : (
         <UserTable
           users = { users }
-        />
+          page = { page }/>
       )}
     </div>
   );
