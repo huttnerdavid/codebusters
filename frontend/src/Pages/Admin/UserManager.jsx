@@ -35,15 +35,20 @@ export default function UserManager(){
 
     }
 
-    async function deleteUser(email){
+    async function deleteUser(e, email){
         fetch("/admin/deleteUser?email=" + email, {
             method: "DELETE",
             headers: {
                 "Authorization": "Bearer " + getToken()
             }
         })
-        .then(r => console.log(r.ok))
-        .catch(e => console.error(e));
+        .then(res => {
+            if (res.ok){
+                const newUsers = users.filter(u => u.item2.email !== email);
+                setUsers(newUsers);
+            }
+        })
+        .catch(e => alert(e.message));
     }
 
   if (loading || !users){

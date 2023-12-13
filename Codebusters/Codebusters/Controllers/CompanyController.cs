@@ -19,7 +19,7 @@ public class CompanyController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet("/getCompanies")]
+    [HttpGet("/getCompanies"), Authorize(Roles = "Admin")]
     public ActionResult<IEnumerable<Company>> GetAll()
     {
         try
