@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import ConstructForm from "../Components/ConstructForm";
-import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../Components/Loading";
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { getToken } from "../Cookies/cookies";
 
 const ConstructRegistration = () => {
@@ -21,7 +21,7 @@ const ConstructRegistration = () => {
     }).then((res) => {
       if(res.status === 201){
         alert(`${construct.constructName} sent to the database!`);
-        navigate("/companies");
+        navigate("/constructs/1");
       } else {
         alert("Something went wrong!");
       }

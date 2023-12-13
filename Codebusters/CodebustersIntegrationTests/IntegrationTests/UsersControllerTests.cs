@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Mvc.Testing;
 namespace CodebustersIntegrationTests.IntegrationTests;
 
 [Collection("firstSequence")]
-public class UsersControllerTests : IClassFixture<CustomWebApplicationFactory<Program>>
+public class UsersControllerTests : IClassFixture<CustomWebApplicationFactory<Codebusters.Program>>
 {
-    private readonly CustomWebApplicationFactory<Program> _factory;
+    private readonly CustomWebApplicationFactory<Codebusters.Program> _factory;
 
     public UsersControllerTests(
-        CustomWebApplicationFactory<Program> factory)
+        CustomWebApplicationFactory<Codebusters.Program> factory)
     {
         _factory = factory;
 

@@ -1,6 +1,7 @@
 using System.Text;
 using Codebusters.Data;
 using Codebusters.Service.Authentication;
+using Codebusters.Service.Authentication.Token;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

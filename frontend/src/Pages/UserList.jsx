@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
 import Loading from "../Components/Loading";
 import UserTable from "../Components/UserTable";
 import useFetch from "../Hooks/useFetch";
+import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 
 const UserList = () => {

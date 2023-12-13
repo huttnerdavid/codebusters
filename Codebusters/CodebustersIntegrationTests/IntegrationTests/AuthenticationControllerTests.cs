@@ -5,18 +5,18 @@ using Microsoft.AspNetCore.Mvc.Testing;
 namespace CodebustersIntegrationTests.IntegrationTests;
 
 [Collection("firstSequence")]
-public class AuthenticationControllerTests : IClassFixture<CustomWebApplicationFactory<Program>>
+public class AuthenticationControllerTests : IClassFixture<CustomWebApplicationFactory<Codebusters.Program>>
 {
-    private readonly CustomWebApplicationFactory<Program> _factory;
+    private readonly CustomWebApplicationFactory<Codebusters.Program> _factory;
 
     public AuthenticationControllerTests(
-        CustomWebApplicationFactory<Program> factory)
+        CustomWebApplicationFactory<Codebusters.Program> factory)
     {
         _factory = factory;
     }
     
     [Theory]
-    [InlineData("/Login")]
+    [InlineData("/login")]
     public async Task Post_Login_IsSuccessful(string url)
     {
         var client = _factory.CreateClient(new WebApplicationFactoryClientOptions
@@ -38,7 +38,7 @@ public class AuthenticationControllerTests : IClassFixture<CustomWebApplicationF
     }
     
     [Theory]
-    [InlineData("/Login")]
+    [InlineData("/login")]
     public async Task Post_Login_IsUnsuccessful_WrongPassword(string url)
     {
         var client = _factory.CreateClient(new WebApplicationFactoryClientOptions
@@ -59,7 +59,7 @@ public class AuthenticationControllerTests : IClassFixture<CustomWebApplicationF
     }
     
     [Theory]
-    [InlineData("/Login")]
+    [InlineData("/login")]
     public async Task Post_Login_IsUnsuccessful(string url)
     {
         var client = _factory.CreateClient(new WebApplicationFactoryClientOptions
@@ -81,7 +81,7 @@ public class AuthenticationControllerTests : IClassFixture<CustomWebApplicationF
     }
     
     [Theory]
-    [InlineData("/Register")]
+    [InlineData("/register")]
     public async Task Post_Register_IsSuccessful(string url)
     {
         var client = _factory.CreateClient(new WebApplicationFactoryClientOptions
@@ -115,7 +115,7 @@ public class AuthenticationControllerTests : IClassFixture<CustomWebApplicationF
     }
     
     [Theory]
-    [InlineData("/Register")]
+    [InlineData("/register")]
     public async Task Post_Register_IsUnsuccessful_ShortPassword(string url)
     {
         var client = _factory.CreateClient(new WebApplicationFactoryClientOptions
@@ -148,7 +148,7 @@ public class AuthenticationControllerTests : IClassFixture<CustomWebApplicationF
     }
     
     [Theory]
-    [InlineData("/Register")]
+    [InlineData("/register")]
     public async Task Post_Register_IsUnsuccessful_TakenEmail(string url)
     {
         var client = _factory.CreateClient(new WebApplicationFactoryClientOptions

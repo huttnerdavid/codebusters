@@ -9,4 +9,7 @@ IHostBuilder CreateHostBuilder(string[] args) =>
             webBuilder.UseStartup<Startup>();
         });
 
-public partial class Program { } 
+namespace Codebusters
+{
+    public class Program { }
+} 

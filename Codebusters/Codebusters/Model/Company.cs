@@ -7,17 +7,17 @@ public class Company
 {
     [Key]
     public Guid Id { get; set; }
-    public string CompanyName { get; set; }
+    public string CompanyName { get; set; } = null!;
     public int ZipCode { get; private set; }
-    public string City { get; private set; }
-    public string Street { get; private set; }
+    public string City { get; private set; } = null!;
+    public string Street { get; private set; } = null!;
     public int DoorNumber { get; private set; }
-    public string RegistrationDate { get; init; }
-    public string PickedCompanyType { get; init; }
+    public string RegistrationDate { get; init; } = null!;
+    public string PickedCompanyType { get; init; } = null!;
     public int WarehouseSize { get; private set; }
     public int CompanyUserCount { get; set; }
 
-    private readonly UsersContext _usersContext;
+    private readonly UsersContext _usersContext = null!;
     
     public Company(string companyName, int zipCode, string city, string street, int doorNumber, string pickedCompanyType, UsersContext usersContext)
     {
@@ -39,7 +39,7 @@ public class Company
 
     private int UserCounterForCompany(string companyName)
     {
-        return (int)_usersContext?.UsersDb?.Count(u => u.CompanyNameByDatabase == companyName)!;
+        return (int)_usersContext.UsersDb?.Count(u => u.CompanyNameByDatabase == companyName)!;
     }
 
     private int MeasureWarehouseSize(string companyType)

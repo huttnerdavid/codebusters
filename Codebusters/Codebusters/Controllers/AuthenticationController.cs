@@ -1,4 +1,4 @@
-using Codebusters.Contracts;
+using Codebusters.Contracts.Registers;
 using Codebusters.Data;
 using Codebusters.Model;
 using Codebusters.Service.Authentication;
@@ -21,8 +21,8 @@ public class AuthenticationController : ControllerBase
         _logger = logger;
     }
     
-    [HttpPost("Register")]
-    public async Task<ActionResult<RegistrationResponse>> Register(RegistrationRequest request)
+    [HttpPost("/register")]
+    public async Task<ActionResult<UserRegistrationResponse>> Register(UserRegistrationRequest request)
     {
         try
         {
@@ -33,7 +33,7 @@ public class AuthenticationController : ControllerBase
             
             var result = await _authenticationService.RegisterAsync(request.Email, request.Username, request.Password, request.PhoneNumber, "User");
             
-            var ceo = await _usersContext.UsersDb.FirstOrDefaultAsync(c =>
+            var ceo = await _usersContext!.UsersDb!.FirstOrDefaultAsync(c =>
                 c.CompanyNameByDatabase == request.CompanyNameByDatabase && c.UserType.ToLower() == "ceo");
             
             if (request.UserType.ToLower() == "ceo" && ceo != null && request.UserType.ToLower() != "not added yet")
@@ -60,7 +60,7 @@ public class AuthenticationController : ControllerBase
             _usersContext!.UsersDb!.Add(newUser);
             await _usersContext.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(Register), new RegistrationResponse(result.Email, result.UserName));
+            return CreatedAtAction(nameof(Register), new UserRegistrationResponse(result.Email, result.UserName));
         }
         catch (Exception e)
         {
@@ -69,7 +69,7 @@ public class AuthenticationController : ControllerBase
         }
     }
     
-    [HttpPost("Login")]
+    [HttpPost("/login")]
     public async Task<ActionResult<AuthResponse>> Authenticate([FromBody] AuthRequest request)
     {
         if (!ModelState.IsValid)
