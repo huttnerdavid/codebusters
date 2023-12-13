@@ -40,12 +40,11 @@ const CompanyRegistration = () => {
   return (
     <div>
       {loading ? (
-        <Loading />
+        <Loading/>
       ) : (
         <CompanyForm
           onSave = { handleSubmit }
-          onCancel = { handleCancel }
-        />
+          onCancel = { handleCancel }/>
       )}
     </div>
   );

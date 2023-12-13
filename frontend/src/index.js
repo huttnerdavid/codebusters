@@ -56,20 +56,23 @@ const App = () => {
     {
       path: "/",
       element: <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>,
-      errorElement: <ErrorPage />,
+      errorElement: <ErrorPage/>,
       children: [
         {
           path: "/",
-          element: <div className="welcome-text">{isLoggedIn ? (
-                                                                  "You are logged in!"
-                                                                ) : (
-                                                                  <>
-                                                                    Welcome to the page! Click on the{" "}
-                                                                    <Link to="/login">
-                                                                      Login
-                                                                    </Link> button if You are not registered!
-                                                                  </>
-                                                                )}</div>
+          element: 
+            <div className="welcome-text">
+              {isLoggedIn ? (
+                "You are logged in!"
+              ) : (
+                <div>
+                  Welcome to the page! Click on the{" "}
+                  <Link to="/login">
+                    Login
+                  </Link> button if You are not registered!
+                </div>
+              )}
+            </div>
         },
         {
           path: "/users/:page",
@@ -115,7 +118,4 @@ const App = () => {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

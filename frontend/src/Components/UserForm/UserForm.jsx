@@ -69,8 +69,7 @@ const UserForm = ({ onSave, user, onCancel, companies }) => {
           className="form-control"
           id="Username"
           value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-      />
+          onChange={(e) => setUserName(e.target.value)}/>
       </div>
       <div className="mb-3">
         <label htmlFor="Email" className="form-label">Email address</label>
@@ -81,8 +80,7 @@ const UserForm = ({ onSave, user, onCancel, companies }) => {
           aria-describedby="emailHelp"
           placeholder="example@example.com"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          onChange={(e) => setEmail(e.target.value)}/>
         <a href="#" data-toggle="tooltip" title="We'll never share your email with anyone else.">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-info-circle" viewBox="0 0 16 16">
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
@@ -97,8 +95,7 @@ const UserForm = ({ onSave, user, onCancel, companies }) => {
         className="form-control"
         aria-describedby="passwordHelpBlock"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        onChange={(e) => setPassword(e.target.value)}/>
       <a href="#" data-toggle="tooltip" title="Your password must be 6-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-info-circle" viewBox="0 0 16 16">
           <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
@@ -113,8 +110,7 @@ const UserForm = ({ onSave, user, onCancel, companies }) => {
           id="Firstname"
           placeholder="Jane"
           value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-        />
+          onChange={(e) => setFirstName(e.target.value)}/>
       </div>
       <div className="mb-3">
         <label htmlFor="Lastname" className="form-label">Last name</label>
@@ -124,8 +120,7 @@ const UserForm = ({ onSave, user, onCancel, companies }) => {
           id="Lastname" 
           placeholder="Doe"
           value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-        />
+          onChange={(e) => setLastName(e.target.value)}/>
       </div>
       <div className="mb-3">
         <label htmlFor="City" className="form-label">Phonenumber</label>
@@ -135,8 +130,7 @@ const UserForm = ({ onSave, user, onCancel, companies }) => {
           id="Phonenumber"
           placeholder="+01-23-456-7890"
           value={phoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
-        />
+          onChange={(e) => setPhoneNumber(e.target.value)}/>
       </div>
       <div className="mb-3">
         <label htmlFor="genderselect" className="form-label">Gender</label>
@@ -145,8 +139,7 @@ const UserForm = ({ onSave, user, onCancel, companies }) => {
           aria-label="Gender select" 
           id="genderselect"
           value={gender}
-          onChange={(e) => setGender(e.target.value)}
-        >
+          onChange={(e) => setGender(e.target.value)}>
           {gender ? null : <option value="">Select gender!</option>}
           <option key={`Male`} value="Male">Male</option>
           <option key={`Female`} value="Female">Female</option>
@@ -160,8 +153,7 @@ const UserForm = ({ onSave, user, onCancel, companies }) => {
           id="Zipcode" 
           placeholder="1234"
           value={zipCode}
-          onChange={(e) => setZipCode(e.target.value)}
-        />
+          onChange={(e) => setZipCode(e.target.value)}/>
       </div>
       <div className="mb-3">
         <label htmlFor="City" className="form-label">City</label>
@@ -171,8 +163,7 @@ const UserForm = ({ onSave, user, onCancel, companies }) => {
           id="City"
           placeholder="New York"
           value={city}
-          onChange={(e) => setCity(e.target.value)}
-        />
+          onChange={(e) => setCity(e.target.value)}/>
       </div>
       <div className="mb-3">
         <label htmlFor="Address" className="form-label">Street</label>
@@ -182,8 +173,7 @@ const UserForm = ({ onSave, user, onCancel, companies }) => {
           id="Address"
           placeholder="Main Street"
           value={street}
-          onChange={(e) => setStreet(e.target.value)}
-        />
+          onChange={(e) => setStreet(e.target.value)}/>
       </div>
       <div className="mb-3">
         <label htmlFor="Housenumber" className="form-label">House number</label>
@@ -193,8 +183,7 @@ const UserForm = ({ onSave, user, onCancel, companies }) => {
           id="Housenumber"
           placeholder="6"
           value={doorNumber}
-          onChange={(e) => setDoorNumber(e.target.value)}
-        />
+          onChange={(e) => setDoorNumber(e.target.value)}/>
       </div>
       <div className="mb-3">
         <label htmlFor="Usertype" className="form-label">User type</label>
@@ -203,8 +192,7 @@ const UserForm = ({ onSave, user, onCancel, companies }) => {
           aria-label="User type"
           id="Usertype"
           value={userType}
-          onChange={(e) => setUserType(e.target.value)}
-        >
+          onChange={(e) => setUserType(e.target.value)}>
           {userType ? null : <option value="">Select user type!</option>}
           <option key={`CEO`} value="CEO">CEO</option>
           <option key={`Manager`} value="Manager">Manager</option>
@@ -219,8 +207,7 @@ const UserForm = ({ onSave, user, onCancel, companies }) => {
           onChange={(e) => setCompanyNameByDatabase(e.target.value)}
           name="compType"
           id="compType"
-          className="form-select"
-       >
+          className="form-select">
          {companyNameByDatabase ? null : <option value="">Select company!</option>}
          <option value="Not added yet">Not added yet</option>
          {companies &&
@@ -238,8 +225,7 @@ const UserForm = ({ onSave, user, onCancel, companies }) => {
           onChange={(e) => setRegistrationType(e.target.value)}
           name="regType"
           id="regType"
-          className="form-select"
-        >
+          className="form-select">
           {registrationType ? null : <option value="">Select registration type!</option>}
           <option key={`Company`} value="Company">Company</option>
           <option key={`PrivatePerson`} value="PrivatePerson">Private person</option>

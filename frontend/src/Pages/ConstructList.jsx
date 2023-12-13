@@ -18,12 +18,11 @@ const ConstructList = () => {
   return (
     <div>
       {loading ? (
-        <Loading />
+        <Loading/>
       ) : (
         <ConstructTable
           constructs = { constructs }
-          page = { page }
-        />
+          page = { page }/>
       )}
     </div>
   );

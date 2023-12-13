@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Outlet, Navigate, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { logout } from "../../Cookies/cookies";
-import { LoginLogoutLi, StyledUl, StyledNavContainer, StyledNavContainerChild1, StyledNavContainerChild2, StyledNavContainerChild3, StyledNavContainerChild4, StyledLink } from "../../Styles/Navbar.Styled";
+import { LoginLogoutLi, StyledUl, StyledLink } from "../../Styles/Navbar.Styled";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
@@ -34,16 +34,7 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
                   <button type="button" className="nav-link active">Home</button>
                 </StyledLink>
               </li>
-              {!isLoggedIn ? (
-                // <StyledUl>
-                //   <li>
-                //     <StyledLink to="/registration">
-                //       <button type="button" className="nav-link active">Registration</button>
-                //     </StyledLink>
-                //   </li>
-                // </StyledUl>
-                <div/>
-              ) : (
+              {isLoggedIn && (
                 <StyledUl>
                   <li>
                     <StyledLink to="/users/1">
@@ -91,8 +82,7 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
         show={showLogoutModal}
         onHide={() => setShowLogoutModal(false)}
         backdrop="static"
-        keyboard={false}
-      >
+        keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>Logout Confirmation</Modal.Title>
         </Modal.Header>
