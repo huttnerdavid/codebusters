@@ -9,7 +9,9 @@ import Modal from 'react-bootstrap/Modal';
 
 const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
-  const isAdmin = localStorage.getItem("role") === "Admin";
+  const role = localStorage.getItem("role");
+  const isAdmin = role === "Admin";
+  const isLeader = role === "Leader";
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -56,19 +58,19 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
                       </StyledLink>
                     </li>
                     <li>
-                      <StyledLink to="/constructs/1">
+                      {(isLeader || isAdmin) && <StyledLink to="/constructs/1">
                         <button type="button" className="nav-link active">Constructs</button>
-                      </StyledLink>
+                      </StyledLink>}
                     </li>
                     <li>
-                      <StyledLink to="/companies/1">
+                      {isLeader && <StyledLink to="/companies/1">
                         <button type="button" className="nav-link active">Companies</button>
-                      </StyledLink>
+                      </StyledLink>}
                     </li>
                     <li>
-                      <StyledLink to="/companyregistration">
+                      {(isLeader || isAdmin) && <StyledLink to="/companyregistration">
                         <button type="button" className="nav-link active">Company Registration</button>
-                      </StyledLink>
+                      </StyledLink>}
                     </li>
                   </StyledUl>
                 )}
