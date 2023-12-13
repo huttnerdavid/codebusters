@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PaginationForm from '../PaginationForm';
 import { useNavigate } from 'react-router-dom';
 
-const Company = ({companies, page}) => {
+const Company = ({companies, page, headers}) => {
   const [recordPerPage, setRecordPerPage] = useState(10);
   const [paginationSlice, setPaginationSlice] = useState({first: Number(page) * recordPerPage - recordPerPage, second: Number(page) * recordPerPage -1});
   const navigate = useNavigate();
@@ -20,55 +20,9 @@ const Company = ({companies, page}) => {
       <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <th className='table-primary'>
-              <div>
-                <div>
-                  Company name
-                </div> 
-              </div>
-            </th>
-            <th className='table-primary'>
-              <div>
-                <div>
-                  Zipcode
-                </div> 
-              </div>
-            </th>
-            <th className='table-primary'>
-              <div>
-                <div>
-                  City
-                </div> 
-              </div>
-            </th>
-              <th className='table-primary'>
-                <div>
-                  <div>
-                    Street
-                  </div> 
-                </div>
-            </th>
-            <th className='table-primary'>
-              <div>
-                <div>
-                  Door number
-                </div> 
-              </div>
-            </th>
-            <th className='table-primary'>
-              <div>
-                <div>
-                  Picked Company type
-                </div> 
-              </div>
-            </th>
-            <th className='table-primary'>
-              <div>
-                <div>
-                  Jobadder
-                </div> 
-              </div>
-            </th>
+            {headers.map(header => (
+              <th key={header} className='table-primary'>{header}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
