@@ -25,11 +25,17 @@ export default function PendingCeos(){
     },[ceosData]);
 
     const Approve = (e, email) => {
-        const response = fetch("/admin/approveLeadership?email=" + email, {
+        fetch("/admin/approveLeadership?email=" + email, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + getToken()
+            }
+        })
+        .then(res => {
+            if (res.ok){
+                const cs = ceos.filter(u => u.item2.email !== email);
+                setCeos(cs);
             }
         });
     }

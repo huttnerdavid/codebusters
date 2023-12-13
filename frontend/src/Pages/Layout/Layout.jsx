@@ -63,7 +63,7 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
                       </StyledLink>}
                     </li>
                     <li>
-                      {isLeader && <StyledLink to="/companies/1">
+                      {(isLeader || isAdmin) && <StyledLink to="/companies/1">
                         <button type="button" className="nav-link active">Companies</button>
                       </StyledLink>}
                     </li>
