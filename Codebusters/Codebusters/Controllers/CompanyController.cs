@@ -108,12 +108,14 @@ public class CompanyController : ControllerBase
         }
     }
     
-    [HttpGet("/getOwnConstructs"), Authorize(Roles = "Admin, Leader")]
-    public ActionResult<IEnumerable<Company>> GetOwnConstructs(string companyName)
+    [HttpGet("/getOwnConstructs/{email}"), Authorize(Roles = "Admin, Leader")]
+    public async Task<ActionResult<IEnumerable<Company>>> GetOwnConstructs(string email)
     {
         try
         {
-            var constructs = _usersContext?.Constructs!.Where(cn => cn.CompanyName == companyName);
+            var reqUser = await _usersContext.Users.FirstAsync(u => u.Email == email);
+            var dbUser = await _usersContext.UsersDb.FirstAsync(u => u.IdentityUserId == reqUser.Id);
+            var constructs = _usersContext?.Constructs!.Where(cn => cn.CompanyName == dbUser.CompanyNameByDatabase);
             if (constructs != null && !constructs.Any())
             {
                 _logger.LogInformation("There is no construct(s) in the database.");

@@ -9,7 +9,9 @@ const CompanyList = () => {
   const [companies, setCompanies] = useState(undefined);
   const { page } = useParams();
   const email = localStorage.getItem("email");
-  const comp = useFetch("/getOwnCompanies/" + email);
+  const isAdmin = localStorage.getItem("role")?.toLowerCase() === "admin";
+  const url = isAdmin ? "/getCompanies" : `/getOwnCompanies/${email}`;
+  const comp = useFetch(url);
 
   useEffect(() =>{
     setCompanies(comp);

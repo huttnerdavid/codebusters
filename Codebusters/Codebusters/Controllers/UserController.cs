@@ -4,6 +4,7 @@ using Codebusters.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Codebusters.Controllers;
 
@@ -58,14 +59,16 @@ public class UserController : ControllerBase
         }
     }
     
-    [HttpGet("/getOwnUsers"), Authorize(Roles = "Leader")]
-    public ActionResult<IEnumerable<Tuple<User, IdentityUser>>> GetOwnUsers(string companyName)
+    [HttpGet("/getOwnUsers/{email}"), Authorize(Roles = "Leader")]
+    public async Task<ActionResult<IEnumerable<Tuple<User, IdentityUser>>>> GetOwnUsers(string email)
     {
         try
         {
             var returningList = new List<Tuple<User, IdentityUser>>();
+            var reqUser = await _userManager.FindByEmailAsync(email);
+            var dbUser = await _userContext.UsersDb.FirstAsync(u => u.IdentityUserId == reqUser.Id);
 
-            var users = _userContext?.UsersDb!.Where(cn => cn.CompanyNameByDatabase == companyName);
+            var users = _userContext?.UsersDb!.Where(cn => cn.CompanyNameByDatabase == dbUser.CompanyNameByDatabase);
             if (users == null || !users.Any())
             {
                 _logger.LogInformation("There is no user in the database.");

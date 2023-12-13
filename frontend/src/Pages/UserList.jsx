@@ -9,7 +9,10 @@ const UserList = () => {
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState(null);
   const { page } = useParams();
-  const usersData = useFetch(`/getOwnUsers`);
+  const email = localStorage.getItem("email");
+  const isAdmin = localStorage.getItem("role")?.toLowerCase() === "admin";
+  const url = isAdmin ? "/getUsers" : `/getOwnUsers/${email}`;
+  const usersData = useFetch(url);
 
   useEffect(() => {
     if (usersData != null && users == null){
