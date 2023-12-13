@@ -21,7 +21,7 @@ public class AuthenticationController : ControllerBase
         _logger = logger;
     }
     
-    [HttpPost("Register")]
+    [HttpPost("register")]
     public async Task<ActionResult<RegistrationResponse>> Register(RegistrationRequest request)
     {
         try
@@ -69,7 +69,7 @@ public class AuthenticationController : ControllerBase
         }
     }
     
-    [HttpPost("Login")]
+    [HttpPost("login")]
     public async Task<ActionResult<AuthResponse>> Authenticate([FromBody] AuthRequest request)
     {
         if (!ModelState.IsValid)

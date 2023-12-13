@@ -18,7 +18,7 @@ public class CompanyController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet("/getCompanies")]
+    [HttpGet("getCompanies")]
     public ActionResult<IEnumerable<Company>> GetAll()
     {
         try
@@ -39,7 +39,7 @@ public class CompanyController : ControllerBase
         }
     }
     
-    [HttpGet("/getOwnCompanies"), Authorize(Roles = "Leader")]
+    [HttpGet("getOwnCompanies"), Authorize(Roles = "Leader")]
     public ActionResult<IEnumerable<Company>> GetOwn(string companyName)
     {
         try
@@ -60,7 +60,7 @@ public class CompanyController : ControllerBase
         }
     }
     
-    [HttpPost("CompanyRegister"), Authorize(Roles = "Admin, Leader")]
+    [HttpPost("companyRegister"), Authorize(Roles = "Admin, Leader")]
     public async Task<ActionResult<CompanyRegistrationResponse>> Register(CompanyRegistrationRequest request)
     {
         try
@@ -84,7 +84,7 @@ public class CompanyController : ControllerBase
         }
     }
     
-    [HttpGet("/getConstructs"), Authorize(Roles = "Admin")]
+    [HttpGet("getConstructs"), Authorize(Roles = "Admin")]
     public ActionResult<IEnumerable<Company>> GetAllConstructs()
     {
         try
@@ -105,7 +105,7 @@ public class CompanyController : ControllerBase
         }
     }
     
-    [HttpGet("/getOwnConstructs"), Authorize(Roles = "Admin, Leader")]
+    [HttpGet("getOwnConstructs"), Authorize(Roles = "Admin, Leader")]
     public ActionResult<IEnumerable<Company>> GetOwnConstructs(string companyName)
     {
         try
@@ -126,7 +126,7 @@ public class CompanyController : ControllerBase
         }
     }
     
-    [HttpPost("/constructRegister"), Authorize(Roles = "Admin, Leader")]
+    [HttpPost("constructRegister"), Authorize(Roles = "Admin, Leader")]
     public async Task<ActionResult<ConstructRegistrationResponse>> RegisterConstruct(ConstructRegistrationRequest request)
     {
         Console.WriteLine(request);

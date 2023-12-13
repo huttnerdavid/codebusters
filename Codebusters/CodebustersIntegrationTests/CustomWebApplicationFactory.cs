@@ -17,7 +17,7 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
                 d => d.ServiceType ==
                      typeof(DbContextOptions<UsersContext>));
 
-            services.Remove(dbContextDescriptor);
+            services.Remove(dbContextDescriptor!);
 
             services.AddDbContext<UsersContext>((container, options) =>
             {

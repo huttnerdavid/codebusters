@@ -10,7 +10,7 @@ const CompanyRegistration = () => {
 
   const createCompany = (company) => {
     const jsonPayload = JSON.stringify(company);
-    return fetch(`/CompanyRegister`, {
+    return fetch(`/companyRegister`, {
       method: "POST",
       headers: {
         "Authorization": "Bearer " + getToken(),

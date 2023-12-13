@@ -23,7 +23,7 @@ public class UserController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet("/getUsers"), Authorize(Roles = "Admin")]
+    [HttpGet("getUsers"), Authorize(Roles = "Admin")]
     public ActionResult<IEnumerable<Tuple<User, IdentityUser>>> GetAll()
     {
         try
@@ -58,7 +58,7 @@ public class UserController : ControllerBase
         }
     }
     
-    [HttpGet("/getOwnUsers"), Authorize(Roles = "Leader")]
+    [HttpGet("getOwnUsers"), Authorize(Roles = "Leader")]
     public ActionResult<IEnumerable<Tuple<User, IdentityUser>>> GetOwnUsers(string companyName)
     {
         try
@@ -94,7 +94,7 @@ public class UserController : ControllerBase
         }
     }
     
-    [HttpGet("/getCompanyLessUsers"), Authorize(Roles = "Leader")]
+    [HttpGet("getCompanyLessUsers"), Authorize(Roles = "Leader")]
     public ActionResult<IEnumerable<Tuple<User, IdentityUser>>> GetCompanyLessUsers()
     {
         try
@@ -130,7 +130,7 @@ public class UserController : ControllerBase
         }
     }
     
-    [HttpPatch("ChangePassword"), Authorize(Roles = "User")]
+    [HttpPatch("changePassword"), Authorize(Roles = "User")]
     public async Task<ActionResult<ChangePasswordResponse>> ChangePassword([FromBody] ChangePasswordRequest request)
     {
         try

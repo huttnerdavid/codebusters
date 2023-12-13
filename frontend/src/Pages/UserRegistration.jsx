@@ -26,7 +26,7 @@ const UserRegistration = () => {
   
   const createEmployee = (user) => {
     const jsonPayload = JSON.stringify(user);
-    return fetch(`/Register`, {
+    return fetch(`/register`, {
       method: "POST",
       headers: {
         "Authorization": "Bearer " + getToken(),
