@@ -17,6 +17,9 @@ const AdminPage = () => {
             <StyledLink to="/admin/pendingCeos">
                 <button type="button" className="nav-link active">Pending Leader requests</button>
             </StyledLink>
+            <StyledLink to="/admin/userManager">
+                <button type="button" className="nav-link active">User manager</button>
+            </StyledLink>
         </div>
     );
 }

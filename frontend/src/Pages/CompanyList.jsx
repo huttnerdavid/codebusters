@@ -6,7 +6,7 @@ import useFetch from "../Hooks/useFetch";
 const CompanyList = () => {
   const [loading, setLoading] = useState(true);
   const [companies, setCompanies] = useState(undefined);
-  const comp = useFetch("/getCompanies");
+  const comp = useFetch("/getOwnCompanies");
 
   useEffect(() =>{
     setCompanies(comp);

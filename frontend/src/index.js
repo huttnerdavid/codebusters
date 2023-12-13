@@ -19,6 +19,7 @@ import ConstructList from "./Pages/ConstructList";
 import LoginPage from "./Pages/LoginPage";
 import AdminPage from "./Pages/AdminPage";
 import PendingCeos from "./Pages/Admin/PendingCeos";
+import UserManager from "./Pages/Admin/UserManager";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -108,6 +109,10 @@ const App = () => {
         {
           path: "/admin/pendingCeos",
           element: <PendingCeos/>
+        },
+        {
+          path: "/admin/userManager",
+          element: <UserManager/>
         }
       ],
     },
