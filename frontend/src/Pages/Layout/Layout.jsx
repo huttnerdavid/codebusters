@@ -42,36 +42,37 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
                   <button type="button" className="nav-link active">Home</button>
                 </StyledLink>
               </li>
-
               <li>
                 {!isLoggedIn ? (
                   <StyledLink to="/registration">
                     <button type="button" className="nav-link active">Registration</button>
                   </StyledLink>
                 ) : (
-                  <div>
-                    {isAdmin && adminBtn}
-                    <StyledLink to="/users/1">
-                      <button type="button" className="nav-link active">Users</button>
-                    </StyledLink>
-                  </li>
-                  <li>
-                    <StyledLink to="/constructs/1">
-                      <button type="button" className="nav-link active">Constructs</button>
-                    </StyledLink>
-                  </li>
-                  <li>
-                    <StyledLink to="/companies/1">
-                      <button type="button" className="nav-link active">Companies</button>
-                    </StyledLink>
-                  </li>
-                  <li>
-                    <StyledLink to="/companyregistration">
-                      <button type="button" className="nav-link active">Company Registration</button>
-                    </StyledLink>
-                  </li>
-                </StyledUl>
-              )}
+                  <StyledUl>
+                    <li>
+                      {isAdmin && adminBtn}
+                      <StyledLink to="/users/1">
+                        <button type="button" className="nav-link active">Users</button>
+                      </StyledLink>
+                    </li>
+                    <li>
+                      <StyledLink to="/constructs/1">
+                        <button type="button" className="nav-link active">Constructs</button>
+                      </StyledLink>
+                    </li>
+                    <li>
+                      <StyledLink to="/companies/1">
+                        <button type="button" className="nav-link active">Companies</button>
+                      </StyledLink>
+                    </li>
+                    <li>
+                      <StyledLink to="/companyregistration">
+                        <button type="button" className="nav-link active">Company Registration</button>
+                      </StyledLink>
+                    </li>
+                  </StyledUl>
+                )}
+              </li>
             </ul>
           </div>
           <div>
