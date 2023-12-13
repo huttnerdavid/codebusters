@@ -3,6 +3,7 @@ using Codebusters.Data;
 using Codebusters.Model;
 using Codebusters.Service.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Codebusters.Controllers;
 
@@ -31,6 +32,12 @@ public class AuthenticationController : ControllerBase
             }
             
             var result = await _authenticationService.RegisterAsync(request.Email, request.Username, request.Password, request.PhoneNumber, "User");
+            
+            var ceo = await _usersContext.UsersDb.FirstOrDefaultAsync(c =>
+                c.CompanyNameByDatabase == request.CompanyNameByDatabase && c.UserType.ToLower() == "ceo");
+            
+            if (request.UserType.ToLower() == "ceo" && ceo != null && request.UserType.ToLower() != "not added yet")
+                return BadRequest(ceo);
 
             if (!result.Success)
             {
