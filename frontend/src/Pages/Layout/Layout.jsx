@@ -52,10 +52,10 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
                 ) : (
                   <StyledUl>
                     <li>
-                      {isAdmin && adminBtn}
-                      <StyledLink to="/users/1">
+                      {isAdmin&& adminBtn}
+                      {(isLeader || isAdmin) && <StyledLink to="/users/1">
                         <button type="button" className="nav-link active">Users</button>
-                      </StyledLink>
+                      </StyledLink>}
                     </li>
                     <li>
                       {(isLeader || isAdmin) && <StyledLink to="/constructs/1">
