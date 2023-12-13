@@ -12,6 +12,7 @@ const ConstructList = () => {
   const url = isAdmin ? "/getConstructs" : `/getOwnConstructs/${email}`;
   const constr = useFetch(url);
   const { page } = useParams();
+  const headers = ["Construct name", "Company name", "Status", "Workers available"];
   
   useEffect(() => {
       setConstructs(constr);
@@ -25,7 +26,8 @@ const ConstructList = () => {
       ) : (
         <ConstructTable
           constructs = { constructs }
-          page = { page }/>
+          page = { page }
+          headers = { headers }/>
       )}
     </div>
   );

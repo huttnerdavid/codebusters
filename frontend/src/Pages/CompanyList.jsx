@@ -12,6 +12,7 @@ const CompanyList = () => {
   const isAdmin = localStorage.getItem("role")?.toLowerCase() === "admin";
   const url = isAdmin ? "/getCompanies" : `/getOwnCompanies/${email}`;
   const comp = useFetch(url);
+  const headers = ["Company name", "Zipcode", "City", "Street", "Door number", "Picked Company type", "Jobadder"];
 
   useEffect(() =>{
     setCompanies(comp);
@@ -25,7 +26,8 @@ const CompanyList = () => {
       ) : (
         <CompanyTable
           companies = { companies }
-          page = { page }/>
+          page = { page }
+          headers = { headers }/>
       )}
     </div>
   );

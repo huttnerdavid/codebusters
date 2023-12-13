@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PaginationForm from '../PaginationForm';
 
-const ConstructTable = ({constructs, page}) => {
+const ConstructTable = ({constructs, page, headers}) => {
   const [recordPerPage, setRecordPerPage] = useState(10);
   const [paginationSlice, setPaginationSlice] = useState({first: Number(page) * recordPerPage - recordPerPage, second: Number(page) * recordPerPage -1});
 
@@ -14,34 +14,9 @@ const ConstructTable = ({constructs, page}) => {
       <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <th className='table-primary'>
-              <div>
-                <div>
-                  Construct name
-                </div> 
-              </div>
-            </th>
-            <th className='table-primary'>
-              <div>
-                <div>
-                  Company name
-                </div> 
-              </div>
-            </th>
-            <th className='table-primary'>
-              <div>
-                <div>
-                  Status
-                </div> 
-              </div>
-            </th>
-            <th className='table-primary'>
-              <div>
-                <div>
-                  Workers available
-                </div> 
-              </div>
-            </th>
+            {headers.map(header => (
+              <th key={header} className='table-primary'>{header}</th>
+            ))}
           </tr>
         </thead>
         <tbody>

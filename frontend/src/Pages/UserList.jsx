@@ -13,6 +13,7 @@ const UserList = () => {
   const isAdmin = localStorage.getItem("role")?.toLowerCase() === "admin";
   const url = isAdmin ? "/getUsers" : `/getOwnUsers/${email}`;
   const usersData = useFetch(url);
+  const headers = ["Username","First name","Last name","Gender","Zipcode","City","Street","Door number","Phone number","E-mail","Registered date","User type","Company Name","Registration type"];
 
   useEffect(() => {
     if (usersData != null && users == null){
@@ -32,7 +33,8 @@ const UserList = () => {
       ) : (
         <UserTable
           users = { users }
-          page = { page }/>
+          page = { page }
+          headers = { headers }/>
       )}
     </div>
   );
