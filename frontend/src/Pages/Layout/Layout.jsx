@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { logout } from "../../Cookies/cookies";
 import { StyledLink } from "../../Styles/Navbar.Styled";
@@ -10,6 +10,7 @@ import Modal from 'react-bootstrap/Modal';
 const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const isAdmin = localStorage.getItem("role") === "Admin";
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     setShowLogoutModal(true);
@@ -18,6 +19,7 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
   const confirmLogout = () => {
     setIsLoggedIn(false);
     logout();
+    navigate("/");
     setShowLogoutModal(false);
   };
 
