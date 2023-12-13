@@ -12,7 +12,8 @@ export default function useFetch(endpoint, method = "GET", body = undefined, hea
     }
 
     if (!endpoint.startsWith("/")){
-        endpoint = "/" + endpoint;
+        console.log(endpoint, "error")
+        throw new Error(`useFetch: endpoint [${endpoint}] must start with '/'`);
     }
 
     useEffect(() => {
@@ -20,7 +21,7 @@ export default function useFetch(endpoint, method = "GET", body = undefined, hea
             return;
         }
 
-        fetch(`${endpoint}`, {method: method, body: body, headers: {...headers, "Authorization": "Bearer " + token}})
+        fetch(endpoint, {method: method, body: body, headers: {...headers, "Authorization": "Bearer " + token}})
         .then(response => {
             if (response.status === 401 || response.status === 403){
                 navigate("/login");
@@ -32,8 +33,9 @@ export default function useFetch(endpoint, method = "GET", body = undefined, hea
         .then(data => {
             setData(data);
         })
+        .catch(e => console.error(e))
         // eslint-disable-next-line
-    }, []);
+    }, [data]);
     
     return data;
 }

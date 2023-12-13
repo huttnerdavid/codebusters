@@ -18,4 +18,5 @@ export function setToken(token) {
 
 export function logout() {
   cookies.remove(COOKIE_NAME, {path: COOKIE_PATH,domain: COOKIE_DOMAIN})
+  localStorage.removeItem("role")
 }

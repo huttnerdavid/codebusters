@@ -3,6 +3,7 @@ using Codebusters.Data;
 using Codebusters.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Codebusters.Controllers;
 
@@ -39,16 +40,18 @@ public class CompanyController : ControllerBase
         }
     }
     
-    [HttpGet("/getOwnCompanies"), Authorize(Roles = "Leader")]
-    public ActionResult<IEnumerable<Company>> GetOwn(string companyName)
+    [HttpGet("/getOwnCompanies/{email}"), Authorize(Roles = "Leader")]
+    public ActionResult<IEnumerable<Company>> GetOwn(string email)
     {
         try
         {
-            var companies = _usersContext?.Companies!.Where(cn => cn.CompanyName == companyName);
+            var identityUserId = _usersContext.Users.First(u => u.Email == email).Id;
+            var companyName = _usersContext.UsersDb.First(u => u.IdentityUserId == identityUserId).CompanyNameByDatabase;
+            var companies = _usersContext.Companies.Where(cn => cn.CompanyName == companyName).ToList();
+
             if (companies == null || !companies.Any())
             {
                 _logger.LogInformation("There is no company in the database.");
-                return Ok(companies);
             }
             
             return Ok(companies);

@@ -8,7 +8,8 @@ const CompanyList = () => {
   const [loading, setLoading] = useState(true);
   const [companies, setCompanies] = useState(undefined);
   const { page } = useParams();
-  const comp = useFetch("getCompanies");
+  const email = localStorage.getItem("email");
+  const comp = useFetch("/getOwnCompanies/" + email);
 
   useEffect(() =>{
     setCompanies(comp);

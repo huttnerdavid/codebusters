@@ -23,13 +23,13 @@ public class AdminController : ControllerBase
     }
 
     [HttpGet("getPendingCeo"), Authorize(Roles = "Admin")]
-    public ActionResult<IEnumerable<User>> GetPendingCeos()
+    public async Task<ActionResult<IEnumerable<User>>> GetPendingCeos()
     {
         try
         {
             var returningList = new List<Tuple<User, IdentityUser>>();
 
-            var users = _usersContext?.UsersDb!.Where(u => u.UserType == UserType.CEO.ToString());
+            var users = _usersContext?.UsersDb!.Where(u => u.UserType == UserType.CEO.ToString()).ToList();
             if (users == null || !users.Any())
             {
                 _logger.LogInformation("There is no user in the database.");
@@ -41,11 +41,15 @@ public class AdminController : ControllerBase
             foreach (var user in users)
             {
                 var identityUser = identityUsers.FirstOrDefault(identityUser => user.IdentityUserId == identityUser.Id);
-                if (identityUser != null)
-                {
-                    var tuple = new Tuple<User, IdentityUser>(user, identityUser);
-                    returningList.Add(tuple);
-                }
+                if (identityUser == null)
+                    continue;
+                
+                var roles = await _userManager.GetRolesAsync(identityUser);
+                if (!roles.Contains("User") || roles.Contains("Leader"))
+                    continue;
+
+                var tuple = new Tuple<User, IdentityUser>(user, identityUser);
+                returningList.Add(tuple);
             }
             
             return Ok(returningList);
@@ -62,6 +66,11 @@ public class AdminController : ControllerBase
     {
         try
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(nameof(ModelState));
+            }
+            
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
             {

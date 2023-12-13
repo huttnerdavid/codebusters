@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { setToken } from "../../Cookies/cookies";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function LoginForm({setIsLoggedIn}){
 
@@ -13,31 +12,35 @@ export default function LoginForm({setIsLoggedIn}){
   let onSubmit = (e) => {
       e.preventDefault();
 
-      let login = { email, password };
-      fetch(`Login`, {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json",
-          },
-          body: JSON.stringify(login)
-      })
-      .then(res => {
-          if (res.ok) {
-              return res.json();
-          } else {
-              throw new Error("Invalid login credentials");
-          }
-      })
-      .then(res => {
-          setToken(res.token);
-          setIsLoggedIn(true);
-          navigate("/");
-      })
-      .catch(error => {
-          setInvalidLogin(true);
-          console.error("Login error:", error);
-      });
-  }
+        let login = { email, password };
+        fetch(`Login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(login)
+        })
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                throw new Error("Invalid login credentials");
+            }
+        })
+        .then(res => {
+            setToken(res.token);
+            setIsLoggedIn(true);
+            localStorage.setItem("role", res.role);
+            localStorage.setItem("email", res.email);
+            console.log(res);
+            console.log(res.role);
+            navigate("/");
+        })
+        .catch(error => {
+            setInvalidLogin(true);
+            console.error("Login error:", error);
+        });
+    }
 
   return (
     <section>

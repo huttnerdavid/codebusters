@@ -9,6 +9,7 @@ import Modal from 'react-bootstrap/Modal';
 
 const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const isAdmin = localStorage.getItem("role") === "Admin";
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -18,15 +19,22 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
   const confirmLogout = () => {
     setIsLoggedIn(false);
     logout();
+    navigate("/");
     setShowLogoutModal(false);
     navigate("/");
   };
+
+  const adminBtn = (
+    <StyledLink to="/admin">
+      <button type="button" className="nav-link active">Admin</button>
+    </StyledLink>
+  );
 
   return (
     <div className="Layout">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand">Construction manager app</a>
+          <a href="/" className="navbar-brand">Construction manager app</a>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li>
@@ -34,9 +42,15 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
                   <button type="button" className="nav-link active">Home</button>
                 </StyledLink>
               </li>
-              {isLoggedIn && (
-                <StyledUl>
-                  <li>
+
+              <li>
+                {!isLoggedIn ? (
+                  <StyledLink to="/registration">
+                    <button type="button" className="nav-link active">Registration</button>
+                  </StyledLink>
+                ) : (
+                  <div>
+                    {isAdmin && adminBtn}
                     <StyledLink to="/users/1">
                       <button type="button" className="nav-link active">Users</button>
                     </StyledLink>

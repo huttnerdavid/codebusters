@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 const ConstructList = () => {
   const [loading, setLoading] = useState(true);
   const [constructs, setConstructs] = useState(null);
-  const constr = useFetch("getConstructs");
+  const constr = useFetch("/getConstructs");
   const { page } = useParams();
   
   useEffect(() => {

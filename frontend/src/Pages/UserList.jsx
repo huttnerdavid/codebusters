@@ -8,8 +8,8 @@ const UserList = () => {
   
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState(null);
-  const usersData = useFetch(`getUsers`);
   const { page } = useParams();
+  const usersData = useFetch(`/getOwnUsers`);
 
   useEffect(() => {
     if (usersData != null && users == null){
