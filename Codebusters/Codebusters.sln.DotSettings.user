@@ -1,18 +1,12 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
+  &lt;Assembly Path="C:\Users\vikto\.nuget\packages\xunit.assert\2.6.3\lib\net6.0\xunit.assert.dll" /&gt;&#xD;
+&lt;/AssemblyExplorer&gt;</s:String>
 	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\vikto\AppData\Local\JetBrains\Rider2023.2\resharper-host\temp\Rider\vAny\CoverageData\_Codebusters.-1360092672\Snapshot\snapshot.utdcvr</s:String>
 	
 	
 	
 	
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8d983090_002D4dfe_002D404e_002Dbc29_002D3cbbbf4d95b7/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Tests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Or&gt;&#xD;
-    &lt;TestAncestor&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::E52E4BE3-0D5C-4830-AA69-5632ED06A2A6::net7.0::TestCodebustersProject.Tests&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;xUnit::A13B5771-A53A-4C90-8937-ED824A08B45A::net7.0::CodebustersIntegrationTests.IntegrationTests.UserControllerTests.Get_GetUsersEndpoint_NoAuth_ReturnsError&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;xUnit::A13B5771-A53A-4C90-8937-ED824A08B45A::net7.0::CodebustersIntegrationTests.IntegrationTests.AuthenticationControllerTests.Post_Login_IsSuccessful&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;xUnit::A13B5771-A53A-4C90-8937-ED824A08B45A::net7.0::CodebustersIntegrationTests.IntegrationTests.AuthenticationControllerTests&lt;/TestId&gt;&#xD;
-    &lt;/TestAncestor&gt;&#xD;
-    &lt;Project Location="C:\Users\Parker\Projects\advanced\tw3-2\codebusters\Codebusters\CodebustersIntegrationTests" Presentation="&amp;lt;CodebustersIntegrationTests&amp;gt;" /&gt;&#xD;
-    &lt;Project Location="D:\Programozás\ASPdotNet\codebusters\Codebusters\CodebustersIntegrationTests" Presentation="&amp;lt;CodebustersIntegrationTests&amp;gt;" /&gt;&#xD;
-  &lt;/Or&gt;&#xD;
+  &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
