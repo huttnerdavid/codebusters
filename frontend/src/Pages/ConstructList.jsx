@@ -7,7 +7,10 @@ import { useParams } from 'react-router-dom';
 const ConstructList = () => {
   const [loading, setLoading] = useState(true);
   const [constructs, setConstructs] = useState(null);
-  const constr = useFetch("/getConstructs");
+  const email = localStorage.getItem("email");
+  const isAdmin = localStorage.getItem("role")?.toLowerCase() === "admin";
+  const url = isAdmin ? "/getConstructs" : `/getOwnConstructs/${email}`;
+  const constr = useFetch(url);
   const { page } = useParams();
   
   useEffect(() => {
