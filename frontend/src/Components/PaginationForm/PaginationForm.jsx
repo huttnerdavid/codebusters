@@ -34,10 +34,10 @@ const ConstructTable = ({element, url, page, recordPerPage, setRecordPerPage, pa
           <button className="btn btn-primary btn-floating mb-4" style={{marginLeft: "1vw"}} onClick={() => handlePreviousButton()} disabled={paginationSlice.first === 0}>Previous</button>
         </li>
         <li className="page-item">
-          <button className="btn btn-primary btn-floating mb-4" style={{marginLeft: "1vw"}} onClick={() => handleNextButton()} disabled={element && paginationSlice.second >= element.length} >Next</button>
+          <button className="btn btn-primary btn-floating mb-4" style={{marginLeft: "1vw"}} onClick={() => handleNextButton()} disabled={element && paginationSlice.second + 1 >= element.length} >Next</button>
         </li>
         <StyledLi>
-          <select className="btn btn-primary"  style={{marginRight: "1vw"}} onChange = {(event) => handleRecordPerPageButton(event.target.value)} disabled={element && element.length < 10}>
+          <select className="btn btn-primary"  style={{marginRight: "1vw"}} onChange = {(event) => handleRecordPerPageButton(event.target.value)} disabled={element && element.length <= 10}>
             <option>10</option>
             <option>25</option>
             <option>50</option>

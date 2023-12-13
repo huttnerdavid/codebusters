@@ -17,7 +17,6 @@ import ConstructRegistration from "./Pages/ConstructRegistration";
 import ConstructList from "./Pages/ConstructList";
 
 import LoginPage from "./Pages/LoginPage";
-import AdminPage from "./Pages/AdminPage";
 import PendingCeos from "./Pages/Admin/PendingCeos";
 import UserManager from "./Pages/Admin/UserManager";
 
@@ -106,15 +105,11 @@ const App = () => {
           element: <LoginPage setIsLoggedIn={setIsLoggedIn}/>
         },
         {
-          path: "/admin",
-          element: <AdminPage/>
-        },
-        {
-          path: "/admin/pendingCeos",
+          path: "/admin/pendingCeos/:page",
           element: <PendingCeos/>
         },
         {
-          path: "/admin/userManager",
+          path: "/admin/userManager/:page",
           element: <UserManager/>
         }
       ],

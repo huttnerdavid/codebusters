@@ -5,7 +5,10 @@ import { logout } from "../../Cookies/cookies";
 import { LoginLogoutLi, StyledUl, StyledLink } from "../../Styles/Navbar.Styled";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -26,12 +29,6 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
     navigate("/");
   };
 
-  const adminBtn = (
-    <StyledLink to="/admin">
-      <button type="button" className="nav-link active">Admin</button>
-    </StyledLink>
-  );
-
   return (
     <div className="Layout">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -45,15 +42,18 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
                 </StyledLink>
               </li>
               <li>
-                {!isLoggedIn ? (
-                  <StyledLink to="/registration">
-                    <button type="button" className="nav-link active">Registration</button>
-                  </StyledLink>
-                ) : (
+                {isLoggedIn && (
                   <StyledUl>
                     <li>
-                      {isAdmin&& adminBtn}
-                      {(isLeader || isAdmin) && <StyledLink to="/users/1">
+                      {isAdmin && 
+                      <NavDropdown title="Admin Panel" id="basic-nav-dropdown">
+                        <NavDropdown.Item href="/admin/pendingCeos/1">Pending Leader requests</NavDropdown.Item>
+                        <NavDropdown.Item href="/admin/userManager/1">User manager</NavDropdown.Item>
+                      </NavDropdown>
+                      }
+                    </li>
+                    <li>
+                      {(isLeader || !isAdmin) && <StyledLink to="/users/1">
                         <button type="button" className="nav-link active">Users</button>
                       </StyledLink>}
                     </li>
