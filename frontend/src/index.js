@@ -72,7 +72,7 @@ const App = () => {
                                                                 )}</div>
         },
         {
-          path: "/users",
+          path: "/users/:page",
           element: <UserList/>,
         },
         {
@@ -80,11 +80,11 @@ const App = () => {
           element: <UserRegistration/>,
         },
         {
-          path: "/constructs",
+          path: "/constructs/:page",
           element: <ConstructList/>,
         },
         {
-          path: "/companies",
+          path: "/companies/:page",
           element: <CompanyList/>,
         },
         {
