@@ -1,15 +1,20 @@
-import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ContractForm = () => {
   const form = useRef();
+  const navigate = useNavigate();
 
   const sendEmail = (e) => {
     e.preventDefault();
 
     emailjs.sendForm('service_wcrwr6s', 'template_rfl8dro', form.current, 'UVQrOPr-xEZskSJps')
       .then((result) => {
-          console.log(result.text);
+          if (result.status === 200) {
+            alert("E-mail sent!");
+            navigate("/");
+          }
       }, (error) => {
           console.log(error.text);
       });
