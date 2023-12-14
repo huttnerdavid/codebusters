@@ -15,6 +15,7 @@ import LoginPage from "./Pages/LoginPage";
 import PendingCeos from "./Pages/Admin/PendingCeos";
 import UserManager from "./Pages/Admin/UserManager";
 import HomePage from "./Pages/HomePage";
+import ContactPage from "./Pages/ContactPage";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -95,6 +96,10 @@ const App = () => {
         {
           path: "/admin/userManager/:page",
           element: <UserManager/>
+        },
+        {
+          path: "/contact",
+          element: <ContactPage/>
         }
       ],
     },

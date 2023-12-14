@@ -69,6 +69,11 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
                       </NavDropdown>
                       }
                     </li>
+                    <li>
+                      <StyledLink to="/contact">
+                        <button type="button" className="nav-link active">Contact</button>
+                      </StyledLink>
+                    </li>
                   </StyledUl>
                 )}
               </li>
