@@ -34,8 +34,8 @@ export default function UserManager(){
     function manageUser(e, user){
 
     }
-
-    async function deleteUser(e, email){
+    
+    function deleteUser(email){
         fetch("/admin/deleteUser?email=" + email, {
             method: "DELETE",
             headers: {

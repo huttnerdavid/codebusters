@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Codebusters.Controllers;
 
 [ApiController]
-[Route("/admin")]
+[Route("admin")]
 public class AdminController : ControllerBase
 {
     private readonly UsersContext? _usersContext;
@@ -22,7 +22,7 @@ public class AdminController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet("/getPendingCeo"), Authorize(Roles = "Admin")]
+    [HttpGet("getPendingCeo"), Authorize(Roles = "Admin")]
     public async Task<ActionResult<IEnumerable<User>>> GetPendingCeos()
     {
         try
@@ -61,7 +61,7 @@ public class AdminController : ControllerBase
         }
     }
 
-    [HttpPatch("/approveLeadership"), Authorize(Roles = "Admin")]
+    [HttpPatch("approveLeadership"), Authorize(Roles = "Admin")]
     public async Task<ActionResult<User>> ApproveLeadership(string email)
     {
         try
@@ -88,9 +88,10 @@ public class AdminController : ControllerBase
         }
     }
 
-    [HttpDelete("/deleteUser"), Authorize(Roles = "Admin")]
+    [HttpDelete("deleteUser"), Authorize(Roles = "Admin")]
     public async Task<ActionResult<string>> DeleteUser(string email)
     {
+        _logger.LogInformation("/deleteUser/{email}", email);
         try
         {
             var identityUser = await _userManager.FindByEmailAsync(email);
