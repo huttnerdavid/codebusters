@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Codebusters.Model;
 
@@ -17,6 +18,7 @@ public class User
     public string UserType { get; init; }
     public string CompanyNameByDatabase { get; set; }
     public string RegistrationType { get; private set; }
+    /*[ForeignKey()]*/
     public string IdentityUserId { get; init; }
 
     public User(string firstName,
