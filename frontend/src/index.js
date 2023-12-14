@@ -106,11 +106,11 @@ const App = () => {
   ]);
 
   return (
-    <React.StrictMode>
+
         <RouterProvider router={router}>
           <Layout />
         </RouterProvider>
-    </React.StrictMode>
+ 
   );
 };
 

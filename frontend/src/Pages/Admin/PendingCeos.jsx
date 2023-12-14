@@ -40,8 +40,15 @@ export default function PendingCeos(){
         "Content-Type": "application/json",
         "Authorization": "Bearer " + getToken()
       }
-    },[]);
-  }
+    })
+    .then(res => {
+      if (res.ok){
+          const newUsers = ceos.filter(u => u.item2.email !== email);
+          setCeos(newUsers);
+      }
+    })
+    .catch(e => alert(e.message));
+    }
 
   if (loading){
     return <Loading />

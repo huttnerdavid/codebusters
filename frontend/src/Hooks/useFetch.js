@@ -24,7 +24,8 @@ export default function useFetch(endpoint, method = "GET", body = undefined, hea
         fetch(endpoint, {method: method, body: body, headers: {...headers, "Authorization": "Bearer " + token}})
         .then(response => {
             if (response.status === 401 || response.status === 403){
-                navigate("/login");
+              alert("Unauthorized action!");
+              navigate("/");
             }
             if (response.status >= 200 && response.status <= 299){
                 return response.json();

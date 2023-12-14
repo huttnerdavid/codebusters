@@ -32,8 +32,6 @@ export default function LoginForm({setIsLoggedIn}){
             setIsLoggedIn(true);
             localStorage.setItem("role", res.role);
             localStorage.setItem("email", res.email);
-            console.log(res);
-            console.log(res.role);
             navigate("/");
         })
         .catch(error => {

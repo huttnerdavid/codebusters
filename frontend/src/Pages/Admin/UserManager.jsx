@@ -16,7 +16,6 @@ export default function UserManager(){
   const [recordPerPage, setRecordPerPage] = useState(10);
   const [paginationSlice, setPaginationSlice] = useState({first: Number(page) * recordPerPage - recordPerPage, second: Number(page) * recordPerPage -1});
   const headers =  ["First name", "Last name", "Zipcode", "City", "Street", "Door", "E-mail", "Registered date", "User type", "Company", "Type", "Action", ""];
-  console.log(page);
 
   useEffect(() => {
     setPaginationSlice({first: Number(page) * recordPerPage - recordPerPage, second: Number(page) * recordPerPage -1});

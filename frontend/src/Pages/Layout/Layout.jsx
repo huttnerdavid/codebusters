@@ -42,7 +42,7 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
                 {isLoggedIn && (
                   <StyledUl>
                     <li>
-                      {(isLeader || !isAdmin) && <StyledLink to="/users/1">
+                      {(isLeader || isAdmin) && <StyledLink to="/users/1">
                         <button type="button" className="nav-link active">Users</button>
                       </StyledLink>}
                     </li>
