@@ -19,12 +19,13 @@ public class CompanyController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet("/getCompanies"), Authorize(Roles = "Admin, Leader, User")]
+    [HttpGet("/getCompanies")]
     public ActionResult<IEnumerable<Company>> GetAll()
     {
         try
         {
             var companies = _usersContext.Companies;
+            
             if (companies == null || !companies.Any())
             {
                 _logger.LogInformation("There is no company in the database.");
