@@ -15,6 +15,8 @@ export default function UserManager(){
   const { page } = useParams();
   const [recordPerPage, setRecordPerPage] = useState(10);
   const [paginationSlice, setPaginationSlice] = useState({first: Number(page) * recordPerPage - recordPerPage, second: Number(page) * recordPerPage -1});
+  const headers =  ["First name", "Last name", "Zipcode", "City", "Street", "Door", "E-mail", "Registered date", "User type", "Company", "Type", "Action", ""];
+  console.log(page);
 
   useEffect(() => {
     setPaginationSlice({first: Number(page) * recordPerPage - recordPerPage, second: Number(page) * recordPerPage -1});
@@ -56,59 +58,43 @@ export default function UserManager(){
   }
 
   return (
-    <div className="table-responsive">
+    <div>
       <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <th className='table-primary'>Username</th>
-            <th className='table-primary'>First name</th>
-            <th className='table-primary'>Last name</th>
-            <th className='table-primary'>Gender</th>
-            <th className='table-primary'>Zipcode</th>
-            <th className='table-primary'>City</th>
-            <th className='table-primary'>Street</th>
-            <th className='table-primary'>Door number</th>
-            <th className='table-primary'>Phone number</th>
-            <th className='table-primary'>E-mail</th>
-            <th className='table-primary'>Registered date</th>
-            <th className='table-primary'>User type</th>
-            <th className='table-primary'>Company Name</th>
-            <th className='table-primary'>Registration type</th>
-            <th className='table-primary'>Action</th>
-            <th className='table-primary'></th>
+            {headers.map(header => (
+              <th key={header} className='table-primary'>{header}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
-        {users && users.map((user) => (
-          <tr key={user.item1.id}>
-            <td>{user.item2.userName}</td>
-            <td>{user.item1.firstName}</td>
-            <td>{user.item1.lastName}</td>
-            <td>{user.item1.gender}</td>
-            <td>{user.item1.zipCode}</td>
-            <td>{user.item1.city}</td>
-            <td>{user.item1.street}</td>
-            <td>{user.item1.doorNumber}</td>
-            <td>{user.item2.phoneNumber}</td>
-            <td>{user.item2.email}</td>
-            <td>{user.item1.registrationDate}</td>
-            <td>{user.item1.userType}</td>
-            <td>{user.item1.companyNameByDatabase}</td>
-            <td>{user.item1.registrationType}</td>
-            <td>
-              <button className="btn btn-primary btn-floating mb-4" onClick={(e) => manageUser(e, user)}>Edit</button>
-            </td>
-            <td>
-              <button className="btn btn-primary btn-floating mb-4" onClick={(e) => deleteUser(user.item2.email)}>Delete</button>
-            </td>
-          </tr>
-        ))} 
+          {users && users.slice(paginationSlice.first, paginationSlice.second).map((user) => (
+            <tr key={user.item1.id}>
+              <td>{user.item1.firstName}</td>
+              <td>{user.item1.lastName}</td>
+              <td>{user.item1.zipCode}</td>
+              <td>{user.item1.city}</td>
+              <td>{user.item1.street}</td>
+              <td>{user.item1.doorNumber}</td>
+              <td>{user.item2.email}</td>
+              <td>{user.item1.registrationDate}</td>
+              <td>{user.item1.userType}</td>
+              <td>{user.item1.companyNameByDatabase}</td>
+              <td>{user.item1.registrationType}</td>
+              <td>
+                <button className="btn btn-primary btn-floating mb-4" onClick={(e) => manageUser(e, user)}>Edit</button>
+              </td>
+              <td>
+                <button className="btn btn-primary btn-floating mb-4" onClick={(e) => deleteUser(user.item2.email)}>Delete</button>
+              </td>
+            </tr>
+          ))} 
         </tbody>
-    </table>
+      </table>
     <PaginationForm 
       element = { users }
       page = { page }
-      url = { "companies" }
+      url = { "admin/userManager" }
       recordPerPage = { recordPerPage }
       setRecordPerPage = { setRecordPerPage }
       paginationSlice = { paginationSlice }

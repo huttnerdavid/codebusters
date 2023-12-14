@@ -5,9 +5,6 @@ import { logout } from "../../Cookies/cookies";
 import { LoginLogoutLi, StyledUl, StyledLink } from "../../Styles/Navbar.Styled";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
@@ -31,9 +28,9 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
 
   return (
     <div className="Layout">
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container-fluid">
-          <a href="/" className="navbar-brand">Construction manager app</a>
+          <a className="navbar-brand">Construction manager app</a>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li>
@@ -44,14 +41,6 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
               <li>
                 {isLoggedIn && (
                   <StyledUl>
-                    <li>
-                      {isAdmin && 
-                      <NavDropdown title="Admin Panel" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="/admin/pendingCeos/1">Pending Leader requests</NavDropdown.Item>
-                        <NavDropdown.Item href="/admin/userManager/1">User manager</NavDropdown.Item>
-                      </NavDropdown>
-                      }
-                    </li>
                     <li>
                       {(isLeader || !isAdmin) && <StyledLink to="/users/1">
                         <button type="button" className="nav-link active">Users</button>
@@ -71,6 +60,14 @@ const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
                       {(isLeader || isAdmin) && <StyledLink to="/companyregistration">
                         <button type="button" className="nav-link active">Company Registration</button>
                       </StyledLink>}
+                    </li>
+                    <li>
+                      {isAdmin && 
+                      <NavDropdown title="Admin Panel" id="basic-nav-dropdown">
+                        <NavDropdown.Item href="/admin/pendingCeos/1">Pending Leader requests</NavDropdown.Item>
+                        <NavDropdown.Item href="/admin/userManager/1">User manager</NavDropdown.Item>
+                      </NavDropdown>
+                      }
                     </li>
                   </StyledUl>
                 )}

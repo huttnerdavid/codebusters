@@ -37,7 +37,7 @@ const UserTable = ({users, page, headers}) => {
               <td>{user.item1.companyNameByDatabase}</td>
               <td>{user.item1.registrationType}</td>
             </tr>
-          ))} 
+          ))}
         </tbody>
       </table>
       <PaginationForm 
