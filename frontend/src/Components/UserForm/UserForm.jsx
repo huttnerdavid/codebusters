@@ -71,23 +71,6 @@ const UserForm = ({ onSave, user, companies }) => {
           value={userName}
           onChange={(e) => setUserName(e.target.value)}/>
       </div>
-      <div className="mb-3">
-        <label htmlFor="Email" className="form-label">Email address</label>
-        <input
-          type="email"
-          className="form-control"
-          id="Email"
-          aria-describedby="emailHelp"
-          placeholder="example@example.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}/>
-        <a href="#" data-toggle="tooltip" title="We'll never share your email with anyone else.">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-info-circle" viewBox="0 0 16 16">
-            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-          </svg>
-        </a>
-      </div>
       <div>
         <label htmlFor="inputPassword5" className="form-label">Password</label>
           <input
@@ -125,6 +108,23 @@ const UserForm = ({ onSave, user, companies }) => {
           onChange={(e) => setLastName(e.target.value)}/>
       </div>
       <div className="mb-3">
+        <label htmlFor="Email" className="form-label">Email address</label>
+        <input
+          type="email"
+          className="form-control"
+          id="Email"
+          aria-describedby="emailHelp"
+          placeholder="example@example.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}/>
+        <a href="#" data-toggle="tooltip" title="We'll never share your email with anyone else.">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-info-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+          </svg>
+        </a>
+      </div>
+      <div className="mb-3">
         <label htmlFor="City" className="form-label">Phonenumber</label>
         <input
           type="city" 
@@ -133,19 +133,6 @@ const UserForm = ({ onSave, user, companies }) => {
           placeholder="+01-23-456-7890"
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}/>
-      </div>
-      <div className="mb-3">
-        <label htmlFor="genderselect" className="form-label">Gender</label>
-        <select
-          className="form-select" 
-          aria-label="Gender select" 
-          id="genderselect"
-          value={gender}
-          onChange={(e) => setGender(e.target.value)}>
-          {gender ? null : <option value="">Select gender!</option>}
-          <option key={`Male`} value="Male">Male</option>
-          <option key={`Female`} value="Female">Female</option>
-        </select>
       </div>
       <div className="mb-3">
         <label htmlFor="Zipcode" className="form-label">Zipcode</label>
@@ -188,6 +175,19 @@ const UserForm = ({ onSave, user, companies }) => {
           onChange={(e) => setDoorNumber(e.target.value)}/>
       </div>
       <div className="mb-3">
+        <label htmlFor="genderselect" className="form-label">Gender</label>
+        <select
+          className="form-select" 
+          aria-label="Gender select" 
+          id="genderselect"
+          value={gender}
+          onChange={(e) => setGender(e.target.value)}>
+          {gender ? null : <option value="">Select gender!</option>}
+          <option key={`Male`} value="Male">Male</option>
+          <option key={`Female`} value="Female">Female</option>
+        </select>
+      </div>
+      <div className="mb-3">
         <label htmlFor="Usertype" className="form-label">User type</label>
         <select
           className="form-select"
@@ -201,6 +201,21 @@ const UserForm = ({ onSave, user, companies }) => {
           <option key={`Supervisor`} value="Supervisor">Supervisor</option>
           <option key={`Worker`} value="Worker">Worker</option>
           <option key={`Client`} value="Client">Client</option>
+        </select>
+      </div>
+      <div className="mb-3">
+        <label htmlFor="compType" className="form-label">Registration type</label>
+        <select
+          value={registrationType}
+          onChange={(e) => setRegistrationType(e.target.value)}
+          name="regType"
+          id="regType"
+          className="form-select">
+          {registrationType ? null : <option value="">Select registration type!</option>}
+          <option key={`Company`} value="Company">Company</option>
+          <option key={`PrivatePerson`} value="PrivatePerson">Private person</option>
+          <option key={`CompanyEmployee`} value="CompanyEmployee">Company employee</option>
+          <option key={`External`} value="External">External</option>
         </select>
       </div>
       <div className="mb-3">
@@ -219,21 +234,6 @@ const UserForm = ({ onSave, user, companies }) => {
              </option>
            ))}
        </select>
-      </div>
-      <div className="mb-3">
-        <label htmlFor="compType" className="form-label">Registration type</label>
-        <select
-          value={registrationType}
-          onChange={(e) => setRegistrationType(e.target.value)}
-          name="regType"
-          id="regType"
-          className="form-select">
-          {registrationType ? null : <option value="">Select registration type!</option>}
-          <option key={`Company`} value="Company">Company</option>
-          <option key={`PrivatePerson`} value="PrivatePerson">Private person</option>
-          <option key={`CompanyEmployee`} value="CompanyEmployee">Company employee</option>
-          <option key={`External`} value="External">External</option>
-        </select>
       </div>
       <div>
         <button type="submit" className="btn btn-primary">Submit</button>
