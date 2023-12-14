@@ -6,18 +6,18 @@ public class User
 {
     [Key]
     public Guid Id { get; set; }
-    public string FirstName { get; private set; } = null!;
-    public string LastName { get; private set; } = null!;
-    public string Gender { get; init; } = null!;
+    public string FirstName { get; private set; }
+    public string LastName { get; private set; }
+    public string Gender { get; init; }
     public int ZipCode { get; private set; }
-    public string City { get; private set; } = null!;
-    public string Street { get; private set; } = null!;
+    public string City { get; private set; }
+    public string Street { get; private set; }
     public int DoorNumber { get; private set; }
-    public string RegistrationDate { get; init; } = null!;
-    public string UserType { get; init; } = null!;
-    public string CompanyNameByDatabase { get; set; } = null!;
-    public string RegistrationType { get; private set; } = null!;
-    public string IdentityUserId { get; init; } = null!;
+    public string RegistrationDate { get; init; }
+    public string UserType { get; init; }
+    public string CompanyNameByDatabase { get; set; }
+    public string RegistrationType { get; private set; }
+    public string IdentityUserId { get; init; }
 
     public User(string firstName,
                 string lastName,

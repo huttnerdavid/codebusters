@@ -7,17 +7,17 @@ public class Company
 {
     [Key]
     public Guid Id { get; set; }
-    public string CompanyName { get; set; } = null!;
+    public string CompanyName { get; set; }
     public int ZipCode { get; private set; }
-    public string City { get; private set; } = null!;
-    public string Street { get; private set; } = null!;
+    public string City { get; private set; }
+    public string Street { get; private set; }
     public int DoorNumber { get; private set; }
-    public string RegistrationDate { get; init; } = null!;
-    public string PickedCompanyType { get; init; } = null!;
+    public string RegistrationDate { get; init; }
+    public string PickedCompanyType { get; init; }
     public int WarehouseSize { get; private set; }
     public int CompanyUserCount { get; set; }
 
-    private readonly UsersContext _usersContext = null!;
+    private readonly UsersContext _usersContext;
     
     public Company(string companyName, int zipCode, string city, string street, int doorNumber, string pickedCompanyType, UsersContext usersContext)
     {
