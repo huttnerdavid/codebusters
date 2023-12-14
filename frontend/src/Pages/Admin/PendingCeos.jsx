@@ -58,7 +58,7 @@ export default function PendingCeos(){
           </tr>
         </thead>
         <tbody>
-          {ceos && ceos?.map((user) => (
+          {ceos && ceos.slice(paginationSlice.first, paginationSlice.second).map((user) => (
             <tr key={user.item1.id}>
               <td>{user.item2.userName}</td>
               <td>{user.item1.firstName}</td>

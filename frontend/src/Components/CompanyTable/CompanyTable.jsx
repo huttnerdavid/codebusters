@@ -26,7 +26,7 @@ const Company = ({companies, page, headers}) => {
           </tr>
         </thead>
         <tbody>
-           {companies && companies.map((company) => (
+           {companies && companies.slice(paginationSlice.first, paginationSlice.second).map((company) => (
             <tr key={company.companyName}>
               <td>{company.companyName}</td>
               <td>{company.zipCode}</td>
