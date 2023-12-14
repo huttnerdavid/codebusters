@@ -240,6 +240,7 @@ const UserForm = ({ onSave, user, companies }) => {
       </div>
     </RegistrationContainer>
   );
+   // eslint-disable-next-line
 };
 
 export default UserForm;

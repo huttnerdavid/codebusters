@@ -32,25 +32,25 @@ export default function UserManager(){
     setLoading(false);
   }, [userData]);
 
-    function manageUser(e, user){
+  function manageUser(e, user){
 
-    }
-    
-    function deleteUser(email){
-        fetch("/admin/deleteUser?email=" + email, {
-            method: "DELETE",
-            headers: {
-                "Authorization": "Bearer " + getToken()
-            }
-        })
-        .then(res => {
-            if (res.ok){
-                const newUsers = users.filter(u => u.item2.email !== email);
-                setUsers(newUsers);
-            }
-        })
-        .catch(e => alert(e.message));
-    }
+  }
+  
+  function deleteUser(email){
+      fetch("/admin/deleteUser?email=" + email, {
+          method: "DELETE",
+          headers: {
+              "Authorization": "Bearer " + getToken()
+          }
+      })
+      .then(res => {
+          if (res.ok){
+              const newUsers = users.filter(u => u.item2.email !== email);
+              setUsers(newUsers);
+          }
+      })
+      .catch(e => alert(e.message));
+  }
 
   if (loading || !users){
       return <Loading />
