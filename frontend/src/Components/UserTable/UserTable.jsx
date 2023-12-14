@@ -20,7 +20,7 @@ const UserTable = ({users, page, headers}) => {
           </tr>
         </thead>
         <tbody>
-           {users && users?.map((user) => (
+           {users && users.slice(paginationSlice.first, paginationSlice.second).map((user) => (
             <tr key={user.item1.id}>
               <td>{user.item2.userName}</td>
               <td>{user.item1.firstName}</td>
@@ -37,7 +37,7 @@ const UserTable = ({users, page, headers}) => {
               <td>{user.item1.companyNameByDatabase}</td>
               <td>{user.item1.registrationType}</td>
             </tr>
-          ))} 
+          ))}
         </tbody>
       </table>
       <PaginationForm 

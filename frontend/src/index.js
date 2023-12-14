@@ -3,22 +3,19 @@ import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import { getToken } from "./Cookies/cookies";
-
 import Layout from "./Pages/Layout";
 import ErrorPage from "./Pages/ErrorPage";
-
 import UserList from "./Pages/UserList";
 import UserRegistration from "./Pages/UserRegistration";
-
 import CompanyList from "./Pages/CompanyList";
 import CompanyRegistration from "./Pages/CompanyRegistration";
-
 import ConstructRegistration from "./Pages/ConstructRegistration";
 import ConstructList from "./Pages/ConstructList";
-
 import LoginPage from "./Pages/LoginPage";
 import PendingCeos from "./Pages/Admin/PendingCeos";
 import UserManager from "./Pages/Admin/UserManager";
+import HomePage from "./Pages/HomePage";
+import ContactPage from "./Pages/ContactPage";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -62,19 +59,7 @@ const App = () => {
       children: [
         {
           path: "/",
-          element: 
-            <div className="welcome-text">
-              {isLoggedIn ? (
-                "You are logged in!"
-              ) : (
-                <div>
-                  Welcome to the page! Click on the{" "}
-                  <Link to="/login">
-                    Login
-                  </Link> button if You are not registered!
-                </div>
-              )}
-            </div>
+          element: <HomePage/>
         },
         {
           path: "/users/:page",
@@ -111,6 +96,10 @@ const App = () => {
         {
           path: "/admin/userManager/:page",
           element: <UserManager/>
+        },
+        {
+          path: "/contact",
+          element: <ContactPage/>
         }
       ],
     },
