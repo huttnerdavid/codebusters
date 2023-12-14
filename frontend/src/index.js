@@ -1,21 +1,25 @@
-import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
-import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { getToken } from "./Cookies/cookies";
+
 import Layout from "./Pages/Layout";
 import ErrorPage from "./Pages/ErrorPage";
+
 import UserList from "./Pages/UserList";
-import UserRegistration from "./Pages/UserRegistration";
 import CompanyList from "./Pages/CompanyList";
+import ConstructList from "./Pages/ConstructList";
+
+import UserRegistration from "./Pages/UserRegistration";
 import CompanyRegistration from "./Pages/CompanyRegistration";
 import ConstructRegistration from "./Pages/ConstructRegistration";
-import ConstructList from "./Pages/ConstructList";
+
+import HomePage from "./Pages/HomePage";
 import LoginPage from "./Pages/LoginPage";
+import ContactPage from "./Pages/ContactPage";
 import PendingCeos from "./Pages/Admin/PendingCeos";
 import UserManager from "./Pages/Admin/UserManager";
-import HomePage from "./Pages/HomePage";
-import ContactPage from "./Pages/ContactPage";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

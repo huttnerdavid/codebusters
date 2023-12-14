@@ -16,7 +16,6 @@ export default function UserManager(){
   const [recordPerPage, setRecordPerPage] = useState(10);
   const [paginationSlice, setPaginationSlice] = useState({first: Number(page) * recordPerPage - recordPerPage, second: Number(page) * recordPerPage -1});
   const headers =  ["First name", "Last name", "Zipcode", "City", "Street", "Door", "E-mail", "Registered date", "User type", "Company", "Type", "Action", ""];
-  console.log(page);
 
   useEffect(() => {
     setPaginationSlice({first: Number(page) * recordPerPage - recordPerPage, second: Number(page) * recordPerPage -1});
@@ -33,25 +32,25 @@ export default function UserManager(){
     setLoading(false);
   }, [userData]);
 
-    function manageUser(e, user){
+  function manageUser(e, user){
 
-    }
-    
-    function deleteUser(email){
-        fetch("/admin/deleteUser?email=" + email, {
-            method: "DELETE",
-            headers: {
-                "Authorization": "Bearer " + getToken()
-            }
-        })
-        .then(res => {
-            if (res.ok){
-                const newUsers = users.filter(u => u.item2.email !== email);
-                setUsers(newUsers);
-            }
-        })
-        .catch(e => alert(e.message));
-    }
+  }
+  
+  function deleteUser(email){
+      fetch("/admin/deleteUser?email=" + email, {
+          method: "DELETE",
+          headers: {
+              "Authorization": "Bearer " + getToken()
+          }
+      })
+      .then(res => {
+          if (res.ok){
+              const newUsers = users.filter(u => u.item2.email !== email);
+              setUsers(newUsers);
+          }
+      })
+      .catch(e => alert(e.message));
+  }
 
   if (loading || !users){
       return <Loading />
