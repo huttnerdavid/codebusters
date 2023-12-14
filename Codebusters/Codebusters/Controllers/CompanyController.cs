@@ -1,4 +1,4 @@
-using Codebusters.Contracts;
+using Codebusters.Contracts.Registers;
 using Codebusters.Data;
 using Codebusters.Model;
 using Microsoft.AspNetCore.Authorization;
@@ -19,7 +19,7 @@ public class CompanyController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet("/getCompanies"), Authorize(Roles = "Admin")]
+    [HttpGet("/getCompanies"), Authorize(Roles = "Admin, Leader, User")]
     public ActionResult<IEnumerable<Company>> GetAll()
     {
         try
@@ -46,10 +46,10 @@ public class CompanyController : ControllerBase
         try
         {
             var identityUserId = _usersContext.Users.First(u => u.Email == email).Id;
-            var companyName = _usersContext.UsersDb.First(u => u.IdentityUserId == identityUserId).CompanyNameByDatabase;
-            var companies = _usersContext.Companies.Where(cn => cn.CompanyName == companyName).ToList();
+            var companyName = _usersContext.UsersDb!.First(u => u.IdentityUserId == identityUserId).CompanyNameByDatabase;
+            var companies = _usersContext.Companies!.Where(cn => cn.CompanyName == companyName).ToList();
 
-            if (companies == null || !companies.Any())
+            if (!companies.Any())
             {
                 _logger.LogInformation("There is no company in the database.");
             }
@@ -63,7 +63,7 @@ public class CompanyController : ControllerBase
         }
     }
     
-    [HttpPost("CompanyRegister"), Authorize(Roles = "Admin, Leader")]
+    [HttpPost("/companyRegister"), Authorize(Roles = "Admin, Leader")]
     public async Task<ActionResult<CompanyRegistrationResponse>> Register(CompanyRegistrationRequest request)
     {
         try
@@ -75,7 +75,7 @@ public class CompanyController : ControllerBase
 
             var newCompany = new Company(request.CompanyName, request.ZipCode, request.City, request.Street, request.DoorNumber, request.PickedCompanyType, _usersContext);
             
-            _usersContext!.Companies!.Add(newCompany);
+            _usersContext.Companies!.Add(newCompany);
             await _usersContext.SaveChangesAsync();
 
             return CreatedAtAction(nameof(Register), new CompanyRegistrationResponse(request.CompanyName));
@@ -93,6 +93,7 @@ public class CompanyController : ControllerBase
         try
         {
             var constructs = _usersContext.Constructs;
+            
             if (constructs != null && !constructs.Any())
             {
                 _logger.LogInformation("There is no construct(s) in the database.");
@@ -114,9 +115,10 @@ public class CompanyController : ControllerBase
         try
         {
             var reqUser = await _usersContext.Users.FirstAsync(u => u.Email == email);
-            var dbUser = await _usersContext.UsersDb.FirstAsync(u => u.IdentityUserId == reqUser.Id);
-            var constructs = _usersContext?.Constructs!.Where(cn => cn.CompanyName == dbUser.CompanyNameByDatabase);
-            if (constructs != null && !constructs.Any())
+            var dbUser = await _usersContext.UsersDb!.FirstAsync(u => u.IdentityUserId == reqUser.Id);
+            var constructs = _usersContext.Constructs!.Where(cn => cn.CompanyName == dbUser.CompanyNameByDatabase);
+            
+            if (!constructs.Any())
             {
                 _logger.LogInformation("There is no construct(s) in the database.");
                 return Ok(constructs);

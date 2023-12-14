@@ -1,11 +1,11 @@
+import PaginationForm from "../../Components/PaginationForm";
+import Loading from "../../Components/Loading";
+import useFetch from "../../Hooks/useFetch";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import useFetch from "../../Hooks/useFetch";
-import Loading from "../../Components/Loading";
 import { Button } from "react-bootstrap";
 import { getToken } from "../../Cookies/cookies";
 import { useParams } from "react-router-dom";
-import PaginationForm from "../../Components/PaginationForm";
 
 export default function PendingCeos(){
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ export default function PendingCeos(){
         "Content-Type": "application/json",
         "Authorization": "Bearer " + getToken()
       }
-    });
+    },[]);
   }
 
   if (loading){
@@ -183,7 +183,7 @@ export default function PendingCeos(){
       <PaginationForm 
         element = { ceos }
         page = { page }
-        url = { "companies" }
+        url = { "/companies" }
         recordPerPage = { recordPerPage }
         setRecordPerPage = { setRecordPerPage }
         paginationSlice = { paginationSlice }

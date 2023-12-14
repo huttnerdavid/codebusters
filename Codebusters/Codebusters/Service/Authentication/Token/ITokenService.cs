@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace Codebusters.Service.Authentication;
+namespace Codebusters.Service.Authentication.Token;
 
 public interface ITokenService
 {

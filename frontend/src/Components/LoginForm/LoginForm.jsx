@@ -13,7 +13,7 @@ export default function LoginForm({setIsLoggedIn}){
       e.preventDefault();
 
         let login = { email, password };
-        fetch(`Login`, {
+        fetch(`/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

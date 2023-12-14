@@ -39,7 +39,7 @@ public class Company
 
     private int UserCounterForCompany(string companyName)
     {
-        return (int)_usersContext?.UsersDb?.Count(u => u.CompanyNameByDatabase == companyName)!;
+        return (int)_usersContext.UsersDb?.Count(u => u.CompanyNameByDatabase == companyName)!;
     }
 
     private int MeasureWarehouseSize(string companyType)

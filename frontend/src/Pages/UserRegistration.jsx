@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import Loading from "../Components/Loading";
-import UserForm from "../Components/UserForm";
 import { useNavigate } from "react-router-dom";
 import { getToken } from "../Cookies/cookies";
+import Loading from "../Components/Loading";
+import UserForm from "../Components/UserForm";
 
 const fetchData = async (setCompanies) => {
   try {
-    const response = await fetch(`getCompanies`);
+    const response = await fetch(`/getCompanies`);
     const data = await response.json();
 
     if (response.ok) {
@@ -26,7 +26,7 @@ const UserRegistration = () => {
   
   const createEmployee = (user) => {
     const jsonPayload = JSON.stringify(user);
-    return fetch(`/Register`, {
+    return fetch(`/register`, {
       method: "POST",
       headers: {
         "Authorization": "Bearer " + getToken(),
