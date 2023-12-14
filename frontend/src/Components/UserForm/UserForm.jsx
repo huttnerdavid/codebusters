@@ -1,8 +1,8 @@
-import { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState } from "react";
 import { RegistrationContainer } from "../../Styles/Registration.Styled";
 
-const UserForm = ({ onSave, user, onCancel, companies }) => {
+const UserForm = ({ onSave, user, companies }) => {
 
   const [userName, setUserName] = useState(user?.userName ?? "");
   const [password, setPassword] = useState(user?.password ?? "");

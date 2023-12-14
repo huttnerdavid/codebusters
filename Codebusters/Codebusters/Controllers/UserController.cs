@@ -1,4 +1,4 @@
-using Codebusters.Contracts;
+using Codebusters.Contracts.Services;
 using Codebusters.Data;
 using Codebusters.Model;
 using Microsoft.AspNetCore.Authorization;
@@ -30,8 +30,8 @@ public class UserController : ControllerBase
         try
         {
             var returningList = new List<Tuple<User, IdentityUser>>();
-
             var users = _userContext.UsersDb;
+            
             if (users == null || !users.Any())
             {
                 _logger.LogInformation("There is no user in the database.");
@@ -43,6 +43,7 @@ public class UserController : ControllerBase
             foreach (var user in users)
             {
                 var identityUser = identityUsers.FirstOrDefault(identityUser => user.IdentityUserId == identityUser.Id);
+                
                 if (identityUser != null)
                 {
                     var tuple = new Tuple<User, IdentityUser>(user, identityUser);
@@ -66,20 +67,20 @@ public class UserController : ControllerBase
         {
             var returningList = new List<Tuple<User, IdentityUser>>();
             var reqUser = await _userManager.FindByEmailAsync(email);
-            var dbUser = await _userContext.UsersDb.FirstAsync(u => u.IdentityUserId == reqUser.Id);
-
-            var users = _userContext?.UsersDb!.Where(cn => cn.CompanyNameByDatabase == dbUser.CompanyNameByDatabase);
-            if (users == null || !users.Any())
+            var dbUser = await _userContext.UsersDb!.FirstAsync(u => u.IdentityUserId == reqUser!.Id);
+            var users = _userContext.UsersDb!.Where(cn => cn.CompanyNameByDatabase == dbUser.CompanyNameByDatabase);
+            
+            if (!users.Any())
             {
                 _logger.LogInformation("There is no user in the database.");
                 return Ok(users);
             }
 
-            var identityUsers = _userContext?.Users.ToList();
+            var identityUsers = _userContext.Users.ToList();
 
             foreach (var user in users)
             {
-                var identityUser = identityUsers!.FirstOrDefault(identityUser => user.IdentityUserId == identityUser.Id);
+                var identityUser = identityUsers.FirstOrDefault(identityUser => user.IdentityUserId == identityUser.Id);
                 
                 if (identityUser != null)
                 {
@@ -104,18 +105,18 @@ public class UserController : ControllerBase
         {
             var returningList = new List<Tuple<User, IdentityUser>>();
 
-            var users = _userContext?.UsersDb!.Where(cn => cn.CompanyNameByDatabase == "Not added yet");
-            if (users == null || !users.Any())
+            var users = _userContext.UsersDb!.Where(cn => cn.CompanyNameByDatabase == "Not added yet");
+            if (!users.Any())
             {
                 _logger.LogInformation("There is no user in the database.");
                 return Ok(users);
             }
 
-            var identityUsers = _userContext?.Users.ToList();
+            var identityUsers = _userContext.Users.ToList();
 
             foreach (var user in users)
             {
-                var identityUser = identityUsers!.FirstOrDefault(identityUser => user.IdentityUserId == identityUser.Id);
+                var identityUser = identityUsers.FirstOrDefault(identityUser => user.IdentityUserId == identityUser.Id);
                 
                 if (identityUser != null)
                 {
@@ -133,12 +134,13 @@ public class UserController : ControllerBase
         }
     }
     
-    [HttpPatch("ChangePassword"), Authorize(Roles = "User")]
+    [HttpPatch("/changePassword"), Authorize(Roles = "User")]
     public async Task<ActionResult<ChangePasswordResponse>> ChangePassword([FromBody] ChangePasswordRequest request)
     {
         try
         {
             var existingUser = await _userManager.FindByEmailAsync(request.Email);
+            
             if (existingUser == null)
             {
                 return BadRequest(existingUser);
@@ -165,7 +167,7 @@ public class UserController : ControllerBase
         }
     }
     
-    [HttpDelete("deleteAccount"), Authorize(Roles = "User, Leader")]
+    [HttpDelete("/deleteAccount"), Authorize(Roles = "User, Leader")]
     public async Task<ActionResult<string>> DeleteAccount(string email)
     {
         if (_config["AEmail"]!.ToLower() == email.ToLower())
@@ -176,16 +178,17 @@ public class UserController : ControllerBase
         try
         {
             var identityUser = await _userManager.FindByEmailAsync(email);
-            var dbUser = _userContext?.UsersDb!.FirstOrDefault(e => e.IdentityUserId == identityUser!.Id);
+            var dbUser = _userContext.UsersDb!.FirstOrDefault(e => e.IdentityUserId == identityUser!.Id);
             
-            _userContext?.UsersDb!.Remove(dbUser!);
+            _userContext.UsersDb!.Remove(dbUser!);
+            
             if (identityUser == null)
             {
                 return BadRequest("Something went wrong");
             }
             
             var result = await _userManager.DeleteAsync(identityUser);
-            await _userContext!.SaveChangesAsync();
+            await _userContext.SaveChangesAsync();
             
             return result.Succeeded ? Ok(identityUser.Id) : BadRequest(result.Errors);
         }

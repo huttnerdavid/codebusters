@@ -1,3 +1,4 @@
+using Codebusters.Service.Authentication.Token;
 using Microsoft.AspNetCore.Identity;
 
 namespace Codebusters.Service.Authentication;
@@ -49,23 +50,23 @@ public class AuthService : IAuthService
         }
 
         var isPasswordValid = await _userManager.CheckPasswordAsync(managedUser, password);
+        
         if (!isPasswordValid)
         {
-            return InvalidPassword(email, managedUser.UserName);
+            return InvalidPassword(email, managedUser.UserName!);
         }
-
-
-        // get the role and pass it to the TokenService
+        
         var roles = await _userManager.GetRolesAsync(managedUser);
         var accessToken = _tokenService.CreateToken(managedUser, roles[0]);
 
-        return new AuthResult(managedUser.Id, true, managedUser.Email, managedUser.UserName, accessToken);
+        return new AuthResult(managedUser.Id, true, managedUser.Email!, managedUser.UserName!, accessToken);
     }
     
     private static AuthResult InvalidEmail(string email)
     {
         var result = new AuthResult("", false, email, "", "");
         result.ErrorMessages.Add("Bad credentials", "Invalid email");
+        
         return result;
     }
     
@@ -73,6 +74,7 @@ public class AuthService : IAuthService
     {
         var result = new AuthResult("", false, email, userName, "");
         result.ErrorMessages.Add("Bad credentials", "Invalid password");
+        
         return result;
     }
 }

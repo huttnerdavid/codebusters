@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Codebusters.Contracts;
+namespace Codebusters.Contracts.Registers;
 
-public record RegistrationRequest(
+public record UserRegistrationRequest(
     [Required]string Username,
     [Required]string Password,
     [Required]string Email,

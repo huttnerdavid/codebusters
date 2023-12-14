@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Codebusters.Service.Authentication;
+namespace Codebusters.Service.Authentication.Token;
 
 public class TokenService : ITokenService
 {
@@ -63,6 +63,6 @@ public class TokenService : ITokenService
     
     private SigningCredentials CreateSigningCredentials()
     {
-        return new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["IssueSign"])), SecurityAlgorithms.HmacSha256);
+        return new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["IssueSign"]!)), SecurityAlgorithms.HmacSha256);
     }
 }

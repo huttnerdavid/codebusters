@@ -1,6 +1,6 @@
-import { useState } from "react";
 import Loading from "../Components/Loading";
 import CompanyForm from "../Components/CompanyForm";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getToken } from "../Cookies/cookies";
 
@@ -10,7 +10,7 @@ const CompanyRegistration = () => {
 
   const createCompany = (company) => {
     const jsonPayload = JSON.stringify(company);
-    return fetch(`/CompanyRegister`, {
+    return fetch(`/companyRegister`, {
       method: "POST",
       headers: {
         "Authorization": "Bearer " + getToken(),
@@ -20,7 +20,7 @@ const CompanyRegistration = () => {
     }).then((res) => {
       if(res.status === 201){
         alert("Successfully registered!");
-        navigate("/companies");
+        navigate("/companies/1");
       } else {
         alert("Something went wrong!");
       }

@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Loading from "../../Components/Loading";
+import PaginationForm from "../../Components/PaginationForm";
 import useFetch from "../../Hooks/useFetch";
 import { getToken } from "../../Cookies/cookies";
-import PaginationForm from "../../Components/PaginationForm";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 export default function UserManager(){
@@ -36,8 +36,8 @@ export default function UserManager(){
     function manageUser(e, user){
 
     }
-
-    async function deleteUser(e, email){
+    
+    function deleteUser(email){
         fetch("/admin/deleteUser?email=" + email, {
             method: "DELETE",
             headers: {

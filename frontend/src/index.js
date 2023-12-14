@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
+import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import { getToken } from "./Cookies/cookies";
-import reportWebVitals from "./reportWebVitals";
 import Layout from "./Pages/Layout";
 import ErrorPage from "./Pages/ErrorPage";
 import UserList from "./Pages/UserList";

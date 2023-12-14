@@ -91,6 +91,7 @@ public class AdminController : ControllerBase
     [HttpDelete("deleteUser"), Authorize(Roles = "Admin")]
     public async Task<ActionResult<string>> DeleteUser(string email)
     {
+        _logger.LogInformation("/deleteUser/{email}", email);
         try
         {
             var identityUser = await _userManager.FindByEmailAsync(email);

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { logout } from "../../Cookies/cookies";
-import { LoginLogoutLi, StyledUl, StyledLink } from "../../Styles/Navbar.Styled";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import { logout } from "../../Cookies/cookies";
+import { LoginLogoutLi, StyledUl, StyledLink } from "../../Styles/Navbar.Styled";
 
 const Layout = ({ isLoggedIn, setIsLoggedIn }) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);

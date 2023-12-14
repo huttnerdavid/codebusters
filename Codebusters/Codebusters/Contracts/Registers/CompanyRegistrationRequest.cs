@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Codebusters.Contracts;
+namespace Codebusters.Contracts.Registers;
 
 public record CompanyRegistrationRequest(
     [Required]string CompanyName,

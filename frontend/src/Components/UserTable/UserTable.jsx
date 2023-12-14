@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
 import PaginationForm from '../PaginationForm';
+import React, { useState, useEffect } from 'react';
 
 const UserTable = ({users, page, headers}) => {
   const [recordPerPage, setRecordPerPage] = useState(10);

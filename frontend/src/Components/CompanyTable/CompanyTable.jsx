@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
 import PaginationForm from '../PaginationForm';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Company = ({companies, page, headers}) => {
