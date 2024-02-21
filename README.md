@@ -25,3 +25,10 @@
 - able to see the current state of the work,
 - leave comment
 - Company or private person
+
+### Reference images
+![image](https://github.com/huttnerdavid/codebusters/assets/55077329/e7fd82bc-c912-4689-b042-c408a225fa7f)
+![image](https://github.com/huttnerdavid/codebusters/assets/55077329/9dfe0479-869a-4bc0-8166-24a5e42fc139)
+![image](https://github.com/huttnerdavid/codebusters/assets/55077329/571922a6-381d-436d-bac0-bc1fcb54ff32)
+![image](https://github.com/huttnerdavid/codebusters/assets/55077329/900fc075-0d40-432e-9e65-3d08f791015b)
+
